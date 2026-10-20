@@ -1,0 +1,4 @@
+project:
+  title: "Python para la ciencia de datos moderna"
+  render:
+    - index.qmd

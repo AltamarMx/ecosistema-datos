@@ -1,0 +1,623 @@
+/*-- scss:defaults --*/
+
+$azul: #1f3a5f;
+$rojo: #c44536;
+$gris: #6c757d;
+
+$presentation-heading-color: $azul;
+$link-color: #1f6f8b;
+$presentation-font-size-root: 30px;
+$presentation-h2-font-size: 1.4em;
+$code-block-font-size: 0.6em;
+
+/*-- scss:rules --*/
+
+.reveal .tiny {
+  font-size: 0.45em;
+  color: $gris;
+}
+
+.reveal .small {
+  font-size: 0.72em;
+}
+
+.reveal .fuente {
+  font-size: 0.45em;
+  color: $gris;
+  margin-top: 1em;
+}
+
+.reveal .pregunta {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: $azul;
+  text-align: center;
+  background: #f4f6f9;
+  border-radius: 12px;
+  padding: 0.6em 0.8em;
+  margin: 0.4em 0;
+}
+
+.reveal .has-dark-background .pregunta {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* Tarjetas numeradas */
+.reveal .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6em;
+
+  &.dos   { grid-template-columns: repeat(2, 1fr); }
+  &.tres  { grid-template-columns: repeat(3, 1fr); }
+}
+
+.reveal .card {
+  background: #f4f6f9;
+  border-top: 4px solid $azul;
+  border-radius: 10px;
+  padding: 0.55em 0.75em;
+  font-size: 0.62em;
+
+  .num {
+    display: inline-block;
+    background: $azul;
+    color: #fff;
+    border-radius: 50%;
+    width: 1.7em;
+    height: 1.7em;
+    text-align: center;
+    line-height: 1.7em;
+    font-weight: 700;
+    margin-bottom: 0.35em;
+  }
+
+  .desc {
+    display: block;
+    color: #4a4a4a;
+    margin-top: 0.35em;
+    line-height: 1.35;
+  }
+}
+
+/* Caja de demo en vivo */
+.reveal .demo {
+  border: 3px dashed $rojo;
+  border-radius: 12px;
+  background: #fdf3f1;
+  padding: 0.55em 0.9em;
+  font-size: 0.68em;
+  margin-top: 0.6em;
+
+  .demo-title {
+    display: block;
+    font-weight: 700;
+    color: $rojo;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.3em;
+  }
+}
+
+/* Marcador de pendiente, visible al revisar */
+.reveal .todo {
+  background: #fff3cd;
+  border-radius: 6px;
+  padding: 0.05em 0.35em;
+  font-size: 0.8em;
+  color: #7a5c00;
+  font-weight: 600;
+}
+
+/* Listado grande: código protagonista que llena la diapositiva */
+.reveal .ls-grande pre,
+.reveal .ls-grande div.sourceCode pre {
+  font-size: 0.78em;
+}
+
+.reveal .ls-grande pre code,
+.reveal .ls-grande div.sourceCode pre code {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* Comparaciones a pantalla completa: cajas vs-* como contenido principal */
+.reveal .vs-grandes .vs-mal,
+.reveal .vs-grandes .vs-bien {
+  font-size: 0.82em;
+}
+
+/* Bloques diff: rojo lo que sale, verde lo que entra (estilo GitHub) */
+.reveal code.sourceCode.diff {
+  .st {
+    color: #b42318;
+    background: #ffebe9;
+    display: inline-block;
+    width: 100%;
+  }
+  .va {
+    color: #1a7f37;
+    background: #e6f4ea;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+/* Vista "renderizada" gemela de un bloque de código */
+.reveal .md-render {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0.6em 0.9em;
+  font-size: 0.62em;
+  line-height: 1.5;
+
+  .md-h {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: $azul;
+    margin: 0 0 0.45em 0;
+  }
+
+  p { margin: 0 0 0.6em 0; }
+  ul { margin: 0 0 0 1.1em; }
+  li { margin: 0; }
+}
+
+/* Comparaciones lado a lado */
+.reveal .vs-mal,
+.reveal .vs-bien {
+  border-radius: 10px;
+  padding: 0.5em 0.7em;
+  font-size: 0.62em;
+}
+
+.reveal .vs-mal  { background: #fdf3f1; border-top: 4px solid $rojo; }
+.reveal .vs-bien { background: #eef7f0; border-top: 4px solid #2e7d32; }
+
+.reveal pre code,
+.reveal div.sourceCode pre code {
+  max-height: 620px;
+}
+
+/* ---------- Agregados: Python para la ciencia de datos moderna ---------- */
+
+$verde: #2e7d32;
+
+/* Práctica: el público lo hace en su máquina (🖐) */
+.reveal .practica {
+  border: 3px dashed $verde;
+  border-radius: 12px;
+  background: #eef7f0;
+  padding: 0.55em 0.9em;
+  font-size: 0.68em;
+  margin-top: 0.6em;
+
+  .practica-title {
+    display: block;
+    font-weight: 700;
+    color: $verde;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.3em;
+  }
+
+  pre { margin: 0.3em 0; }
+}
+
+/* Pista hacia la tesis (🧭) */
+.reveal .pista {
+  border-left: 6px solid #b8860b;
+  background: #fbf6e9;
+  border-radius: 0 10px 10px 0;
+  padding: 0.45em 0.8em;
+  font-size: 0.66em;
+  margin-top: 0.6em;
+
+  &::before {
+    content: "🧭 Pista";
+    display: block;
+    font-weight: 700;
+    color: #8a6508;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85em;
+    margin-bottom: 0.2em;
+  }
+}
+
+/* Etiqueta de modo en el título de bloque */
+.reveal .modo {
+  display: inline-block;
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  padding: 0.3em 1.1em;
+  margin-top: 0.4em;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+/* Embudo de reproducibilidad: barras proporcionales */
+.reveal .embudo {
+  font-size: 0.62em;
+  margin-top: 0.5em;
+
+  .fila {
+    display: grid;
+    grid-template-columns: 34% 1fr;
+    align-items: center;
+    gap: 0.6em;
+    margin: 0.35em 0;
+  }
+
+  .fila > p { display: contents; }
+  .etiqueta { text-align: right; color: #333; }
+
+  .barra {
+    background: $azul;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0.2em 0.5em;
+    min-width: 4.5em;
+    white-space: nowrap;
+  }
+
+  .final { background: $rojo; }
+}
+
+/* Números grandes en tarjetas */
+.reveal .card .grande {
+  display: block;
+  font-size: 2.6em;
+  font-weight: 800;
+  color: $rojo;
+  line-height: 1.05;
+}
+
+.reveal .cards.cuatro { grid-template-columns: repeat(4, 1fr); }
+
+/* Capas concéntricas: modelo ⊂ herramientas ⊂ harness */
+.reveal .capas {
+  font-size: 0.6em;
+  text-align: center;
+
+  .capa {
+    border-radius: 14px;
+    padding: 0.5em 0.9em 0.8em;
+    margin-top: 0.3em;
+  }
+
+  .harness      { background: #e8edf4; border: 3px solid $azul; }
+  .herramientas { background: #f4f6f9; border: 2px dashed $gris; }
+  .modelo       { background: $azul; color: #fff; font-weight: 700; }
+
+  .nombre {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.2em;
+  }
+}
+
+/* Línea de tiempo simple */
+.reveal .linea {
+  font-size: 0.7em;
+
+  .hito {
+    display: grid;
+    grid-template-columns: 7em 1fr;
+    gap: 0.8em;
+    padding: 0.3em 0;
+    border-bottom: 1px solid #e3e6ea;
+  }
+
+  .hito > p { display: contents; }
+  .fecha { font-weight: 700; color: $azul; }
+}
+
+.reveal table { font-size: 0.6em; }
+
+/* Código dentro de cajas reducidas: compensar el font-size del contenedor */
+.reveal .practica pre,
+.reveal .practica div.sourceCode pre,
+.reveal .demo pre,
+.reveal .demo div.sourceCode pre {
+  font-size: 0.9em;
+}
+
+.reveal .small pre,
+.reveal .small div.sourceCode pre {
+  font-size: 0.82em;
+}
+
+.reveal .practica pre code,
+.reveal .demo pre code,
+.reveal .small pre code {
+  font-size: 1em;
+}
+
+/* Causa → herramienta: filas tipo tarjeta (diapositiva puente y cierre) */
+.reveal .causas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32em;
+  font-size: 0.74em;
+  margin-top: 0.2em;
+
+  .par {
+    display: grid;
+    grid-template-columns: 1.15fr 1.4em 0.95fr 4.2em;
+    align-items: center;
+    gap: 0.5em;
+    background: #f4f6f9;
+    border-left: 7px solid $rojo;
+    border-radius: 0 10px 10px 0;
+    padding: 0.38em 0.8em;
+  }
+
+  .par > p { display: contents; }
+
+  .causa  { color: #2b2b2b; line-height: 1.25; }
+  .flecha { color: $gris; font-weight: 700; text-align: center; font-size: 1.2em; }
+  .herr   { color: $azul; }
+
+  .bloque {
+    justify-self: center;
+    background: $azul;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8em;
+    border-radius: 999px;
+    padding: 0.12em 0.7em;
+    white-space: nowrap;
+  }
+
+  .encabezado {
+    background: none;
+    border-left-color: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+
+    .causa, .herr { color: $gris; }
+    .bloque { background: none; color: $gris; padding: 0; }
+  }
+
+  .tesis {
+    background: #fbf6e9;
+    border-left-color: #b8860b;
+
+    .herr { color: #8a6508; }
+    .bloque { background: #b8860b; }
+  }
+
+  &.resuelto {
+    .par { border-left-color: $verde; }
+    .bloque { background: $verde; }
+  }
+}
+
+/* Diapositiva protagónica: el documental de Python (primera pista 🧭) */
+.reveal .documental {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.2em;
+  align-items: center;
+  text-align: left;
+
+  .doc-texto > p { margin: 0; }
+
+  .brujula {
+    display: block;
+    font-size: 3.4em;
+    line-height: 1;
+    margin-bottom: 0.1em;
+  }
+
+  .doc-etiqueta {
+    display: block;
+    color: #8a6508;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7em;
+  }
+
+  .doc-titulo {
+    display: block;
+    color: $azul;
+    font-weight: 800;
+    font-size: 1.55em;
+    line-height: 1.1;
+    margin: 0.15em 0 0.35em;
+  }
+
+  .doc-desc {
+    display: block;
+    font-size: 0.7em;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 0.7em;
+  }
+
+  .doc-boton {
+    display: inline-block;
+    background: $rojo;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75em;
+    border-radius: 999px;
+    padding: 0.35em 1.1em;
+  }
+
+  .doc-meta {
+    display: block;
+    font-size: 0.5em;
+    color: $gris;
+    margin-top: 0.8em;
+  }
+
+  .doc-imagen img {
+    width: 100%;
+    margin: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(31, 58, 95, 0.35);
+  }
+}
+
+/* Historia de git: cada commit es un punto en una línea */
+.reveal .historia {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6em;
+  font-size: 0.82em;
+  margin: 1.9em 0 1em;
+
+  /* la línea del tiempo */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 0.8em;
+    height: 6px;
+    margin-top: -3px;
+    background: linear-gradient(to right, $azul 0%, $azul 66%, #c9d1dc 66%, #c9d1dc 100%);
+    border-radius: 3px;
+  }
+
+  .commit {
+    position: relative;
+    text-align: center;
+    > p { display: contents; }
+  }
+
+  .punto {
+    display: block;
+    width: 1.6em;
+    height: 1.6em;
+    margin: 0 auto 0.5em;
+    border-radius: 50%;
+    background: $azul;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 3px $azul;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hash {
+    display: block;
+    font-family: monospace;
+    font-weight: 700;
+    color: $rojo;
+  }
+
+  .msg {
+    display: block;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.25;
+    margin: 0.2em 0;
+  }
+
+  .meta {
+    display: block;
+    font-size: 0.78em;
+    color: $gris;
+  }
+
+  .head {
+    position: absolute;
+    top: -1.9em;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: $rojo;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.72em;
+    border-radius: 999px;
+    padding: 0.1em 0.7em;
+  }
+
+  .actual .punto {
+    background: $rojo;
+    box-shadow: 0 0 0 3px $rojo;
+  }
+
+  .futuro {
+    .punto {
+      background: #fff;
+      box-shadow: 0 0 0 3px #c9d1dc;
+      border-style: dashed;
+    }
+    .hash, .msg { color: #9aa5b1; font-weight: 600; }
+  }
+}
+
+/* Recomendación de video dentro de una diapositiva */
+.reveal .video {
+  display: grid;
+  grid-template-columns: 34% 1fr;
+  gap: 0.9em;
+  align-items: center;
+  background: #f4f6f9;
+  border-left: 7px solid $rojo;
+  border-radius: 0 12px 12px 0;
+  padding: 0.5em 0.8em;
+  margin-top: 0.6em;
+
+  img {
+    width: 100%;
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(31, 58, 95, 0.3);
+  }
+
+  > p { margin: 0; }
+
+  .video-texto > p { margin: 0; }
+
+  .video-etiqueta {
+    display: block;
+    color: $rojo;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.5em;
+  }
+
+  .video-titulo {
+    display: block;
+    color: $azul;
+    font-weight: 800;
+    font-size: 0.95em;
+    margin: 0.1em 0 0.2em;
+  }
+
+  .video-desc {
+    display: block;
+    font-size: 0.6em;
+    color: #333;
+    margin-bottom: 0.5em;
+  }
+
+  .doc-boton {
+    display: inline-block;
+    background: $rojo;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.6em;
+    border-radius: 999px;
+    padding: 0.3em 1em;
+  }
+}
