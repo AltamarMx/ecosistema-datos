@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="index_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Guillermo Barrios del Valle · Instituto de Energías Renovables, UNAM">
+  <title>Python para la ciencia de datos moderna</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-04f2d002342b5e074e017d222b3493a8.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Python para la ciencia de datos moderna</h1>
+  <p class="subtitle">Ecosistema reproducible e integración de la IA generativa</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Guillermo Barrios del Valle · Instituto de Energías Renovables, UNAM 
+</div>
+</div>
+</div>
+
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+<div style="text-align: center;">
+<p><a href="img/qr-ecosistema.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="img/qr-ecosistema.png" height="560"></a></p>
+<p><span class="tiny">altamarmx.github.io/ecosistema-datos</span></p>
+</div>
+<aside class="notes">
+<p>Mientras la gente se acomoda: escanear para seguir las diapositivas en su dispositivo. Quien quiera hacer las prácticas: instalar uv y git ya (siguiente diapositiva).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="para-seguir-las-prácticas" class="slide level2">
+<h2>Para seguir las prácticas 🖐</h2>
+<!--
+OJO: este comentario va DENTRO de la segunda diapositiva. Si se coloca antes del
+primer ##, revealjs crea una diapositiva en blanco con él.
+
+GUION DE 2 HORAS (ver TEMARIO.md)
+  0–7     Bloque 0  Motivación: la reproducibilidad, medida ........ 👀
+  7–12    Bloque 1  El problema y la pregunta ....................... 👀
+  12–27   Bloque 2  uv y ambientes virtuales ........................ 🖐
+  27–42   Bloque 3  Versionado: git y el diff ....................... 🖐
+  42–57   Bloque 4  De Jupyter a marimo ............................. 🖐
+  57–65   Bloque 5  Parquet ......................................... 🖐
+  65–70   Pausa
+  70–85   Bloque 6  src/, paquete y exploración paramétrica ......... 🖐
+  85–103  Bloque 7  IA generativa: agente, harness, spec-driven ..... 👀
+  103–110 Bloque 8  MCP ............................................. 👀
+  110–120 Bloque 9  Cierre: por qué seguir aprendiendo a programar
+
+Marcadores:
+  caja verde punteada = PRÁCTICA (🖐, el público la hace)
+  caja roja punteada  = DEMO EN VIVO (👀, solo observan)
+  caja ámbar          = PISTA 🧭 hacia la tesis; el cierre las recoge todas
+
+Fusibles si se va el tiempo: lazy/pushdown (bloque 5),
+demo MCP (bloque 8, se cuenta sin demo).
+-->
+<div class="columns">
+<div class="column small" style="width:55%;">
+<p><strong>1. Instala uv</strong></p>
+<p>macOS / Linux (terminal)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Windows (PowerShell)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>astral<span class="op">.</span><span class="fu">sh</span><span class="op">/</span>uv<span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Instala git</strong> (<a href="https://git-scm.com/downloads">da clic aquí para descargarlo</a>) <strong>y dile quién eres</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name  <span class="st">"Tu Nombre"</span></span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"tu@correo.mx"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column small" style="width:45%;">
+<p><strong>Cómo leer las diapositivas</strong></p>
+<ul>
+<li>🖐 <strong>Práctica</strong>: lo haces en tu máquina.</li>
+<li>👀 <strong>Demo</strong>: solo observas.</li>
+<li>🧭 <strong>Pista</strong>: una idea que vuelve al final.</li>
+</ul>
+<p>No necesitas instalar Python: <strong>uv lo instala por ti</strong>.</p>
+<div class="pregunta">
+<p>💬 <strong>Preséntate en el chat</strong><br> nombre · institución · qué datos analizas</p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Dejar esta diapositiva unos segundos extra. Lo único indispensable es uv; git suele venir instalado en macOS/Linux. Windows: Git for Windows.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 0 · Motivación: la reproducibilidad, medida · 7 min         -->
+<!-- ================================================================== -->
+</section>
+<section>
+<section id="por-qué-hablar-de-reproducibilidad" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>¿Por qué hablar de reproducibilidad?</h1>
+<p><span class="modo">La evidencia, medida</span></p>
+</section>
+<section id="qué-significa-reproducible" class="slide level2">
+<h2>¿Qué significa <em>reproducible</em>?</h2>
+<div class="columns vs-grandes">
+<div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Reproducibilidad</strong></p>
+<p>Mismos <strong>datos</strong> + mismo <strong>código</strong> + mismas condiciones → <strong>mismo resultado</strong>.</p>
+<p><em>Es lo que hoy está en juego.</em></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Replicabilidad</strong></p>
+<p>Misma <strong>pregunta</strong>, datos <strong>nuevos</strong> → resultados <strong>consistentes</strong>.</p>
+<p><em>Es otro problema (más difícil).</em></p>
+</div>
+</div></div>
+<div class="pregunta small">
+<p>La NASEM recomienda compartir datos, métodos <strong>y la descripción del entorno computacional</strong>.</p>
+</div>
+<p><span class="fuente">National Academies of Sciences, Engineering, and Medicine (2019). <em>Reproducibility and Replicability in Science</em>. doi:10.17226/25303</span></p>
+<aside class="notes">
+<p>Fijar términos antes de dar cifras: la literatura los usa de forma inconsistente. Hoy hablamos de reproducibilidad computacional: tus datos, tu código, ¿mi máquina obtiene lo mismo? “Describir el entorno computacional” = lo que uv.lock hará en el bloque 2.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-embudo-notebooks-de-artículos-biomédicos" class="slide level2">
+<h2>El embudo: notebooks de artículos biomédicos</h2>
+<div class="embudo">
+<div class="fila">
+<p><span class="etiqueta">Notebooks ligados a artículos (PubMed Central)</span> <span class="barra" style="width: 100%;">27,271</span></p>
+</div>
+<div class="fila">
+<p><span class="etiqueta">En Python</span> <span class="barra" style="width: 82.8%;">22,578</span></p>
+</div>
+<div class="fila">
+<p><span class="etiqueta">Declaran sus dependencias</span> <span class="barra" style="width: 58%;">15,817</span></p>
+</div>
+<div class="fila">
+<p><span class="etiqueta">Las dependencias se instalan</span> <span class="barra" style="width: 38.1%;">10,388</span></p>
+</div>
+<div class="fila">
+<p><span class="etiqueta">Corren sin error</span> <span class="barra" style="width: 4.4%;">1,203</span></p>
+</div>
+<div class="fila">
+<p><span class="etiqueta">Dan <strong>el mismo resultado</strong></span> <span class="barra final" style="width: 3.2%;">879 · 3.2%</span></p>
+</div>
+</div>
+<div class="pregunta small">
+<p>Cada escalón es una causa distinta: <strong>dependencias</strong>, <strong>errores de ejecución</strong>, <strong>resultados que cambian</strong>.</p>
+</div>
+<p><span class="fuente">Samuel, S. y Mietchen, D. (2024). <em>GigaScience</em>, 13, giad113. doi:10.1093/gigascience/giad113</span></p>
+<aside class="notes">
+<p>La imagen más fuerte del bloque. Leer de arriba abajo: primero ni siquiera se puede instalar, luego truena, y al final, aunque corra, el número no es el mismo. Cifras de la versión publicada (2024). El preprint de 2022 (9,625 → 245) da la misma forma. De los que sí instalan (10,388), solo ~12 % corre sin error.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="no-es-un-campo-es-un-patrón" class="slide level2">
+<h2>No es un campo: es un patrón</h2>
+<div class="cards cuatro">
+<div class="card">
+<p><span class="grande">4%</span></p>
+<p><strong>Notebooks Jupyter en GitHub</strong></p>
+<p><span class="desc">24% corre sin error; 4% reproduce el resultado. ~864 mil ejecuciones.</span></p>
+<p><span class="desc">Pimentel et al.&nbsp;(2019), MSR</span></p>
+</div>
+<div class="card">
+<p><span class="grande">74%</span></p>
+<p><strong>Scripts R en Harvard Dataverse</strong></p>
+<p><span class="desc">fallan al ejecutarse. 9,078 archivos de paquetes de replicación.</span></p>
+<p><span class="desc">Trisovic et al.&nbsp;(2022), <em>Sci. Data</em></span></p>
+</div>
+<div class="card">
+<p><span class="grande">≈26%</span></p>
+<p><strong>Artículos de <em>Science</em></strong></p>
+<p><span class="desc">reproducibles (estimado; IC 95 % 20–32 %), aun con política de datos y código. Solo 44 % de artefactos obtenibles.</span></p>
+<p><span class="desc">Stodden et al.&nbsp;(2018), <em>PNAS</em></span></p>
+</div>
+<div class="card">
+<p><span class="grande">33%</span></p>
+<p><strong>Macroeconomía</strong></p>
+<p><span class="desc">22 de 67 artículos reproducidos sin ayuda de los autores.</span></p>
+<p><span class="desc">Chang y Li (2015), FEDS</span></p>
+</div>
+</div>
+<div class="pregunta small">
+<p>Distintas disciplinas, métodos y décadas: <strong>entre ~5 % y 35 %</strong> sin intervención humana.</p>
+</div>
+<aside class="notes">
+<p>La fuerza está en la convergencia, no en una cifra aislada. Honestidad: el corpus de Pimentel incluye tutoriales y tareas de GitHub, no solo investigación; los estudios automáticos subestiman (no corrigen errores triviales). Pimentel volverá en el bloque de marimo: es un estudio sobre notebooks de Jupyter.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="las-causas-tienen-nombre-y-herramienta" class="slide level2">
+<h2>Las causas tienen nombre… y herramienta</h2>
+<div class="causas">
+<div class="par encabezado">
+<p><span class="causa">Causa documentada</span> <span class="flecha"></span> <span class="herr">Lo que veremos hoy</span> <span class="bloque">Bloque</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Dependencias no declaradas: <em>“module not found”</em></span> <span class="flecha">→</span> <span class="herr"><strong>uv</strong> · <code>uv.lock</code></span> <span class="bloque">2</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Sin historia: ¿qué cambió y cuándo?</span> <span class="flecha">→</span> <span class="herr"><strong>git</strong> · el diff</span> <span class="bloque">3</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Estado oculto, celdas fuera de orden</span> <span class="flecha">→</span> <span class="herr"><strong>marimo</strong></span> <span class="bloque">4</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Rutas absolutas, sin orden de ejecución</span> <span class="flecha">→</span> <span class="herr"><strong>estructura</strong> · <code>uv run</code></span> <span class="bloque">2 · 6</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Preprocesamiento no documentado</span> <span class="flecha">→</span> <span class="herr"><strong>narrativa</strong> · <code>PLAN.md</code></span> <span class="bloque">4 · 7</span></p>
+</div>
+<div class="par tesis">
+<p><span class="causa">~47 % programa <strong>sin formación formal</strong> en buenas prácticas</span> <span class="flecha">→</span> <span class="herr"><strong>la pregunta de hoy</strong></span> <span class="bloque">🧭</span></p>
+</div>
+</div>
+<p><span class="fuente">Causas: Samuel y Mietchen (2024); Trisovic et al.&nbsp;(2022); Pimentel et al.&nbsp;(2019). Formación: AlNoamany y Borghi (2018), <em>PeerJ CS</em>, doi:10.7717/peerj-cs.163</span></p>
+<aside class="notes">
+<p>Esta es la diapositiva puente: es el índice de la charla. Cada fila es un bloque. La última fila no es una herramienta: es la pregunta que dejaremos abierta en unos minutos.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cerca-de-casa" class="slide level2">
+<h2>Cerca de casa</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="card">
+<p><span class="grande">2 de 65</span></p>
+<p><strong>Estudios de ML para detectar fallas en HVAC</strong></p>
+<p><span class="desc">compartían enlace al código, y uno de esos enlaces estaba roto. Sin diferencia entre autoría académica e industrial.</span></p>
+<p><span class="desc">Mukhtar et al.&nbsp;(2025), arXiv:2508.00880</span></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="card">
+<p><span class="grande">¿ ? %</span></p>
+<p><strong>México</strong></p>
+<p><span class="desc">No encontramos una medición cuantitativa de reproducibilidad computacional en la producción académica mexicana.</span></p>
+<p><span class="desc">Es un vacío… y una oportunidad de investigación.</span></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Para público de energía: el problema no es “de otros campos”. México: no hay dato; replicar el diseño de Trisovic o Samuel-Mietchen con repositorios institucionales sería un estudio original y publicable.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 1 · El problema y la pregunta · 5 min                        -->
+<!-- ================================================================== -->
+</section>
+<section id="así-se-ve-desde-dentro-un-proyecto-que-no-se-reproduce" class="slide level2">
+<h2>Así se ve, desde dentro, un proyecto que no se reproduce</h2>
+<div class="ls-grande">
+<pre class="text"><code>$ ls proyecto_tesis/
+Untitled.ipynb                    analisis_final.py
+Untitled1.ipynb                   analisis_final_v2.py
+Untitled27.ipynb                  analisis_final_v3_AHORASI.py
+Sin_titulo_copia.ipynb            script_de_chatgpt.py
+datos.csv                         arreglado_con_claude_v2.py
+datos_limpios.csv                 figura1.png
+datos_limpios(2).csv              figura1_buena.png
+datos_limpios_DEFINITIVO.csv      fig_final_USAR_ESTA.png
+prueba.py                         grafica_sin_titulo (3).png
+prueba2_funciona.py               resultados_viejos/
+prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
+</div>
+<div class="pregunta small">
+<p>Reproducible = otra persona (o tú en seis meses) obtiene lo mismo <strong>con un comando</strong>.</p>
+</div>
+<aside class="notes">
+<p>No burlarse: todos hemos tenido esta carpeta. Con IA es peor: cada prompt genera código nuevo más rápido de lo que ordenamos el anterior.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="y-llegó-la-ia-el-vibe-coding" class="slide level2">
+<h2>Y llegó la IA: el <em>vibe coding</em></h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p><a href="img/karpathy-tweet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="img/karpathy-tweet.png"></a></p>
+</div><div class="column small" style="width:42%;">
+<ul>
+<li>Andrej Karpathy, febrero de 2025: describir lo que quieres, <strong>aceptar sin leer</strong>, corregir por prueba y error.</li>
+<li><em>“Siempre pico ‘Accept All’, ya no leo los diffs.”</em></li>
+<li>Él mismo lo acota: sirve para <strong>proyectos desechables</strong>.</li>
+<li>La ciencia no es desechable: necesita <strong>verificación</strong>.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Resumen de la charla anterior (Del vibe coding a la ciencia reproducible). No detenerse: el punto es que la IA acelera tanto lo bueno como el desorden.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="si-la-ia-ya-escribe-código-para-qué-aprender-a-programar" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Si la IA ya escribe código, ¿para qué aprender a programar?</h1>
+<div class="pregunta small">
+<p>Volveremos a esta pregunta al final.<br>A lo largo de la presentación, el 🧭 es una <strong>pista</strong> para contestarla.</p>
+</div>
+<aside class="notes">
+<p>Dejar la pregunta en el aire. No responderla. Pedir que levante la mano quien cree que ya no hace falta. Cada bloque deja una pista ámbar; el cierre las recoge. La primera pista viene enseguida: el documental.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-1" class="slide level2 center">
+<h2></h2>
+<div class="documental">
+<div class="doc-texto">
+<p><span class="brujula">🧭</span></p>
+<p><span class="doc-etiqueta">Primera pista</span></p>
+<p><span class="doc-titulo">Ve el documental de Python</span></p>
+<p><span class="doc-desc">Cómo un proyecto personal de Guido van Rossum se volvió el lenguaje de la ciencia de datos. No es una historia de herramientas: es una historia de <strong>personas que programan</strong>.</span></p>
+<p><a href="https://www.youtube.com/watch?v=GfH4QL4VqJ0" class="doc-boton" target="_blank">▶ Verlo en YouTube</a></p>
+<p><span class="doc-meta"><em>Python: The Documentary</em> · CultRepo, 2025 · ~90 min · gratis</span></p>
+</div>
+<div class="doc-imagen">
+<p><a href="https://www.youtube.com/watch?v=GfH4QL4VqJ0" target="_blank"><img data-src="img/python-documental.jpg" alt="Póster de Python: The Documentary"></a></p>
+</div>
+</div>
+<aside class="notes">
+<p>Recomendación para después de la charla, no para verla aquí. Por qué es pista: las herramientas cambian (Python mismo empezó como proyecto de vacaciones); lo que permanece es la comunidad y el criterio de quienes programan.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-caso-de-hoy-dos-años-de-climalab" class="slide level2">
+<h2>El caso de hoy: dos años de ClimaLab</h2>
+<div class="columns">
+<div class="column small" style="width:45%;">
+<p><strong>Estación meteorológica <a href="https://climalab.ier.unam.mx" target="_blank">ClimaLab</a> (IER-UNAM)</strong></p>
+<ul>
+<li>Datos <strong>minutales</strong>, ~2 años, ~1 millón de filas</li>
+<li><code>tdb</code> [°C] · <code>rh</code> [%] · <code>ghi</code> <code>dni</code> <code>dhi</code> [W/m²]</li>
+<li><code>ws</code> [m/s] · <code>wd</code> [°] · <code>p_atm</code> · <code>rain_acc</code> · <code>uv</code></li>
+</ul>
+</div><div class="column" style="width:55%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Paso</th>
+<th style="text-align: center;">Bloque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exploración en <strong>marimo</strong></td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td>CSV → <strong>Parquet</strong></td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td>Funciones en <strong><code>src/</code></strong> → <strong>paquete</strong></td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td><strong>Barrido paramétrico</strong></td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td>Un <strong>agente</strong> trabaja con el plan</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td>El paquete como herramienta <strong>MCP</strong></td>
+<td style="text-align: center;">8</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="pregunta small">
+<p>Un mismo caso de principio a fin: cada herramienta resuelve un problema que dejó la anterior.</p>
+</div>
+<aside class="notes">
+<p>El hilo conductor. Los datos vienen de la charla anterior (4 meses), ahora extendidos a 2 años.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 2 · uv y ambientes virtuales · 15 min                       -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="uv-el-entorno-es-un-archivo" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>uv: el entorno es un archivo</h1>
+<p><span class="modo">🖐 Práctica · 15 min</span></p>
+</section>
+<section id="qué-es-un-ambiente-virtual" class="slide level2">
+<h2>¿Qué es un ambiente virtual?</h2>
+<div class="pregunta small">
+<p>Una carpeta (<code>.venv/</code>) con <strong>su propio Python y sus propios paquetes</strong>, aislada del resto de tu computadora.<br><strong>Cada proyecto tiene el suyo.</strong></p>
+</div>
+<div class="columns vs-grandes">
+<div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>🧊 Sin ambiente: el refri compartido del depa</strong></p>
+<ul>
+<li><em>“¿Quién se acabó mi leche?”</em> → otro proyecto actualizó <code>numpy</code> y el tuyo truena.</li>
+<li><em>“Ese yogurt es de 2019”</em> → paquetes viejos que nadie se atreve a borrar.</li>
+<li><em>“No toques lo del casero”</em> → <code>sudo pip install</code> rompe el Python del sistema.</li>
+<li><em>“En mi refri sí había”</em> → “en mi máquina sí funciona”.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>🍱 Con ambiente: tu lonchera con tu nombre</strong></p>
+<ul>
+<li>Cada proyecto, su <code>.venv/</code>: nadie más mete la mano.</li>
+<li>Lo que lleva está <strong>escrito</strong>: <code>uv.lock</code>.</li>
+<li>Otra persona arma <strong>la misma lonchera</strong>: <code>uv sync</code>.</li>
+<li>¿Ya no la usas? Borras la carpeta y listo.</li>
+</ul>
+</div>
+</div></div>
+<div class="small" style="text-align: center;">
+<p>Con uv no lo activas ni lo administras: <code>uv run</code> lo crea y lo usa por ti.</p>
+</div>
+<aside class="notes">
+<p>Dejar que se rían con el refri: todos lo han vivido. Luego mapear cada chiste a un error real. Dato para quien ya lo vio: en macOS y Linux recientes, pip fuera de un ambiente responde “externally-managed-environment”: el sistema mismo ya te pide un ambiente virtual.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="en-mi-máquina-sí-funciona" class="slide level2">
+<h2>“En mi máquina sí funciona”</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Antes: muchas herramientas</strong></p>
+<ul>
+<li><code>pyenv</code> para versiones de Python</li>
+<li><code>venv</code> / <code>virtualenv</code> para entornos</li>
+<li><code>pip</code> para instalar</li>
+<li><code>pip-tools</code> para fijar versiones</li>
+<li><code>pipx</code> para herramientas</li>
+<li><code>requirements.txt</code>… <strong>sin versiones</strong></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Ahora: una sola, <code>uv</code></strong></p>
+<ul>
+<li>Instala <strong>Python</strong> por ti</li>
+<li>Crea y sincroniza el <strong>entorno</strong></li>
+<li>Agrega dependencias y las <strong>fija</strong> en <code>uv.lock</code></li>
+<li><strong>Ejecuta</strong> dentro del entorno</li>
+<li>Muy rápido (escrito en Rust, de Astral)</li>
+</ul>
+</div>
+</div></div>
+<div class="pregunta small">
+<p>El escalón 2 del embudo —<em>“no se pueden instalar las dependencias”</em>— es el que uv elimina.</p>
+</div>
+<aside class="notes">
+<p>Conectar con el embudo: la mayoría de los notebooks ni siquiera se pudo instalar.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cuatro-comandos" class="slide level2">
+<h2>Cuatro comandos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--no-package</span> climalab  <span class="co"># análisis, aún no paquete: pyproject.toml, .python-version, git</span></span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> climalab</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add polars marimo           <span class="co"># instala y FIJA versiones exactas en uv.lock</span></span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python analisis.py      <span class="co"># ejecuta dentro del entorno (lo crea si no existe)</span></span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync                        <span class="co"># en otra máquina: reconstruye el mismo entorno</span></span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ii</span> .                           <span class="co"># abre la carpeta en el explorador (Windows; en macOS: open .)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns small">
+<div class="column" style="width:50%;">
+<p><code>pyproject.toml</code> (lo que <strong>pides</strong>)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"climalab"</span></span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.13"</span></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marimo&gt;=0.16"</span><span class="op">,</span></span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.30"</span><span class="op">,</span></span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p><code>uv.lock</code> (lo que <strong>obtuviste</strong>)</p>
+<ul>
+<li>Versión <strong>exacta</strong> de cada paquete, incluidas las dependencias de tus dependencias.</li>
+<li>Se versiona con git.</li>
+<li><strong>La misma ciencia en otra máquina</strong>: la tuya, la del revisor, la del agente.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>pyproject = intención (rangos); uv.lock = hecho (versiones exactas). Ambos van a git. No hay “activar el entorno”: uv run se encarga.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="un-script-que-trae-su-propio-entorno" class="slide level2">
+<h2>Un script que trae su propio entorno</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># /// script</span></span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># requires-python = "&gt;=3.13"</span></span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># dependencies = ["polars", "pyarrow"]</span></span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ///</span></span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.read_parquet(<span class="st">"climalab.parquet"</span>)</span>
+<span id="cb7-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.select(pl.col(<span class="st">"tdb"</span>).mean()))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run resumen.py      <span class="co"># uv lee el encabezado, crea un entorno temporal y ejecuta</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small">
+<ul>
+<li>Dependencias <strong>en línea</strong> (PEP 723): el script se puede mandar por correo y sigue siendo reproducible.</li>
+<li>Ideal para utilidades sueltas; para un proyecto, <code>pyproject.toml</code> + <code>uv.lock</code>.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Este formato vuelve en la práctica de Parquet.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estructura-propuesta" class="slide level2">
+<h2>Estructura propuesta</h2>
+<pre class="text"><code>climalab/
+├── PLAN.md                # contrato con el agente + bitácora de decisiones
+├── AGENTS.md              # reglas del espacio de trabajo para el agente
+├── pyproject.toml         # lo que pides
+├── uv.lock                # lo que obtuviste
+├── data/
+│   ├── 001_raw/           # inmutable: los crudos nunca se tocan
+│   ├── 002_intermediate/  # procesados (Parquet)
+│   └── 003_results/       # resultados (Parquet)
+├── src/climalab/          # funciones importables, cada una con prueba
+├── tests/                 # pytest
+└── notebooks/             # la narrativa: marimo (.py)</code></pre>
+<div class="small">
+<p>Una <strong>narrativa, no una receta</strong>. Lo que no cambia: crudos intocables · entorno fijado · funciones con pruebas · análisis narrado.</p>
+</div>
+<aside class="notes">
+<p>Recorrer de arriba abajo. src/ se explica a fondo en el bloque 6; aquí solo ubicarlo: “aquí vive el código que define; en notebooks/ el que narra”.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="práctica" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 5 min</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--no-package</span> climalab <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> climalab</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add polars pyarrow marimo</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-c</span> <span class="st">"import polars; print(polars.__version__)"</span></span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> pyproject.toml</span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span>                     <span class="co"># ¿qué más creó uv init?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="pista">
+<p>Pídele a un agente “instala polars” sin más instrucciones: lo usual es <code>pip install</code> global o un <code>requirements.txt</code> sin versiones. Repite lo que más vio al entrenarse. <strong>Pedirle uv exige saber que existe.</strong></p>
+</div>
+<aside class="notes">
+<p>Pregunta para el puente: ls -a muestra .git. uv init ya creó un repositorio git… ¿qué es eso?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 3 · Versionado: git y el diff · 15 min                      -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="versionado-qué-es-git-y-por-qué-importa-el-diff" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Versionado: qué es git y por qué importa el diff</h1>
+<p><span class="modo">🖐 Práctica · 15 min</span></p>
+</section>
+<section id="qué-es-el-versionado" class="slide level2">
+<h2>¿Qué es el versionado?</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><a href="img/meme-versiones-tesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="img/meme-versiones-tesis.png" height="460"></a></p>
+</div><div class="column small" style="width:60%;">
+<ul>
+<li>Todos hemos versionado <strong>a mano</strong>: <code>tesis_final_por_fin_eso_espero.docx</code>.</li>
+<li>Copias con nombres… sin <strong>autor</strong>, sin <strong>fecha</strong>, sin <strong>motivo</strong>.</li>
+<li>Y la pregunta clave no tiene respuesta: <strong>¿qué cambió</strong> entre una y otra?</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>El meme hace el trabajo: todos reconocen esa carpeta.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="git-un-archivo-toda-su-historia" class="slide level2">
+<h2>git: un archivo, toda su historia</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<pre class="text"><code>$ git log --oneline
+a41c9e2 Barrido: absortancia 0.2–0.8, h 5–20
+7d03b1f ghi_diaria: prueba con respuesta conocida
+c2e8f50 Datos 2024-10 → 2026-10 a Parquet
+91fa3d4 PLAN.md firmado
+0b7e2aa uv init</code></pre>
+</div><div class="column small" style="width:45%;">
+<ul>
+<li>Un <strong>commit</strong> es una foto del proyecto con <strong>autor</strong>, <strong>fecha</strong> y <strong>mensaje</strong>.</li>
+<li>Cada commit es un <strong>punto de retorno</strong>: equivocarse deja de ser caro.</li>
+<li><strong>git</strong> es el versionador (software libre). <strong>GitHub</strong> es la plataforma que lo hospeda: respaldo y colaboración, gratis para la academia (<a href="https://github.com/education">GitHub Education</a>).</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Precisión: git ≠ GitHub. Se puede usar git sin GitHub (y conviene saberlo).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tres-commits-una-historia" class="slide level2">
+<h2>Tres commits, una historia</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Proyecto inicial con uv"</span></span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"io.py: crudos de ClimaLab a Parquet"</span></span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"ghi_diaria() con prueba de respuesta conocida"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="historia">
+<div class="commit">
+<p><span class="punto"></span> <span class="hash">0b7e2aa</span> <span class="msg">Proyecto inicial con uv</span> <span class="meta">lun 10:02 · + pyproject.toml, uv.lock</span></p>
+</div>
+<div class="commit">
+<p><span class="punto"></span> <span class="hash">c2e8f50</span> <span class="msg">io.py: crudos de ClimaLab a Parquet</span> <span class="meta">mar 17:40 · + src/climalab/io.py</span></p>
+</div>
+<div class="commit actual">
+<p><span class="punto"></span> <span class="head">HEAD · estás aquí</span> <span class="hash">7d03b1f</span> <span class="msg">ghi_diaria() con prueba de respuesta conocida</span> <span class="meta">jue 12:15 · + tests/test_radiacion.py</span></p>
+</div>
+<div class="commit futuro">
+<p><span class="punto"></span> <span class="hash">¿ … ?</span> <span class="msg">tu próximo cambio</span> <span class="meta"></span></p>
+</div>
+</div>
+<div class="pregunta small">
+<p>Cada punto es una <strong>foto completa</strong> del proyecto: puedes compararlas (<code>git diff 0b7e2aa 7d03b1f</code>) o volver a cualquiera.</p>
+</div>
+<aside class="notes">
+<p>Señalar de izquierda a derecha: cada commit guarda quién, cuándo, qué y por qué. El mensaje es para tu yo de dentro de seis meses. HEAD = dónde estás parado.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-ciclo-básico" class="slide level2">
+<h2>El ciclo básico</h2>
+<pre class="text"><code>  editas archivos ──► git add ──► git commit -m "por qué" ──► git push
+   (directorio)       (preparas)     (foto en la historia)     (GitHub)
+        ▲                                                         │
+        └──────────── git diff: ¿qué cambió desde la última foto? ┘</code></pre>
+<p><br></p>
+<div class="small">
+<ul>
+<li><code>git status</code>: qué está modificado.</li>
+<li><code>git diff</code>: <strong>qué cambió exactamente</strong>, línea por línea.</li>
+<li><code>git log</code>: la historia.</li>
+<li><code>git restore archivo</code> / <code>git revert &lt;commit&gt;</code>: volver atrás.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Lo mínimo indispensable. Branches y merge quedan fuera: hoy solo historia y diff.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="leer-el-diff-la-unidad-de-revisión" class="slide level2">
+<h2>Leer el diff: la unidad de revisión</h2>
+<div class="small">
+<p>El <strong>diff</strong> es la lista exacta de lo que cambió: líneas que salen (<code>-</code>) y líneas que entran (<code>+</code>). Con agentes es <strong>el</strong> instrumento de revisión: no relees todo, lees <strong>el cambio</strong>.</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff src/climalab/radiacion.py</span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a> def ghi_diaria(ghi_w_m2):</span>
+<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>     """GHI diaria en kWh/m² por día."""</span>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    wh = ghi_w_m2 * (1 / 60)               # cada muestra [W/m²] dura 1 min</span></span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    return wh.resample("1D").sum() / 1000</span></span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    return ghi_w_m2.resample("1D").mean() / 1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small">
+<ul>
+<li>El agente “simplificó”… y cambió <code>sum()</code> por <code>mean()</code>: ya no es <strong>energía diaria</strong> [kWh/m²·día], es <strong>potencia promedio</strong> [kW/m²].</li>
+<li>Corre sin error, el número parece razonable: <strong>solo el diff lo delata</strong>.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Caso ficticio pero típico. Dos líneas rojas y una verde: leerlas toma veinte segundos. Esta función vuelve en el bloque 6 con una prueba que también lo habría cazado.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-diff-solo-sirve-si-el-archivo-es-texto-legible" class="slide level2">
+<h2>El diff solo sirve si el archivo es texto legible</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff analisis.ipynb</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>   {</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>    "cell_type": "code",</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-   "execution_count": 7,</span></span>
+<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+   "execution_count": 12,</span></span>
+<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a>    "outputs": [</span>
+<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a>     {</span>
+<span id="cb15-8"><a href="" aria-hidden="true" tabindex="-1"></a>      "data": {</span>
+<span id="cb15-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-      "image/png": "iVBORw0KGgoAAAANSUhEUgAAA…  (40 000 caracteres)",</span></span>
+<span id="cb15-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAB…  (41 000 caracteres)",</span></span>
+<span id="cb15-11"><a href="" aria-hidden="true" tabindex="-1"></a> …</span>
+<span id="cb15-12"><a href="" aria-hidden="true" tabindex="-1"></a>    "source": [</span>
+<span id="cb15-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    "diaria = ghi.resample(\"1D\").sum() / 60 / 1000"</span></span>
+<span id="cb15-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    "diaria = ghi.resample(\"1D\").mean() / 1000"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="pregunta small">
+<p><code>.ipynb</code> es JSON con resultados incrustados: el cambio importante queda <strong>enterrado en ruido</strong>.</p>
+</div>
+<aside class="notes">
+<p>Mismo error sum→mean, ahora escondido entre contadores de ejecución e imágenes en base64. Igual que un .docx: técnicamente versionado, en la práctica ilegible. Motivo del bloque 4.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="práctica-1" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 6 min · dentro de <code>climalab/</code></span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add . <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Proyecto inicial con uv"</span></span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'print("hola, ClimaLab")'</span> <span class="op">&gt;</span> main.py</span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff                  <span class="co"># ¿qué cambió?</span></span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"Saludo"</span></span>
+<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span>         <span class="co"># la historia</span></span>
+<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert HEAD           <span class="co"># deshacer el último commit… sin borrar la historia</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="pista">
+<p>El diff solo sirve si <strong>sabes leer código</strong>. La IA escribe; tú revisas. Sin esa habilidad, “Accept All” es la única opción.</p>
+</div>
+<aside class="notes">
+<p>Si alguien se atora con git config (nombre/correo), es el momento de resolverlo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 4 · Narrativa computacional: de Jupyter a marimo · 15 min   -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="narrativa-computacional-de-jupyter-a-marimo" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Narrativa computacional: de Jupyter a marimo</h1>
+<p><span class="modo">🖐 Práctica · 15 min</span></p>
+</section>
+<section id="lo-que-jupyter-resolvió-y-lo-que-dejó-pendiente" class="slide level2">
+<h2>Lo que Jupyter resolvió… y lo que dejó pendiente</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Resolvió</strong></p>
+<ul>
+<li>Código, texto y resultados <strong>juntos</strong></li>
+<li>Exploración <strong>interactiva</strong></li>
+<li>Una forma de <strong>contar</strong> el análisis</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Dejó pendiente</strong></p>
+<ul>
+<li><strong>Estado oculto</strong>: la memoria no coincide con lo que ves</li>
+<li>Celdas ejecutables <strong>en cualquier orden</strong></li>
+<li><code>.ipynb</code> = JSON + resultados → <strong>diff ilegible</strong></li>
+<li>Dependencias <strong>no declaradas</strong></li>
+<li><strong>No importable</strong>: el código queda atrapado</li>
+</ul>
+</div>
+</div></div>
+<div class="pregunta small">
+<p>Recuerda: <strong>24 %</strong> corre, <strong>4 %</strong> reproduce (Pimentel et al., 2019).</p>
+</div>
+<aside class="notes">
+<p>Jupyter fue una revolución y lo sigue siendo para enseñar. El problema no es la idea del notebook, es el modelo de ejecución y el formato del archivo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-estado-oculto-en-cuatro-celdas" class="slide level2">
+<h2>El estado oculto, en cuatro celdas</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  umbral <span class="op">=</span> <span class="dv">40</span>                         <span class="co"># °C</span></span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>]  calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral)</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>]  umbral <span class="op">=</span> <span class="dv">35</span>                         <span class="co"># "probemos con 35"…</span></span>
+<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a>[ ]  fig <span class="op">=</span> graficar(calientes)           <span class="co"># ¿con 35 o con 40?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small">
+<ul>
+<li>La celda <code>[2]</code> <strong>no se volvió a ejecutar</strong>: <code>calientes</code> sigue calculado con 40.</li>
+<li>Si borras la celda <code>[1]</code>, <code>umbral</code> <strong>sigue en memoria</strong>.</li>
+<li>El archivo guardado dice 35; la figura se hizo con 40. <strong>Nadie lo nota.</strong></li>
+</ul>
+</div>
+<div class="video">
+<p><a href="https://www.youtube.com/watch?v=7jiPeIFXb6U" target="_blank"><img data-src="img/grus-notebooks.jpg" alt="Joel Grus en JupyterCon 2018: meme del novio distraído con Untitled25.ipynb"></a></p>
+<div class="video-texto">
+<p><span class="video-etiqueta">🎥 Para ver después</span></p>
+<p><span class="video-titulo"><em>“I don’t like notebooks”</em></span></p>
+<p><span class="video-desc">Joel Grus, en <strong>JupyterCon 2018</strong>, la conferencia de Jupyter: los problemas del estado oculto, contados con memes.</span></p>
+<p><a href="https://www.youtube.com/watch?v=7jiPeIFXb6U" class="doc-boton" target="_blank">▶ Verlo en YouTube</a></p>
+</div>
+</div>
+<aside class="notes">
+<p>Pimentel documentó exactamente esto: celdas fuera de orden y estado oculto. Preguntar: ¿a quién le ha pasado? Casi todas las manos. Grus dio esta charla EN la conferencia de Jupyter (2018): la crítica viene de dentro de la comunidad. Abrió “la primera gran guerra de los notebooks”. ~40 min, en inglés.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="marimo-el-notebook-como-grafo-reactivo" class="slide level2">
+<h2>marimo: el notebook como grafo reactivo</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo</span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> marimo.App()</span>
+<span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb18-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
+<span id="cb18-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> marimo <span class="im">as</span> mo</span>
+<span id="cb18-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb18-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mo, pl</span>
+<span id="cb18-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb18-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(mo):</span>
+<span id="cb18-13"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral <span class="op">=</span> mo.ui.slider(<span class="dv">30</span>, <span class="dv">50</span>, value<span class="op">=</span><span class="dv">40</span>,</span>
+<span id="cb18-14"><a href="" aria-hidden="true" tabindex="-1"></a>                          label<span class="op">=</span><span class="st">"Umbral [°C]"</span>)</span>
+<span id="cb18-15"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral</span>
+<span id="cb18-16"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (umbral,)</span>
+<span id="cb18-17"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb18-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(df, pl, umbral):</span>
+<span id="cb18-20"><a href="" aria-hidden="true" tabindex="-1"></a>    calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral.value)</span>
+<span id="cb18-21"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (calientes,)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column small" style="width:45%;">
+<ul>
+<li>Cada celda declara lo que <strong>usa</strong> y lo que <strong>define</strong>.</li>
+<li>Cambias <code>umbral</code> → se re-ejecuta <strong>todo lo que depende</strong> de él.</li>
+<li>Borras una celda → sus variables <strong>desaparecen</strong>.</li>
+<li>Una variable se define en <strong>una sola celda</strong>.</li>
+<li>El archivo es <strong>Python puro</strong>: diff limpio en git.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>No hace falta escribir ese formato a mano: el editor lo genera. Lo que importa es que el archivo es texto, ordenado por dependencias, y legible en un diff.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="un-archivo-cuatro-usos" class="slide level2">
+<h2>Un archivo, cuatro usos</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Editar (notebook reactivo)</td>
+<td><code>uv run marimo edit exploracion.py</code></td>
+</tr>
+<tr class="even">
+<td>Ejecutar como <strong>script</strong></td>
+<td><code>uv run python exploracion.py</code></td>
+</tr>
+<tr class="odd">
+<td>Servir como <strong>app</strong> (oculta el código)</td>
+<td><code>uv run marimo run exploracion.py</code></td>
+</tr>
+<tr class="even">
+<td>Exportar a HTML que corre <strong>en el navegador</strong></td>
+<td><code>uv run marimo export html-wasm exploracion.py -o sitio/</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="small">
+<ul>
+<li>Las funciones de un notebook marimo se pueden <strong>importar</strong> desde otro código.</li>
+<li>La app con sliders reemplaza muchos casos en los que antes hacía falta un framework web.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>“Como app” = el mismo archivo, sin tocar código. Para compartir con alguien que no programa.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ia-en-el-editor-quarto-para-publicar" class="slide level2">
+<h2>IA en el editor, Quarto para publicar</h2>
+<div class="columns">
+<div class="column small" style="width:50%;">
+<p><strong>IA dentro de marimo</strong></p>
+<ul>
+<li>Generar y corregir celdas conociendo <strong>tus variables y tus datos</strong>.</li>
+<li>Proveedor en la <strong>nube</strong> o un modelo <strong>local</strong> (Ollama).</li>
+<li>Sigue siendo reactivo y en <code>.py</code>: lo que la IA escribe <strong>se ve en el diff</strong>.</li>
+</ul>
+</div><div class="column small" style="width:50%;">
+<p><strong>Quarto sigue siendo la capa de publicación</strong></p>
+<ul>
+<li>Artículo, reporte, tesis, <strong>estas diapositivas</strong>.</li>
+<li><code>quarto render</code> regenera figuras y tablas desde el código.</li>
+<li>marimo para <strong>explorar e interactuar</strong>; Quarto para <strong>publicar</strong>.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>No es marimo contra Quarto: es explorar contra publicar. Estas diapositivas son un .qmd.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="práctica-2" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 6 min</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> marimo tutorial intro         <span class="co"># recorrido oficial, interactivo</span></span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit exploracion.py <span class="co"># tu primer notebook, dentro de climalab/</span></span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff                          <span class="co"># tras mover un slider y guardar: ¿qué cambió?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 2 min</span> El mismo cambio (<code>sum</code> → <code>mean</code>) hecho en un <code>.ipynb</code> y en un notebook marimo: comparamos los dos <code>git diff</code>.</p>
+</div>
+<div class="pista">
+<p>Una herramienta nueva <strong>elimina clases enteras de errores</strong> (estado oculto, orden de ejecución). Estar al día no es moda: es dejar de cometer errores que ya tienen solución.</p>
+</div>
+<!-- ================================================================== -->
+<!-- Bloque 5 · Parquet · 8 min                                          -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="parquet-datos-que-se-leen-como-datos" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Parquet: datos que se leen como datos</h1>
+<p><span class="modo">🖐 Práctica · 8 min</span></p>
+</section>
+<section id="csv-vs.-parquet" class="slide level2">
+<h2>CSV vs.&nbsp;Parquet</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>CSV</strong></p>
+<ul>
+<li>Texto: <strong>sin tipos</strong> (la fecha llega como texto)</li>
+<li>Se guarda <strong>por filas</strong>: para una columna, lees todas</li>
+<li>Sin compresión: <strong>pesado</strong></li>
+<li>Ambiguo: separadores, decimales, codificación</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Parquet</strong></p>
+<ul>
+<li>Binario <strong>tipado</strong>: <code>datetime</code> sigue siendo <code>datetime</code></li>
+<li>Se guarda <strong>por columnas</strong>: lees solo las que pides</li>
+<li><strong>Comprimido</strong> por columna</li>
+<li>Metadatos: esquema y estadísticas por bloque</li>
+</ul>
+</div>
+</div></div>
+<div class="small">
+<p>Regla del proyecto: <strong>crudos inmutables</strong> tal como llegan; todo lo derivado, en Parquet. Parquet es binario: no se versiona con git, <strong>se regenera</strong> con el código.</p>
+</div>
+</section>
+<section id="dos-años-de-climalab" class="slide level2">
+<h2>Dos años de ClimaLab</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>~1 millón de filas · 11 variables</th>
+<th style="text-align: right;">CSV</th>
+<th style="text-align: right;">Parquet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tamaño</td>
+<td style="text-align: right;">~85 MB</td>
+<td style="text-align: right;">~21 MB</td>
+</tr>
+<tr class="even">
+<td>Lectura con pandas</td>
+<td style="text-align: right;">~1.4 s</td>
+<td style="text-align: right;">~0.07 s</td>
+</tr>
+<tr class="odd">
+<td>Lectura con Polars</td>
+<td style="text-align: right;">~0.25 s</td>
+<td style="text-align: right;">~0.05 s</td>
+</tr>
+<tr class="even">
+<td>Tipo de <code>date</code> al leer</td>
+<td style="text-align: right;"><code>str</code> (hay que convertir)</td>
+<td style="text-align: right;"><code>datetime</code></td>
+</tr>
+<tr class="odd">
+<td>Media de <code>tdb</code> (lazy, una columna)</td>
+<td style="text-align: right;">lee todo el archivo</td>
+<td style="text-align: right;">~0.01 s</td>
+</tr>
+</tbody>
+</table>
+<p><span class="fuente">Estimado a partir de 4 meses medidos (172 433 filas: CSV 14.1 MB, Parquet 3.4 MB).</span></p>
+<aside class="notes">
+<p>TODO al tener los 2 años: reemplazar por la medición real (correr el script de la práctica). El dato que más sorprende no es la velocidad: es que el CSV pierde el tipo de la fecha.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="lazy-leer-solo-lo-que-necesitas" class="slide level2">
+<h2>Lazy: leer solo lo que necesitas</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> (</span>
+<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a>    pl.scan_parquet(<span class="st">"data/002_intermediate/climalab.parquet"</span>)  <span class="co"># no lee nada todavía</span></span>
+<span id="cb20-5"><a href="" aria-hidden="true" tabindex="-1"></a>      .<span class="bu">filter</span>(pl.col(<span class="st">"date"</span>).dt.year() <span class="op">==</span> <span class="dv">2025</span>)                <span class="co"># filtra al leer</span></span>
+<span id="cb20-6"><a href="" aria-hidden="true" tabindex="-1"></a>      .select(<span class="st">"date"</span>, <span class="st">"tdb"</span>)                                   <span class="co"># solo 2 de 11 columnas</span></span>
+<span id="cb20-7"><a href="" aria-hidden="true" tabindex="-1"></a>      .group_by_dynamic(<span class="st">"date"</span>, every<span class="op">=</span><span class="st">"1mo"</span>)</span>
+<span id="cb20-8"><a href="" aria-hidden="true" tabindex="-1"></a>      .agg(pl.col(<span class="st">"tdb"</span>).mean())</span>
+<span id="cb20-9"><a href="" aria-hidden="true" tabindex="-1"></a>      .collect()                                               <span class="co"># ahora sí ejecuta</span></span>
+<span id="cb20-10"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small">
+<ul>
+<li>Polars arma un <strong>plan</strong> y lo optimiza: solo lee las columnas y los bloques que necesita.</li>
+<li>DuckDB hace lo mismo con SQL: <code>SELECT avg(tdb) FROM 'climalab.parquet'</code>.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Fusible: si vamos tarde, saltar esta diapositiva.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="práctica-3" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 4 min · <code>uv run csv_vs_parquet.py</code></span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># /// script</span></span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># dependencies = ["polars", "pandas", "pyarrow"]</span></span>
+<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ///</span></span>
+<span id="cb21-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, time</span>
+<span id="cb21-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd, polars <span class="im">as</span> pl</span>
+<span id="cb21-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="" aria-hidden="true" tabindex="-1"></a>pl.read_parquet(<span class="st">"climalab.parquet"</span>).write_csv(<span class="st">"climalab.csv"</span>)</span>
+<span id="cb21-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> [<span class="st">"climalab.csv"</span>, <span class="st">"climalab.parquet"</span>]:</span>
+<span id="cb21-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f, os.path.getsize(f) <span class="op">//</span> <span class="dv">1_000_000</span>, <span class="st">"MB"</span>)</span>
+<span id="cb21-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> time.perf_counter()<span class="op">;</span> csv <span class="op">=</span> pd.read_csv(<span class="st">"climalab.csv"</span>)<span class="op">;</span>      <span class="bu">print</span>(<span class="st">"CSV"</span>, time.perf_counter() <span class="op">-</span> t)</span>
+<span id="cb21-12"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> time.perf_counter()<span class="op">;</span> pq <span class="op">=</span> pd.read_parquet(<span class="st">"climalab.parquet"</span>)<span class="op">;</span> <span class="bu">print</span>(<span class="st">"Parquet"</span>, time.perf_counter() <span class="op">-</span> t)</span>
+<span id="cb21-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(csv.dtypes[<span class="st">"date"</span>], <span class="st">"vs"</span>, pq.dtypes[<span class="st">"date"</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="pista">
+<p>Si no dices otra cosa, el agente guarda en CSV. <strong>Elegir el formato es una decisión técnica</strong> que nadie toma por ti.</p>
+</div>
+<aside class="notes">
+<p>El CSV se genera localmente a partir del Parquet: nadie descarga 85 MB por la red del evento.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section id="pausa-5-min" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Pausa · 5 min</h1>
+<!-- ================================================================== -->
+<!-- Bloque 6 · src/, paquete y exploración paramétrica · 15 min         -->
+<!-- ================================================================== -->
+</section>
+
+<section>
+<section id="de-src-al-paquete-instalable" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>De <code>src/</code> al paquete instalable</h1>
+<p><span class="modo">🖐 Práctica · 15 min</span></p>
+</section>
+<section id="el-notebook-narra-src-define" class="slide level2">
+<h2>El notebook narra; <code>src/</code> define</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="text"><code>src/climalab/
+├── __init__.py
+├── io.py         # crudos → Parquet limpio y tipado
+├── radiacion.py  # ghi_diaria(), …
+└── modelo.py     # la función del barrido
+tests/
+└── test_radiacion.py
+notebooks/
+└── exploracion.py   # importa de climalab</code></pre>
+</div><div class="column small" style="width:50%;">
+<ul>
+<li>En <code>src/</code> vive el código que <strong>define</strong>: funciones con docstring, <strong>unidades</strong> y prueba.</li>
+<li>El notebook <strong>narra</strong>: carga, llama, grafica, interpreta.</li>
+<li>La misma función se importa desde marimo, pytest, un script… <strong>o el agente</strong>.</li>
+<li>Layout <code>src/</code>: obliga a <strong>instalar</strong> el paquete, así que lo que pruebas es lo que se instala.</li>
+</ul>
+</div></div>
+<div class="pregunta small">
+<p>¿Cuándo sacar código del notebook? Cuando lo <strong>copiaste dos veces</strong> o cuando <strong>necesita una prueba</strong>.</p>
+</div>
+</section>
+<section id="una-función-una-prueba-con-respuesta-conocida" class="slide level2">
+<h2>Una función, una prueba con respuesta conocida</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># src/climalab/radiacion.py</span></span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ghi_diaria(ghi_w_m2):</span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Energía solar diaria sobre</span></span>
+<span id="cb23-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    superficie horizontal.</span></span>
+<span id="cb23-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    ghi_w_m2: serie minutal [W/m²]</span></span>
+<span id="cb23-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    regresa:  [kWh/m²·día]</span></span>
+<span id="cb23-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-9"><a href="" aria-hidden="true" tabindex="-1"></a>    wh <span class="op">=</span> ghi_w_m2 <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> <span class="dv">60</span>)  <span class="co"># 1 min</span></span>
+<span id="cb23-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wh.resample(<span class="st">"1D"</span>).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_radiacion.py</span></span>
+<span id="cb24-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pytest <span class="im">import</span> approx</span>
+<span id="cb24-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.radiacion <span class="im">import</span> ghi_diaria</span>
+<span id="cb24-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_ghi_constante_un_dia():</span>
+<span id="cb24-7"><a href="" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> pd.date_range(<span class="st">"2026-01-01"</span>,</span>
+<span id="cb24-8"><a href="" aria-hidden="true" tabindex="-1"></a>                        periods<span class="op">=</span><span class="dv">1440</span>, freq<span class="op">=</span><span class="st">"1min"</span>)</span>
+<span id="cb24-9"><a href="" aria-hidden="true" tabindex="-1"></a>    ghi <span class="op">=</span> pd.Series(<span class="fl">1000.0</span>, index<span class="op">=</span>idx)</span>
+<span id="cb24-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1000 W/m² durante 24 h = 24 kWh/m²</span></span>
+<span id="cb24-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> ghi_diaria(ghi).iloc[<span class="dv">0</span>] <span class="op">==</span> approx(<span class="fl">24.0</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="small">
+<p>Con el cambio <code>sum()</code> → <code>mean()</code> del bloque 3, esta prueba da <strong>1.0</strong> en vez de 24.0 y <strong>falla</strong>. Diff y prueba: redundancia deliberada.</p>
+</div>
+<aside class="notes">
+<p>La respuesta la escribe la persona, no el agente: si el agente escribe código y prueba, la prueba puede ser tautológica.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="del-src-al-paquete-instalable" class="slide level2">
+<h2>Del <code>src/</code> al paquete instalable</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> build                                              <span class="co"># genera dist/*.whl</span></span>
+<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add git+https://github.com/usuario/climalab        <span class="co"># instalar desde GitHub</span></span>
+<span id="cb25-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add enerhabitat                                    <span class="co"># o desde PyPI</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns small">
+<div class="column" style="width:50%;">
+<ul>
+<li>Documentado, <strong>versionado</strong>, <strong>citable</strong> (Zenodo da DOI a cada versión).</li>
+<li>Quien lo usa lo fija en <strong>su</strong> <code>uv.lock</code>: tu ciencia se vuelve <strong>dependencia reproducible</strong> de la de otros.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="pregunta">
+<p>Caso en casa: <a href="https://pypi.org/project/enerhabitat/"><strong>EnerHabitat</strong> en PyPI</a></p>
+<p><code>uv add enerhabitat</code></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>EnerHabitat: transferencia de calor en envolventes, IER-UNAM. El mensaje no es “publiquen paquetes”: la estructura src/ + tests/ deja el paquete casi listo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exploración-paramétrica" class="slide level2">
+<h2>Exploración paramétrica</h2>
+<div class="columns">
+<div class="column" style="width:44%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># src/climalab/modelo.py</span></span>
+<span id="cb26-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> temperatura_sol_aire(tdb, ghi, a<span class="op">=</span><span class="fl">0.6</span>,</span>
+<span id="cb26-3"><a href="" aria-hidden="true" tabindex="-1"></a>                         h<span class="op">=</span><span class="fl">13.0</span>, eps_dr<span class="op">=</span><span class="fl">63.0</span>):</span>
+<span id="cb26-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Temperatura sol-aire, superficie</span></span>
+<span id="cb26-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    horizontal [°C].</span></span>
+<span id="cb26-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    tdb    temperatura del aire [°C]</span></span>
+<span id="cb26-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    ghi    irradiancia global [W/m²]</span></span>
+<span id="cb26-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    a      absortancia solar [-]</span></span>
+<span id="cb26-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    h      coef. convectivo [W/m²K]</span></span>
+<span id="cb26-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    eps_dr ε·ΔR, intercambio de onda</span></span>
+<span id="cb26-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">           larga con el cielo [W/m²]</span></span>
+<span id="cb26-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb26-14"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tdb <span class="op">+</span> (a <span class="op">*</span> ghi <span class="op">-</span> eps_dr) <span class="op">/</span> h</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:56%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># barrido.py</span></span>
+<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb27-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb27-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.modelo <span class="im">import</span> temperatura_sol_aire</span>
+<span id="cb27-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.read_parquet(</span>
+<span id="cb27-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/002_intermediate/climalab.parquet"</span>)</span>
+<span id="cb27-8"><a href="" aria-hidden="true" tabindex="-1"></a>filas <span class="op">=</span> []</span>
+<span id="cb27-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, h <span class="kw">in</span> itertools.product([<span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
+<span id="cb27-10"><a href="" aria-hidden="true" tabindex="-1"></a>                              [<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>]):</span>
+<span id="cb27-11"><a href="" aria-hidden="true" tabindex="-1"></a>    tsa <span class="op">=</span> temperatura_sol_aire(df[<span class="st">"tdb"</span>], df[<span class="st">"ghi"</span>],</span>
+<span id="cb27-12"><a href="" aria-hidden="true" tabindex="-1"></a>                               a<span class="op">=</span>a, h<span class="op">=</span>h)</span>
+<span id="cb27-13"><a href="" aria-hidden="true" tabindex="-1"></a>    filas.append({<span class="st">"absortancia"</span>: a, <span class="st">"h"</span>: h,</span>
+<span id="cb27-14"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"tsa_max"</span>: tsa.<span class="bu">max</span>(),</span>
+<span id="cb27-15"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"horas_sobre_40"</span>: (tsa <span class="op">&gt;</span> <span class="dv">40</span>).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">60</span>})</span>
+<span id="cb27-16"><a href="" aria-hidden="true" tabindex="-1"></a>pl.DataFrame(filas).write_parquet(</span>
+<span id="cb27-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/003_results/barrido.parquet"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="small">
+<p>Una función bien definida + una malla de parámetros = <strong>barrido</strong>. Resultado → Parquet → <strong>slider en marimo</strong>.</p>
+</div>
+<aside class="notes">
+<p>16 combinaciones × 1 millón de minutos. La función es pura: sin archivos, sin estado; por eso se puede barrer, probar y, en el bloque 8, exponer como herramienta para un agente.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="práctica-4" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 5 min</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add <span class="st">"git+https://github.com/AltamarMx/ecosistema-datos#subdirectory=climalab"</span></span>
+<span id="cb28-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python barrido.py</span>
+<span id="cb28-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit notebooks/barrido.py   <span class="co"># slider de absortancia → horas sobre 40 °C</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="pista">
+<p>Decidir <strong>qué es una función</strong>, qué parámetros barrer y <strong>qué prueba la valida</strong> es diseño, no tecleo. Ahí está el valor de saber programar.</p>
+</div>
+<aside class="notes">
+<p>TODO: confirmar URL del paquete del taller cuando el repo esté publicado.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 7 · IA generativa · 18 min                                   -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="ia-generativa-del-chat-al-agente" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>IA generativa: del chat al agente</h1>
+<p><span class="modo">👀 Demo · 18 min</span></p>
+</section>
+<section id="el-modelo-solo" class="slide level2">
+<h2>El modelo, solo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="text"><code>  tú ──── texto ────►  ┌────────┐
+                       │ modelo │
+  tú ◄─── texto ─────  └────────┘</code></pre>
+</div><div class="column small" style="width:50%;">
+<ul>
+<li>Texto entra, texto sale.</li>
+<li><strong>No ve</strong> tus archivos, <strong>no ejecuta</strong> nada, <strong>no sabe</strong> si su código corre.</li>
+<li>Tú copias, pegas, ejecutas y le cuentas el error.</li>
+<li>Tú eres el bucle.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Así usa la IA la mayoría: chat en el navegador. Útil, pero el humano hace todo el trabajo de ida y vuelta.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="herramientas-bucle-agente" class="slide level2">
+<h2>+ herramientas + bucle = agente</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="text"><code>           ┌───────────┐
+           │  PLAN.md  │
+           └─────┬─────┘
+                 ▼
+   ┌──► propone una acción
+   │             │
+   │             ▼
+ corrige   ejecuta herramienta
+   ▲      (leer, escribir, correr,
+   │       pytest, uv run …)
+   │             │
+   └─── observa el resultado</code></pre>
+</div><div class="column small" style="width:50%;">
+<ul>
+<li><strong>Herramientas</strong>: leer y escribir archivos, ejecutar comandos, correr pruebas.</li>
+<li><strong>Bucle</strong>: propone → ejecuta → observa → corrige → repite, hasta cumplir la tarea.</li>
+<li>A diferencia del chat, <strong>actúa sobre tu repositorio</strong> y ve sus propios errores.</li>
+<li>Multiplica la velocidad… <strong>y el daño</strong> si no hay reglas.</li>
+</ul>
+</div></div>
+</section>
+<section id="el-harness-lo-que-convierte-un-modelo-en-agente" class="slide level2">
+<h2>El <em>harness</em>: lo que convierte un modelo en agente</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="capas">
+<div class="capa harness">
+<p><span class="nombre">Harness</span> permisos · contexto · memoria</p>
+<div class="capa herramientas">
+<p><span class="nombre">Herramientas</span> archivos · terminal · pruebas · MCP</p>
+<div class="capa modelo">
+<p>Modelo</p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column small" style="width:50%;">
+<p>El <em>harness</em> (arnés) es el programa que envuelve al modelo. Decide:</p>
+<ul>
+<li><strong>Qué herramientas</strong> tiene y con qué <strong>permisos</strong>: ¿puede borrar? ¿pide confirmación?</li>
+<li><strong>Qué contexto</strong> carga: <code>AGENTS.md</code>, el plan, el repositorio.</li>
+<li>Cómo maneja la <strong>memoria</strong> y las conversaciones largas.</li>
+</ul>
+<p>Ejemplos: <strong>Claude Code</strong>, <strong>Codex CLI</strong>, <strong>OpenCode</strong>; también el asistente de <strong>marimo</strong>.</p>
+</div></div>
+<aside class="notes">
+<p>Idea central del bloque: lo que llamamos “la IA” son dos cosas separables, el modelo y el harness. Dos agentes con el mismo modelo se comportan muy distinto según su harness y su contexto.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="modelo-harness-nube-y-local" class="slide level2">
+<h2>Modelo ≠ harness: nube y local</h2>
+<div class="columns vs-grandes">
+<div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Nube</strong> (p.&nbsp;ej. Claude, GPT, Gemini)</p>
+<ul>
+<li>Modelos de frontera, los más capaces</li>
+<li>Sin hardware propio; costo por uso</li>
+<li>Los datos <strong>salen de tu máquina</strong></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Local</strong> (p.&nbsp;ej. Qwen vía MLX u Ollama)</p>
+<ul>
+<li>Los datos <strong>no salen</strong>; sin costo por token</li>
+<li>Exige <strong>hardware capaz</strong> (memoria unificada o GPU)</li>
+<li>Rinde menos que la frontera</li>
+</ul>
+</div>
+</div></div>
+<div class="pregunta small">
+<p>El mismo harness puede usar uno u otro motor: la decisión es <strong>por proyecto</strong>, no ideológica.</p>
+</div>
+<aside class="notes">
+<p>Nube para trabajo pesado; local cuando los datos no deben salir o para tareas acotadas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="agents.md-las-reglas-del-espacio-de-trabajo" class="slide level2">
+<h2><code>AGENTS.md</code>: las reglas del espacio de trabajo</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Entorno</span></span>
+<span id="cb31-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dependencias solo con <span class="in">`uv add`</span>; nunca <span class="in">`pip install`</span>.</span>
+<span id="cb31-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Todo se ejecuta con <span class="in">`uv run`</span>.</span>
+<span id="cb31-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
+<span id="cb31-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/001_raw/`</span> es de solo lectura.</span>
+<span id="cb31-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Derivados en Parquet, nunca CSV.</span>
+<span id="cb31-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código</span></span>
+<span id="cb31-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Funciones en <span class="in">`src/climalab/`</span>, con docstring,</span>
+<span id="cb31-13"><a href="" aria-hidden="true" tabindex="-1"></a>  unidades y prueba.</span>
+<span id="cb31-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notebooks en marimo (<span class="in">`.py`</span>), no <span class="in">`.ipynb`</span>.</span>
+<span id="cb31-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flujo</span></span>
+<span id="cb31-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Una sección de PLAN.md a la vez.</span>
+<span id="cb31-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Detente y muestra el diff antes del commit.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column small" style="width:45%;">
+<ul>
+<li>El harness lo carga <strong>en cada sesión</strong>.</li>
+<li>Cada regla es una decisión de esta charla: uv, Parquet, <code>src/</code>, marimo, diff.</li>
+<li>Sin este archivo, el agente usa <strong>sus defaults</strong>: los de sus datos de entrenamiento.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Notar que cada línea de AGENTS.md corresponde a un bloque de hoy. Escribirlo exige saber todo lo anterior: ese es el punto.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="plan.md-el-contrato" class="slide level2">
+<h2><code>PLAN.md</code>: el contrato</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># PLAN · Clima ClimaLab (2024-10 → 2026-10)</span></span>
+<span id="cb32-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo</span></span>
+<span id="cb32-4"><a href="" aria-hidden="true" tabindex="-1"></a>Horas sobre 40 °C de temperatura sol-aire</span>
+<span id="cb32-5"><a href="" aria-hidden="true" tabindex="-1"></a>según absortancia del techo.</span>
+<span id="cb32-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
+<span id="cb32-8"><a href="" aria-hidden="true" tabindex="-1"></a>climalab.parquet · ~1 M filas · 1 min</span>
+<span id="cb32-9"><a href="" aria-hidden="true" tabindex="-1"></a>tdb <span class="co">[</span><span class="ot">°C</span><span class="co">]</span> · ghi <span class="co">[</span><span class="ot">W/m²</span><span class="co">]</span> · …</span>
+<span id="cb32-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pasos</span></span>
+<span id="cb32-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Validar crudos con pruebas físicas</span>
+<span id="cb32-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>temperatura_sol_aire() con prueba</span>
+<span id="cb32-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Barrido absortancia × h_ext → Parquet</span>
+<span id="cb32-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Criterios de aceptación</span></span>
+<span id="cb32-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv run pytest`</span> pasa · GHI nocturna = 0</span>
+<span id="cb32-18"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bitácora y decisiones</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column small" style="width:45%;">
+<ul>
+<li>Se escribe <strong>antes</strong> de pedir una línea de código.</li>
+<li>Dice <strong>qué</strong> (preguntas, variables, <strong>unidades</strong>) y <strong>con qué</strong>.</li>
+<li><code>git commit</code> del plan = <strong>firma del contrato</strong>.</li>
+<li>Cada sección = una unidad de trabajo para el agente.</li>
+<li>Es también la <strong>bitácora</strong>: qué propuso la IA, qué decidió la persona autora.</li>
+</ul>
+</div></div>
+</section>
+<section id="vibe-coding-vs.-spec-driven" class="slide level2">
+<h2>Vibe coding vs.&nbsp;<em>spec-driven</em></h2>
+<div class="columns vs-grandes">
+<div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Vibe coding</strong></p>
+<ul>
+<li>El prompt es la especificación</li>
+<li>El código <strong>no se lee</strong></li>
+<li>“Accept All”</li>
+<li>Para proyectos <strong>desechables</strong></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Spec-driven</strong></p>
+<ul>
+<li><code>PLAN.md</code> <strong>firmado</strong> es la especificación</li>
+<li>El agente ejecuta; el humano escribe y <strong>verifica</strong></li>
+<li>Diff leído, pruebas pasando, commit</li>
+<li>Para trabajo que <strong>se publica</strong></li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>Es la misma transición que está dando la industria del software con los agentes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-bucle-de-trabajo" class="slide level2">
+<h2>El bucle de trabajo</h2>
+<pre class="text"><code>  una sección del PLAN ──► el agente escribe código ──► uv run pytest
+          ▲                                                  │
+          │                                                  ▼
+       git commit  ◄──── tú lees el diff ◄──── render / marimo</code></pre>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 6 min</span> El agente implementa el paso 2 del plan: <code>temperatura_sol_aire()</code> con su prueba. Leemos el diff juntos antes del commit.</p>
+</div>
+<div class="pista">
+<p>Escribir <code>AGENTS.md</code> y <code>PLAN.md</code> exige saber programar <strong>y</strong> conocer las herramientas actuales. El agente rinde <strong>al nivel de quien lo guía</strong>.</p>
+</div>
+<aside class="notes">
+<p>Nunca “hazme todo el análisis”: una sección a la vez, diff corto. Si el agente propone pip install o un .ipynb, mejor: muestra por qué existe AGENTS.md.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 8 · MCP · 7 min                                              -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="mcp-tu-código-como-herramienta-del-agente" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>MCP: tu código como herramienta del agente</h1>
+<p><span class="modo">👀 Demo · 7 min</span></p>
+</section>
+<section id="qué-es-mcp" class="slide level2">
+<h2>¿Qué es MCP?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="text"><code> agente (Claude Code, OpenCode, marimo…)
+        │
+        │  MCP: "¿qué herramientas tienes?"
+        ▼
+ servidor MCP "climalab"
+        │  tool: horas_sobre_umbral(a, h)
+        ▼
+ paquete climalab  (probado, versionado)</code></pre>
+</div><div class="column small" style="width:50%;">
+<ul>
+<li><strong>Model Context Protocol</strong>: estándar abierto para conectar agentes con herramientas y datos.</li>
+<li>Un servidor, <strong>cualquier</strong> harness compatible.</li>
+<li>El agente deja de <strong>reescribir</strong> tus cálculos y pasa a <strong>llamarlos</strong>: menos código nuevo que auditar.</li>
+</ul>
+</div></div>
+</section>
+<section id="del-paquete-al-servidor-mcp" class="slide level2">
+<h2>Del paquete al servidor MCP</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># servidor-mcp/server.py</span></span>
+<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mcp.server.fastmcp <span class="im">import</span> FastMCP</span>
+<span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.modelo <span class="im">import</span> temperatura_sol_aire</span>
+<span id="cb35-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="" aria-hidden="true" tabindex="-1"></a>mcp <span class="op">=</span> FastMCP(<span class="st">"climalab"</span>)</span>
+<span id="cb35-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@mcp.tool</span>()</span>
+<span id="cb35-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> horas_sobre_umbral(a: <span class="bu">float</span>, h: <span class="bu">float</span>, umbral: <span class="bu">float</span> <span class="op">=</span> <span class="fl">40.0</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb35-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Horas al año con temperatura sol-aire sobre `umbral` [°C] en ClimaLab.</span></span>
+<span id="cb35-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    a: absortancia solar [-]; h: coeficiente convectivo [W/m²K]."""</span></span>
+<span id="cb35-12"><a href="" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pl.read_parquet(<span class="st">"data/002_intermediate/climalab.parquet"</span>)</span>
+<span id="cb35-13"><a href="" aria-hidden="true" tabindex="-1"></a>    tsa <span class="op">=</span> temperatura_sol_aire(df[<span class="st">"tdb"</span>], df[<span class="st">"ghi"</span>], a<span class="op">=</span>a, h<span class="op">=</span>h)</span>
+<span id="cb35-14"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>((tsa <span class="op">&gt;</span> umbral).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">60</span> <span class="op">/</span> <span class="dv">2</span>)   <span class="co"># 2 años de datos minutales</span></span>
+<span id="cb35-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb35-17"><a href="" aria-hidden="true" tabindex="-1"></a>    mcp.run()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small">
+<p>La docstring y los tipos <strong>son</strong> la documentación que lee el agente. La función ya estaba probada en <code>src/</code>.</p>
+</div>
+</section>
+<section id="demo" class="slide level2">
+<h2>Demo 👀</h2>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 3 min</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add mcp                                                <span class="co"># el SDK oficial de MCP</span></span>
+<span id="cb36-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add climalab <span class="at">--</span> uv run servidor-mcp/server.py</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>“¿Qué absortancia de techo mantiene la temperatura sol-aire por debajo de 40 °C más de 95 % del tiempo?”</em></p>
+</div>
+<div class="pista">
+<p>El agente solo puede usar tu conocimiento <strong>si lo empaquetaste</strong>. Tu código bien hecho se vuelve su herramienta.</p>
+</div>
+<aside class="notes">
+<p>Fusible: si vamos tarde, contar la demo sin ejecutarla. Lo que hay que señalar en pantalla: el agente llama la herramienta en vez de escribir su propia fórmula.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 9 · Cierre · 10 min                                          -->
+<!-- ================================================================== -->
+</section></section>
+<section>
+<section id="si-la-ia-ya-escribe-código-para-qué-aprender-a-programar-1" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Si la IA ya escribe código, ¿para qué aprender a programar?</h1>
+
+</section>
+<section id="el-ecosistema-contra-las-causas" class="slide level2">
+<h2>El ecosistema, contra las causas</h2>
+<div class="causas resuelto">
+<div class="par">
+<p><span class="causa">Dependencias no declaradas</span> <span class="flecha">→</span> <span class="herr"><strong>uv</strong> · <code>uv.lock</code> · PEP 723</span> <span class="bloque">✓</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Sin historia</span> <span class="flecha">→</span> <span class="herr"><strong>git</strong> · diff</span> <span class="bloque">✓</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Estado oculto, orden de ejecución</span> <span class="flecha">→</span> <span class="herr"><strong>marimo</strong></span> <span class="bloque">✓</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Datos pesados y sin tipos</span> <span class="flecha">→</span> <span class="herr"><strong>Parquet</strong></span> <span class="bloque">✓</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Código atrapado en el notebook</span> <span class="flecha">→</span> <span class="herr"><strong><code>src/</code></strong> · paquete · pruebas</span> <span class="bloque">✓</span></p>
+</div>
+<div class="par">
+<p><span class="causa">Preprocesamiento no documentado</span> <span class="flecha">→</span> <span class="herr"><strong>narrativa</strong> · <code>PLAN.md</code></span> <span class="bloque">✓</span></p>
+</div>
+</div>
+<div class="pregunta small">
+<p>El agente trabaja <strong>dentro</strong> de este ecosistema… si alguien lo construyó y se lo explicó.</p>
+</div>
+</section>
+<section id="las-pistas" class="slide level2">
+<h2>Las pistas 🧭</h2>
+<div class="small">
+<ol start="0" type="1">
+<li><strong>El documental</strong> — Python es una historia de personas que programan.</li>
+<li><strong>uv</strong> — el agente usa <code>pip</code> si no sabes pedirle otra cosa.</li>
+<li><strong>git</strong> — el diff solo sirve si sabes leer código.</li>
+<li><strong>marimo</strong> — las herramientas nuevas eliminan clases enteras de errores.</li>
+<li><strong>Parquet</strong> — el formato es una decisión técnica que nadie toma por ti.</li>
+<li><strong><code>src/</code></strong> — decidir qué es una función y qué prueba la valida es diseño.</li>
+<li><strong>Agente</strong> — rinde al nivel de quien lo guía.</li>
+<li><strong>MCP</strong> — solo usa tu conocimiento si lo empaquetaste.</li>
+</ol>
+</div>
+</section>
+<section id="saber-programar-es-la-licencia-de-conducir" class="slide level2">
+<h2>Saber programar es la licencia de conducir</h2>
+<div class="cards tres">
+<div class="card">
+<p><span class="num">A</span></p>
+<p><strong>Auditar</strong></p>
+<p><span class="desc">Sin leer código no puedes revisar lo que el agente escribe: el diff es tu instrumento.</span></p>
+</div>
+<div class="card">
+<p><span class="num">B</span></p>
+<p><strong>Entender</strong></p>
+<p><span class="desc">El criterio de dominio decide si el número es plausible (<code>sum</code> vs.&nbsp;<code>mean</code>); la IA no sabe lo que no le dijiste.</span></p>
+</div>
+<div class="card">
+<p><span class="num">C</span></p>
+<p><strong>Guiar</strong></p>
+<p><span class="desc">El plan, las correcciones y la firma son humanas. <strong>La IA no firma.</strong></span></p>
+</div>
+</div>
+</section>
+<section id="estar-al-día-es-parte-del-oficio" class="slide level2">
+<h2>Estar al día es parte del oficio</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="linea">
+<div class="hito">
+<p><span class="fecha">feb 2024</span> <span class="evento"><strong>uv</strong> aparece como reemplazo de pip</span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">jul 2024</span> <span class="evento"><strong>Polars 1.0</strong></span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">ago 2024</span> <span class="evento">uv gestiona <strong>proyectos</strong> (<code>uv.lock</code>)</span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">nov 2024</span> <span class="evento">Anthropic anuncia <strong>MCP</strong></span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">dic 2024</span> <span class="evento">marimo exporta a <strong>HTML/WASM</strong></span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">feb 2025</span> <span class="evento">“vibe coding”; <strong>Claude Code</strong> (vista previa)</span></p>
+</div>
+<div class="hito">
+<p><span class="fecha">2025</span> <span class="evento"><strong>Codex CLI</strong> (abr), <strong>OpenCode</strong> (SST, mediados)</span></p>
+</div>
+</div>
+</div><div class="column small" style="width:50%;">
+<ul>
+<li>Casi todo lo de hoy <strong>no existía hace tres años</strong>.</li>
+<li>Los modelos aprendieron del <strong>pasado</strong>: sus defaults son <code>pip</code>, <code>.ipynb</code>, CSV.</li>
+<li><strong>El presente lo aporta quien los guía</strong>: eso es <code>AGENTS.md</code>.</li>
+<li>Mientras más capaz es el agente, <strong>más pesa el criterio</strong> de quien lo dirige.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Fechas verificadas (anuncios oficiales y notas de versión). “ago 2024” = lanzamiento estable; los comandos de proyecto de uv estaban en vista previa desde may–jul 2024.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-2" class="slide level2 center">
+<h2></h2>
+<div class="pregunta">
+<p>La IA sube el <strong>piso</strong>;<br>el <strong>techo</strong> —criterio, verificación, firma— sigue siendo humano.</p>
+</div>
+<aside class="notes">
+<p>Cerrar el arco: la pregunta del inicio queda respondida. Aprender a programar no es competir con el agente: es poder dirigirlo y verificarlo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-3" class="slide level2 center">
+<h2></h2>
+<p><span style="display:block; font-size:2.2em; font-weight:700; color:#1f3a5f; text-align:center; margin-bottom:0.4em;">¿Preguntas?</span></p>
+<div class="pregunta small">
+<p>Y una para ti: ¿qué parte de tu próximo análisis <strong>no</strong> delegarías, y por qué?</p>
+</div>
+<p><br></p>
+<div class="small" style="text-align: center;">
+<p>Guillermo Barrios del Valle · gbv@ier.unam.mx · Instituto de Energías Renovables, UNAM</p>
+<p>Diapositivas: <a href="https://altamarmx.github.io/ecosistema-datos/">altamarmx.github.io/ecosistema-datos</a> · Charla anterior: <a href="https://altamarmx.github.io/vibecoding-reproducible/">Del vibe coding a la ciencia reproducible</a></p>
+</div>
+<aside class="notes">
+<p>Preguntas sembradas: 1. Datos sensibles → nube vs local. 2. ¿Quién es el autor si el agente escribió el código? → bitácora en PLAN.md; la persona firma. 3. Si el agente escribe código y pruebas, ¿quién vigila? → la respuesta conocida la pone la persona. 4. ¿No se atrofia el aprendizaje? → leer diffs es leer código a diario; lo que atrofia es “Accept All”.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="referencias" class="slide level2">
+<h2>Referencias</h2>
+<div class="small">
+<ul>
+<li>AlNoamany, Y. y Borghi, J. A. (2018). Towards computational reproducibility: researcher perspectives on the use and sharing of software. <em>PeerJ Computer Science</em>, 4:e163. doi:10.7717/peerj-cs.163</li>
+<li>Chang, A. C. y Li, P. (2015). Is Economics Research Replicable? Sixty Published Papers from Thirteen Journals Say “Usually Not”. <em>FEDS</em> 2015-083. doi:10.17016/FEDS.2015.083</li>
+<li>Mukhtar, Hadwiger, Wotawa y Schweiger (2025). Revisión de reproducibilidad en ML para detección y diagnóstico de fallas en HVAC. arXiv:2508.00880</li>
+<li>National Academies of Sciences, Engineering, and Medicine (2019). <em>Reproducibility and Replicability in Science</em>. doi:10.17226/25303</li>
+<li>Pimentel, J. F., Murta, L., Braganholo, V. y Freire, J. (2019). A Large-Scale Study About Quality and Reproducibility of Jupyter Notebooks. <em>MSR 2019</em>. doi:10.1109/MSR.2019.00077</li>
+<li>Samuel, S. y Mietchen, D. (2024). Computational reproducibility of Jupyter notebooks from biomedical publications. <em>GigaScience</em>, 13, giad113. doi:10.1093/gigascience/giad113</li>
+<li>Stodden, V., Seiler, J. y Ma, Z. (2018). An empirical analysis of journal policy effectiveness for computational reproducibility. <em>PNAS</em>, 115(11). doi:10.1073/pnas.1708290115</li>
+<li>Trisovic, A., Lau, M. K., Pasquier, T. y Crosas, M. (2022). A large-scale study on research code quality and execution. <em>Scientific Data</em>, 9:60. doi:10.1038/s41597-022-01143-6</li>
+</ul>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Python para la ciencia de datos moderna · IER-UNAM</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 8.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
+    
+
+</body></html>
