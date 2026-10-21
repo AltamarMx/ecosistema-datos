@@ -42,12 +42,12 @@ GUION DE 2 HORAS (ver TEMARIO.md)
   7–12    Bloque 1  El problema y la pregunta ....................... 👀
   12–27   Bloque 2  uv y ambientes virtuales ........................ 🖐
   27–42   Bloque 3  Versionado: git y el diff ....................... 🖐
-  42–57   Bloque 4  De Jupyter a marimo ............................. 🖐
-  57–65   Bloque 5  Parquet ......................................... 🖐
-  65–70   Pausa
-  70–85   Bloque 6  src/, paquete y exploración paramétrica ......... 🖐
-  85–103  Bloque 7  IA generativa: agente, harness, spec-driven ..... 👀
-  103–110 Bloque 8  MCP ............................................. 👀
+  42–57   Bloque 4  De Jupyter a marimo ............................. 👀
+  57–65   Bloque 5  Historia con datos, de la mano de un agente ..... 👀
+  65–70   ¿Preguntas?
+  70–85   Bloque 6  src/, paquete y exploración paramétrica (COMENTADO)
+  85–103  Bloque 7  (ELIMINADO: su contenido pasó al bloque 5)
+  103–110 Bloque 8  MCP (ELIMINADO; el concepto queda tras ¿Preguntas?)
   110–120 Bloque 9  Cierre: por qué seguir aprendiendo a programar
 
 Marcadores:
@@ -55,8 +55,8 @@ Marcadores:
   caja roja punteada  = DEMO EN VIVO (👀, solo observan)
   caja ámbar          = PISTA 🧭 hacia la tesis; el cierre las recoge todas
 
-Fusibles si se va el tiempo: lazy/pushdown (bloque 5),
-demo MCP (bloque 8, se cuenta sin demo).
+Fusible si se va el tiempo: paso 3 de la demo del bloque 5 (mostrar el respaldo
+de las notas).
 -->
 
 ::: {.columns}
@@ -75,10 +75,17 @@ Windows (PowerShell)
 irm https://astral.sh/uv/install.ps1 | iex
 ```
 
-**2. Instala git** ([da clic aquí para descargarlo](https://git-scm.com/downloads)) **y dile quién eres**
+**2. Instala git**
+
+[Descárgalo de git-scm.com](https://git-scm.com/downloads){target="_blank"} y comprueba que está
 
 ```bash
 git --version
+```
+
+Dile quién eres
+
+```bash
 git config --global user.name  "Tu Nombre"
 git config --global user.email "tu@correo.mx"
 ```
@@ -110,42 +117,7 @@ instalado en macOS/Linux. Windows: Git for Windows.
 
 # ¿Por qué hablar de reproducibilidad? {.center background-color="#1f3a5f"}
 
-[La evidencia, medida]{.modo}
-
-## ¿Qué significa *reproducible*?
-
-::: {.columns .vs-grandes}
-::: {.column width="50%"}
-::: {.vs-bien}
-**Reproducibilidad**
-
-Mismos **datos** + mismo **código** + mismas condiciones → **mismo resultado**.
-
-*Es lo que hoy está en juego.*
-:::
-:::
-::: {.column width="50%"}
-::: {.vs-mal}
-**Replicabilidad**
-
-Misma **pregunta**, datos **nuevos** → resultados **consistentes**.
-
-*Es otro problema (más difícil).*
-:::
-:::
-:::
-
-::: {.pregunta .small}
-La NASEM recomienda compartir datos, métodos **y la descripción del entorno computacional**.
-:::
-
-[National Academies of Sciences, Engineering, and Medicine (2019). *Reproducibility and Replicability in Science*. doi:10.17226/25303]{.fuente}
-
-::: {.notes}
-Fijar términos antes de dar cifras: la literatura los usa de forma inconsistente.
-Hoy hablamos de reproducibilidad computacional: tus datos, tu código, ¿mi máquina obtiene lo mismo?
-"Describir el entorno computacional" = lo que uv.lock hará en el bloque 2.
-:::
+[La evidencia indica…]{.modo}
 
 ## El embudo: notebooks de artículos biomédicos
 
@@ -187,6 +159,41 @@ La imagen más fuerte del bloque. Leer de arriba abajo: primero ni siquiera se p
 instalar, luego truena, y al final, aunque corra, el número no es el mismo.
 Cifras de la versión publicada (2024). El preprint de 2022 (9,625 → 245) da la misma forma.
 De los que sí instalan (10,388), solo ~12 % corre sin error.
+:::
+
+## ¿Qué significa *reproducible*?
+
+::: {.columns .vs-grandes}
+::: {.column width="50%"}
+::: {.vs-bien}
+**Reproducibilidad**
+
+Mismos **datos** + mismo **código** + mismas condiciones → **mismo resultado**.
+
+*Es lo que hoy está en juego.*
+:::
+:::
+::: {.column width="50%"}
+::: {.vs-mal}
+**Replicabilidad**
+
+Misma **pregunta**, datos **nuevos** → resultados **consistentes**.
+
+*Es otro problema (más difícil).*
+:::
+:::
+:::
+
+::: {.pregunta .small}
+La NASEM recomienda compartir datos, métodos **y la descripción del entorno computacional**.
+:::
+
+[National Academies of Sciences, Engineering, and Medicine (2019). *Reproducibility and Replicability in Science*. doi:10.17226/25303]{.fuente}
+
+::: {.notes}
+Fijar términos antes de dar cifras: la literatura los usa de forma inconsistente.
+Hoy hablamos de reproducibilidad computacional: tus datos, tu código, ¿mi máquina obtiene lo mismo?
+"Describir el entorno computacional" = lo que uv.lock hará en el bloque 2.
 :::
 
 ## No es un campo: es un patrón
@@ -433,7 +440,7 @@ de vacaciones); lo que permanece es la comunidad y el criterio de quienes progra
 | Paso | Bloque |
 |---|:-:|
 | Exploración en **marimo** | 4 |
-| CSV → **Parquet** | 5 |
+| Una **historia con datos** con un agente | 5 |
 | Funciones en **`src/`** → **paquete** | 6 |
 | **Barrido paramétrico** | 6 |
 | Un **agente** trabaja con el plan | 7 |
@@ -441,12 +448,19 @@ de vacaciones); lo que permanece es la comunidad y el criterio de quienes progra
 :::
 :::
 
-::: {.pregunta .small}
-Un mismo caso de principio a fin: cada herramienta resuelve un problema que dejó la anterior.
+::: {.practica .small}
+[Práctica adelantada · 2 min · tus propios datos 🖐]{.practica-title}
+
+1. Entra a [climalab.ier.unam.mx](https://climalab.ier.unam.mx){target="_blank"} → pestaña **Download**.
+2. Elige **las fechas que quieras** (una semana, un mes…) y pulsa **Download parquet**.
+3. Guarda el archivo: lo usarás en la práctica de git y marimo (3).
 :::
 
 ::: {.notes}
 El hilo conductor. Los datos vienen de la charla anterior (4 meses), ahora extendidos a 2 años.
+Práctica adelantada: que cada quien descargue ahora su propio recorte en Parquet (fechas a su
+gusto) para no perder tiempo después; en la práctica del bloque 3 construyen la app con ese archivo.
+Si alguien no puede descargar, el repo del taller trae un recorte de ejemplo.
 :::
 
 <!-- ================================================================== -->
@@ -532,16 +546,58 @@ El escalón 2 del embudo —*"no se pueden instalar las dependencias"*— es el 
 Conectar con el embudo: la mayoría de los notebooks ni siquiera se pudo instalar.
 :::
 
+## Práctica 🖐
+
+::: {.practica}
+[Práctica · 5 min · objetivos]{.practica-title}
+
+Al terminar tendrás:
+
+1. Un proyecto **`climalab/`** creado con uv: `pyproject.toml`, `.python-version` y un repositorio git.
+2. Las carpetas **`data/`** y **`notebooks/`**: el inicio de la estructura propuesta.
+3. **marimo** y **matplotlib** en el entorno del proyecto, con versiones fijadas en `uv.lock`.
+4. **marimo abierto** en tu navegador, sin instalar Python ni activar nada.
+
+*Las instrucciones, paso a paso, están en la siguiente diapositiva →*
+:::
+
+::: {.pista}
+Pídele a un agente "instala polars" sin más instrucciones: lo usual es `pip install` global o un `requirements.txt` sin versiones. Repite lo que más vio al entrenarse. **Pedirle uv exige saber que existe.**
+:::
+
+::: {.notes}
+Leer los objetivos y pasar a "Cuatro comandos": se trabaja con esa diapositiva en pantalla.
+El repositorio git del objetivo 1 se retoma al cerrar el bloque.
+:::
+
 ## Cuatro comandos
 
+::: {.small}
+**1. Crea el proyecto y sus carpetas** (análisis, aún no paquete: `pyproject.toml`, `.python-version`, git)
+
 ```bash
-uv init --no-package climalab  # análisis, aún no paquete: pyproject.toml, .python-version, git
-cd climalab
-uv add polars marimo           # instala y FIJA versiones exactas en uv.lock
-uv run python analisis.py      # ejecuta dentro del entorno (lo crea si no existe)
-uv sync                        # en otra máquina: reconstruye el mismo entorno
-ii .                           # abre la carpeta en el explorador (Windows; en macOS: open .)
+uv init --no-package climalab && cd climalab
+mkdir data notebooks
 ```
+
+**2. Agrega dependencias** (instala y **fija** versiones exactas en `uv.lock`)
+
+```bash
+uv add marimo matplotlib
+```
+
+**3. Ejecuta dentro del entorno** (lo crea si no existe; no hay "activar")
+
+```bash
+uv run marimo edit
+```
+
+**4. Abre la carpeta en el explorador** (Windows; en macOS: `open .`)
+
+```bash
+ii .
+```
+:::
 
 ::: {.columns .small}
 ::: {.column width="50%"}
@@ -553,7 +609,7 @@ name = "climalab"
 requires-python = ">=3.13"
 dependencies = [
     "marimo>=0.16",
-    "polars>=1.30",
+    "matplotlib>=3.10",
 ]
 ```
 :::
@@ -569,32 +625,6 @@ dependencies = [
 ::: {.notes}
 pyproject = intención (rangos); uv.lock = hecho (versiones exactas). Ambos van a git.
 No hay "activar el entorno": uv run se encarga.
-:::
-
-## Un script que trae su propio entorno
-
-```python
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["polars", "pyarrow"]
-# ///
-import polars as pl
-
-df = pl.read_parquet("climalab.parquet")
-print(df.select(pl.col("tdb").mean()))
-```
-
-```bash
-uv run resumen.py      # uv lee el encabezado, crea un entorno temporal y ejecuta
-```
-
-::: {.small}
-- Dependencias **en línea** (PEP 723): el script se puede mandar por correo y sigue siendo reproducible.
-- Ideal para utilidades sueltas; para un proyecto, `pyproject.toml` + `uv.lock`.
-:::
-
-::: {.notes}
-Este formato vuelve en la práctica de Parquet.
 :::
 
 ## Estructura propuesta
@@ -621,28 +651,7 @@ Una **narrativa, no una receta**. Lo que no cambia: crudos intocables · entorno
 ::: {.notes}
 Recorrer de arriba abajo. src/ se explica a fondo en el bloque 6; aquí solo ubicarlo:
 "aquí vive el código que define; en notebooks/ el que narra".
-:::
-
-## Práctica 🖐
-
-::: {.practica}
-[Práctica · 5 min]{.practica-title}
-
-```bash
-uv init --no-package climalab && cd climalab
-uv add polars pyarrow marimo
-uv run python -c "import polars; print(polars.__version__)"
-cat pyproject.toml
-ls -a                     # ¿qué más creó uv init?
-```
-:::
-
-::: {.pista}
-Pídele a un agente "instala polars" sin más instrucciones: lo usual es `pip install` global o un `requirements.txt` sin versiones. Repite lo que más vio al entrenarse. **Pedirle uv exige saber que existe.**
-:::
-
-::: {.notes}
-Pregunta para el puente: ls -a muestra .git. uv init ya creó un repositorio git… ¿qué es eso?
+Pregunta para el puente: uv init ya creó un repositorio git (ls -a muestra .git)… ¿qué es eso?
 :::
 
 <!-- ================================================================== -->
@@ -819,16 +828,16 @@ Igual que un .docx: técnicamente versionado, en la práctica ilegible. Motivo d
 ## Práctica 🖐
 
 ::: {.practica}
-[Práctica · 6 min · dentro de `climalab/`]{.practica-title}
+[Práctica · 6 min · dentro de `climalab/` · objetivo]{.practica-title}
 
-```bash
-git add . && git commit -m "Proyecto inicial con uv"
-echo 'print("hola, ClimaLab")' > main.py
-git diff                  # ¿qué cambió?
-git commit -am "Saludo"
-git log --oneline         # la historia
-git revert HEAD           # deshacer el último commit… sin borrar la historia
-```
+**Una gráfica interactiva con control de fechas, hecha en marimo y versionada con git.**
+
+1. Un DataFrame **`esolmet`** leído de `data/001_raw/ClimaLab.parquet`, con índice datetime.
+2. Un control para **elegir el rango de fechas**.
+3. Dos subplots: **`tdb`** arriba; **`ghi`**, **`dni`** y **`dhi`** abajo.
+4. Cada paso que funcione: **`git diff`** para leerlo, **`git commit`** para guardarlo.
+
+*Las instrucciones, paso a paso, están en la siguiente diapositiva →*
 :::
 
 ::: {.pista}
@@ -837,15 +846,92 @@ El diff solo sirve si **sabes leer código**. La IA escribe; tú revisas. Sin es
 
 ::: {.notes}
 Si alguien se atora con git config (nombre/correo), es el momento de resolverlo.
+El Parquet es el que descargaron en "El caso de hoy": se mueve a data/001_raw/ con ese nombre.
+:::
+
+## La app, commit a commit
+
+::: {.columns}
+::: {.column width="58%" .celdas}
+[**Celda 1** · bibliotecas]{.small}
+
+```python
+import marimo as mo
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+[**Celda 2** · los datos]{.small}
+
+```python
+esolmet = pd.read_parquet("data/001_raw/ClimaLab.parquet")
+```
+
+[**Celda 3** · el control]{.small}
+
+```python
+rango = mo.ui.date_range(
+    start=esolmet.index.min().date(),
+    stop=esolmet.index.max().date(),
+    label="Fechas",
+)
+rango
+```
+
+[**Celda 4** · la gráfica: se re-ejecuta al mover el rango]{.small}
+
+```python
+inicio, fin = rango.value
+datos = esolmet.loc[str(inicio):str(fin)]
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+datos["tdb"].plot(ax=ax1, ylabel="tdb [°C]")
+datos[["ghi", "dni", "dhi"]].plot(ax=ax2, ylabel="[W/m²]")
+fig
+```
+:::
+::: {.column width="42%" .small}
+**1.** Guarda lo que hay y prepara los datos
+
+```bash
+git add . && git commit -m "Proyecto inicial"
+mkdir data/001_raw
+```
+
+Mueve tu Parquet de ClimaLab a `data/001_raw/ClimaLab.parquet`.
+
+**2.** Agrega pandas y lee el diff
+
+```bash
+uv add pandas pyarrow
+git diff pyproject.toml
+git commit -am "pandas y pyarrow"
+```
+
+**3.** Escribe la app y guárdala
+
+```bash
+uv run marimo edit notebooks/graficas.py
+git add notebooks
+git commit -m "App: rango de fechas"
+git log --oneline
+```
+:::
+:::
+
+::: {.notes}
+Cada celda se escribe en el editor de marimo; el archivo .py lo genera marimo al guardar.
+marimo se lanza desde climalab/, así que la ruta data/... es relativa a esa carpeta.
+El Parquet no se agrega a git (git add notebooks, no git add .): los datos no viajan en el historial.
+Anticipa el bloque 4: mover el rango re-ejecuta solo la celda 4.
 :::
 
 <!-- ================================================================== -->
-<!-- Bloque 4 · Narrativa computacional: de Jupyter a marimo · 15 min   -->
+<!-- Bloque 4 · De Jupyter a marimo · 15 min                            -->
 <!-- ================================================================== -->
 
-# Narrativa computacional: de Jupyter a marimo {.center background-color="#1f3a5f"}
+# De Jupyter a marimo {.center background-color="#1f3a5f"}
 
-[🖐 Práctica · 15 min]{.modo}
+[👀 Exposición · 15 min]{.modo}
 
 ## Lo que Jupyter resolvió… y lo que dejó pendiente
 
@@ -979,6 +1065,12 @@ el archivo es texto, ordenado por dependencias, y legible en un diff.
 "Como app" = el mismo archivo, sin tocar código. Para compartir con alguien que no programa.
 :::
 
+# ¿Cómo integramos IA en un flujo de trabajo reproducible, colaborativo y auditable? {.center background-color="#1f3a5f"}
+
+::: {.notes}
+Dejar la pregunta abierta. La responde el bloque 5: AGENTS.md, PLAN.md, leer el diff y firmar con un commit.
+:::
+
 ## IA en el editor, Quarto para publicar
 
 ::: {.columns}
@@ -1002,141 +1094,528 @@ el archivo es texto, ordenado por dependencias, y legible en un diff.
 No es marimo contra Quarto: es explorar contra publicar. Estas diapositivas son un .qmd.
 :::
 
-## Práctica 🖐
+## marimo: el LLM trabaja dentro del kernel
 
-::: {.practica}
-[Práctica · 6 min]{.practica-title}
+::: {.columns}
+::: {.column width="52%" .small}
+**El modelo ve la sesión viva, no solo el archivo**
 
-```bash
-uvx marimo tutorial intro         # recorrido oficial, interactivo
-uv run marimo edit exploracion.py # tu primer notebook, dentro de climalab/
-git diff                          # tras mover un slider y guardar: ¿qué cambió?
+- Conoce los **valores en memoria**: con `@esolmet` le pasas las columnas y tipos del DataFrame.
+- Tres modos de chat: **Ask** (solo lee) · **Agent** (agrega, edita y ejecuta celdas) · **Code mode** (acceso directo al kernel).
+- **marimo pair**: Claude Code, Codex y otros agentes entran al notebook en ejecución y trabajan sobre su estado.
+- Cualquier proveedor: OpenAI, Anthropic, Google, Bedrock, GitHub Copilot u **Ollama** local.
+:::
+::: {.column width="48%" .small}
+En el chat de marimo
+
+```markdown
+@esolmet ¿qué día tuvo la mayor ghi? grafícalo
+```
+
+Y como celda: el chat es un elemento de UI más
+
+```python
+chat = mo.ui.chat(
+    mo.ai.llm.openai(
+        "qwen3",
+        base_url="http://localhost:11434/v1",
+        api_key="ollama",  # local: no pide clave
+    ),
+)
+chat
 ```
 :::
-
-::: {.demo}
-[Demo en vivo · 2 min]{.demo-title}
-El mismo cambio (`sum` → `mean`) hecho en un `.ipynb` y en un notebook marimo: comparamos los dos `git diff`.
 :::
 
-::: {.pista}
-Una herramienta nueva **elimina clases enteras de errores** (estado oculto, orden de ejecución). Estar al día no es moda: es dejar de cometer errores que ya tienen solución.
+::: {.notes}
+Fuente: docs.marimo.io (AI completion, mo.ui.chat) y github.com/marimo-team/marimo-pair.
+La diferencia con un chat externo: aquí el modelo no adivina las columnas, las lee de la memoria.
+Lo que la IA escribe sigue siendo un .py reactivo: se revisa en el diff. Adelanto del bloque 5.
+:::
+
+## ¿Qué es Quarto?
+
+::: {.columns}
+::: {.column width="50%" .small}
+**Sistema de publicación científica y técnica, de código abierto** (Posit, sucesor de R Markdown)
+
+- **Un archivo de texto** `.qmd`: Markdown + código. Se versiona con git y se lee en el diff.
+- **Varios lenguajes**: Python, R, Julia y Observable JS; también renderiza notebooks `.ipynb`.
+- **Muchos formatos, una fuente**: HTML, PDF, Word, ePub, presentaciones, sitios web, libros, blogs y dashboards.
+- **Lo que pide un artículo**: ecuaciones LaTeX, citas, referencias cruzadas, paneles de figuras y callouts.
+- **Publicar con un comando**: GitHub Pages, Quarto Pub, Netlify, Posit Connect…
+:::
+::: {.column width="50%"}
+````markdown
+---
+title: "Clima en ClimaLab"
+format: html    # o pdf, docx, revealjs…
+bibliography: refs.bib
+---
+
+```{{python}}
+#| label: fig-tdb
+#| fig-cap: "Temperatura de bulbo seco"
+esolmet["tdb"].plot()
+```
+
+Como muestra @fig-tdb, … [@nasem2019]
+````
+
+[Vista previa · otro formato · publicar]{.small}
+
+```bash
+quarto preview informe.qmd
+quarto render informe.qmd --to pdf
+quarto publish gh-pages
+```
+:::
+:::
+
+::: {.notes}
+Fuente: quarto.org y quarto publish --help (Quarto 1.9).
+Estas diapositivas son un .qmd publicado con quarto publish gh-pages.
+El mismo informe.qmd sale como HTML, PDF o Word: el formato es una opción, no otro archivo.
 :::
 
 <!-- ================================================================== -->
-<!-- Bloque 5 · Parquet · 8 min                                          -->
+<!-- Bloque 5 · Una historia con datos, de la mano de un agente · 8 min -->
 <!-- ================================================================== -->
 
-# Parquet: datos que se leen como datos {.center background-color="#1f3a5f"}
+# Vamos a contar una historia con datos de la mano de un LLM como agente {.center background-color="#1f3a5f"}
 
-[🖐 Práctica · 8 min]{.modo}
+[👀 Demo · 8 min]{.modo}
 
-## CSV vs. Parquet
+## El modelo, solo
 
 ::: {.columns}
 ::: {.column width="50%"}
-::: {.vs-mal}
-**CSV**
+```text
+  tú ──── texto ────►  ┌────────┐
+                       │ modelo │
+  tú ◄─── texto ─────  └────────┘
+```
+:::
+::: {.column width="50%" .small}
+- Texto entra, texto sale.
+- **No ve** tus archivos, **no ejecuta** nada, **no sabe** si su código corre.
+- Tú copias, pegas, ejecutas y le cuentas el error.
+- Tú eres el bucle.
+:::
+:::
 
-- Texto: **sin tipos** (la fecha llega como texto)
-- Se guarda **por filas**: para una columna, lees todas
-- Sin compresión: **pesado**
-- Ambiguo: separadores, decimales, codificación
+::: {.notes}
+Así usa la IA la mayoría: chat en el navegador. Útil, pero el humano hace todo el trabajo de ida y vuelta.
+:::
+
+## ¿Qué es un agente?
+
+::: {.pregunta}
+Un **agente** es un LLM que trabaja **en un bucle**, con **herramientas**, hasta cumplir un **objetivo**.
+:::
+
+::: {.columns}
+::: {.column width="45%"}
+```text
+   tu prompt · PLAN.md
+            │
+            ▼
+   ┌──► propone una acción
+   │            │
+   │            ▼
+ corrige   usa una herramienta
+   ▲     (leer, escribir, uv run,
+   │      quarto render …)
+   │            │
+   └─── observa el resultado
+```
+:::
+::: {.column width="55%" .small}
+- **El LLM** decide el siguiente paso; **las herramientas** le dejan actuar sobre archivos y terminal.
+- **El bucle**: propone → ejecuta → observa → corrige, hasta terminar.
+- Un chat te devuelve texto; un agente **cambia tu proyecto** y ve sus propios errores.
+- Multiplica la velocidad… **y el daño** si no hay reglas. Por eso todo pasa por **git**.
+:::
+:::
+
+::: {.notes}
+Definición mínima para la demo. La siguiente diapositiva separa las dos piezas: el modelo y el harness.
+:::
+
+## El *harness*: lo que convierte un modelo en agente
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.capas}
+::: {.capa .harness}
+[Harness]{.nombre}
+permisos · contexto · memoria
+
+::: {.capa .herramientas}
+[Herramientas]{.nombre}
+archivos · terminal · pruebas · MCP
+
+::: {.capa .modelo}
+Modelo
+:::
+:::
+:::
+:::
+:::
+::: {.column width="50%" .small}
+El *harness* (arnés) es el programa que envuelve al modelo. Decide:
+
+- **Qué herramientas** tiene y con qué **permisos**: ¿puede borrar? ¿pide confirmación?
+- **Qué contexto** carga: `AGENTS.md`, el plan, el repositorio.
+- Cómo maneja la **memoria** y las conversaciones largas.
+
+Ejemplos: **Claude Code**, **Codex CLI**, **OpenCode**; también el asistente de **marimo**.
+:::
+:::
+
+::: {.notes}
+Idea central del bloque: lo que llamamos "la IA" son dos cosas separables, el modelo y el harness.
+Dos agentes con el mismo modelo se comportan muy distinto según su harness y su contexto.
+:::
+
+## Paso 1: abre la terminal
+
+::: {.demo}
+[Demo en vivo · 2 min · dentro de `climalab/`]{.demo-title}
+
+En la terminal
+
+```bash
+claude        # Claude Code; también codex u opencode
+```
+
+El prompt
+
+```markdown
+Crea un documento de Quarto en analysis/ y comienza con un hola mundo
+```
+:::
+
+::: {.small}
+**Qué observar**
+
+- **Pide permiso** antes de crear archivos o ejecutar comandos.
+- Crea un `.qmd` en `analysis/` y lo renderiza con `quarto`.
+- Al terminar: `git status` y `git diff` muestran **exactamente** lo que escribió.
+:::
+
+::: {.notes}
+Lanzar el agente desde la raíz de climalab/ para que vea data/, notebooks/ y pyproject.toml.
+Si pregunta qué formato usar, html basta.
+:::
+
+## Modelo ≠ harness: nube y local
+
+::: {.columns .vs-grandes}
+::: {.column width="50%"}
+::: {.vs-bien}
+**Nube** (p. ej. Claude, GPT, Gemini)
+
+- Modelos de frontera, los más capaces
+- Sin hardware propio; costo por uso
+- Los datos **salen de tu máquina**
+:::
+:::
+::: {.column width="50%"}
+::: {.vs-mal}
+**Local** (p. ej. Qwen vía MLX u Ollama)
+
+- Los datos **no salen**; sin costo por token
+- Exige **hardware capaz** (memoria unificada o GPU)
+- Rinde menos que la frontera
+:::
+:::
+:::
+
+::: {.pregunta .small}
+El mismo harness puede usar uno u otro motor: la decisión es **por proyecto**, no ideológica.
+:::
+
+::: {.notes}
+Nube para trabajo pesado; local cuando los datos no deben salir o para tareas acotadas.
+:::
+
+## Alternativa local: Ollama + OpenCode
+
+::: {.columns}
+::: {.column width="50%" .small}
+- **Ollama** corre el modelo en tu máquina; **OpenCode** es el *harness*, de código abierto.
+- OpenCode necesita un **contexto de 64k o más**: elige un modelo que quepa en tu memoria.
+- Mismo prompt, mismas reglas: OpenCode también lee `AGENTS.md`.
+- `ollama launch` abre también Claude Code o Codex con un modelo local: **cambia el motor, no el harness**.
+:::
+::: {.column width="50%"}
+[Una vez: descarga el modelo y arranca Ollama con 64k de contexto]{.small}
+
+```bash
+ollama pull qwen3.5
+OLLAMA_CONTEXT_LENGTH=64000 ollama serve
+```
+
+[En otra terminal, dentro de `climalab/`]{.small}
+
+```bash
+ollama launch opencode
+```
+:::
+:::
+
+::: {.notes}
+Fuente: docs.ollama.com (integración con OpenCode y context length). Probado: ollama 0.34 trae "ollama launch opencode".
+Elegir un tamaño de modelo que quepa en memoria; con "ollama ps" la columna PROCESSOR debe decir GPU, no CPU.
+En la app de Ollama, el contexto se ajusta con el control deslizante en lugar de la variable de entorno.
+La diapositiva anterior ("Modelo ≠ harness") ya planteó la decisión nube contra local.
+:::
+
+## Paso 2: las reglas y el plan
+
+::: {.columns}
+::: {.column width="50%"}
+[`AGENTS.md` · las reglas]{.small}
+
+```markdown
+# AGENTS.md
+
+## Espacio de trabajo
+- Trabaja solo dentro de este repositorio;
+  no leas ni escribas fuera de él.
+
+## Datos
+- `data/001_raw/` es de solo lectura.
+
+## Entorno
+- `uv add` y `uv run`; nunca `pip install`.
+
+## Documentos
+- Quarto en `analysis/`; el código embebido
+  en celdas `{python}`, sin scripts sueltos.
+
+## Flujo
+- Muestra el diff antes de cada commit.
+```
+:::
+::: {.column width="50%"}
+[`PLAN.md` · el contrato]{.small}
+
+```markdown
+# PLAN · Una semana en ClimaLab
+
+## Objetivo
+Contar qué pasó en la última semana:
+temperatura y radiación.
+
+## Datos
+data/001_raw/ClimaLab.parquet (índice datetime)
+tdb [°C] · ghi, dni, dhi [W/m²]
+
+## Pasos
+1. [x] analysis/ con un hola mundo
+2. [ ] plotly, 2 subpaneles: tdb | ghi, dni, dhi
+       última semana = 7 días hasta el último dato
+
+## Criterios de aceptación
+- uv run quarto render analysis/ sin errores
+- git diff no toca data/001_raw/
+```
+:::
+:::
+
+::: {.demo}
+[Demo en vivo · 2 min · se firman con un commit]{.demo-title}
+
+```bash
+git add AGENTS.md PLAN.md && git commit -m "Reglas y plan para el agente"
+```
+:::
+
+::: {.notes}
+Los dos archivos se llevan escritos; aquí se leen regla por regla y se firman con el commit.
+Cada regla corresponde a algo de hoy: uv (bloque 2), datos crudos intocables, Quarto (bloque 4).
+El plan fija lo que el prompt deja ambiguo: qué es "la última semana".
+Claude Code: la versión instalada (2.1.306) debería leer AGENTS.md si no hay CLAUDE.md.
+Confirmarlo con /memory al iniciar; si no aparece, crear CLAUDE.md con la línea @AGENTS.md.
+AGENTS.md: el harness lo carga en cada sesión; sin él, el agente usa sus defaults (los de sus datos de entrenamiento).
+PLAN.md: se escribe antes de pedir una línea de código; su commit es la firma del contrato;
+es también la bitácora: qué propuso la IA y qué decidió la persona autora.
+:::
+
+## Paso 3: que los datos cuenten algo
+
+::: {.demo}
+[Demo en vivo · 4 min]{.demo-title}
+
+El prompt
+
+```markdown
+Carga el Parquet y haz una gráfica con 2 subpaneles usando plotly, para la
+última semana de los datos: la tdb en un panel y las componentes de la
+radiación (dni, ghi, dhi) en otro
+```
+:::
+
+::: {.small}
+**En el diff: ¿cumplió las reglas y el plan?**
+
+- **Entorno**: instaló `plotly` y `jupyter` con `uv add`, no con `pip install`.
+- **Documento**: el código quedó embebido en el `.qmd`, sin scripts sueltos.
+- **Datos**: no tocó `data/001_raw/`; la ruta al Parquet es relativa a `analysis/`.
+- **Plan**: "la última semana" son los 7 días hasta el último dato, como dice `PLAN.md`.
+:::
+
+::: {.notes}
+Respaldo probado (si el agente se atora): uv add plotly jupyter, y en analysis/index.qmd
+
+    import pandas as pd
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    esolmet = pd.read_parquet("../data/001_raw/ClimaLab.parquet")
+    semana = esolmet.loc[esolmet.index.max() - pd.Timedelta(days=7):]
+
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True)
+    fig.add_trace(go.Scatter(x=semana.index, y=semana["tdb"], name="tdb"), row=1, col=1)
+    for col in ["ghi", "dni", "dhi"]:
+        fig.add_trace(go.Scatter(x=semana.index, y=semana[col], name=col), row=2, col=1)
+    fig.update_yaxes(title_text="tdb [°C]", row=1, col=1)
+    fig.update_yaxes(title_text="[W/m²]", row=2, col=1)
+    fig.show()
+
+Render: uv run quarto render analysis/index.qmd
+:::
+
+## Vibe coding vs. *spec-driven*
+
+::: {.columns .vs-grandes}
+::: {.column width="50%"}
+::: {.vs-mal}
+**Vibe coding**
+
+- El prompt es la especificación
+- El código **no se lee**
+- "Accept All"
+- Para proyectos **desechables**
 :::
 :::
 ::: {.column width="50%"}
 ::: {.vs-bien}
-**Parquet**
+**Spec-driven**
 
-- Binario **tipado**: `datetime` sigue siendo `datetime`
-- Se guarda **por columnas**: lees solo las que pides
-- **Comprimido** por columna
-- Metadatos: esquema y estadísticas por bloque
+- `PLAN.md` **firmado** es la especificación
+- El agente ejecuta; el humano escribe y **verifica**
+- Diff leído, pruebas pasando, commit
+- Para trabajo que **se publica**
 :::
 :::
-:::
-
-::: {.small}
-Regla del proyecto: **crudos inmutables** tal como llegan; todo lo derivado, en Parquet.
-Parquet es binario: no se versiona con git, **se regenera** con el código.
-:::
-
-## Dos años de ClimaLab
-
-| ~1 millón de filas · 11 variables | CSV | Parquet |
-|---|---:|---:|
-| Tamaño | ~85 MB | ~21 MB |
-| Lectura con pandas | ~1.4 s | ~0.07 s |
-| Lectura con Polars | ~0.25 s | ~0.05 s |
-| Tipo de `date` al leer | `str` (hay que convertir) | `datetime` |
-| Media de `tdb` (lazy, una columna) | lee todo el archivo | ~0.01 s |
-
-[Estimado a partir de 4 meses medidos (172 433 filas: CSV 14.1 MB, Parquet 3.4 MB).]{.fuente}
-
-::: {.notes}
-TODO al tener los 2 años: reemplazar por la medición real (correr el script de la práctica).
-El dato que más sorprende no es la velocidad: es que el CSV pierde el tipo de la fecha.
-:::
-
-## Lazy: leer solo lo que necesitas
-
-```python
-import polars as pl
-
-resultado = (
-    pl.scan_parquet("data/002_intermediate/climalab.parquet")  # no lee nada todavía
-      .filter(pl.col("date").dt.year() == 2025)                # filtra al leer
-      .select("date", "tdb")                                   # solo 2 de 11 columnas
-      .group_by_dynamic("date", every="1mo")
-      .agg(pl.col("tdb").mean())
-      .collect()                                               # ahora sí ejecuta
-)
-```
-
-::: {.small}
-- Polars arma un **plan** y lo optimiza: solo lee las columnas y los bloques que necesita.
-- DuckDB hace lo mismo con SQL: `SELECT avg(tdb) FROM 'climalab.parquet'`.
 :::
 
 ::: {.notes}
-Fusible: si vamos tarde, saltar esta diapositiva.
+Es la misma transición que está dando la industria del software con los agentes.
 :::
 
-## Práctica 🖐
+## El bucle de trabajo
 
-::: {.practica}
-[Práctica · 4 min · `uv run csv_vs_parquet.py`]{.practica-title}
-
-```python
-# /// script
-# dependencies = ["polars", "pandas", "pyarrow"]
-# ///
-import os, time
-import pandas as pd, polars as pl
-
-pl.read_parquet("climalab.parquet").write_csv("climalab.csv")
-for f in ["climalab.csv", "climalab.parquet"]:
-    print(f, os.path.getsize(f) // 1_000_000, "MB")
-
-t = time.perf_counter(); csv = pd.read_csv("climalab.csv");      print("CSV", time.perf_counter() - t)
-t = time.perf_counter(); pq = pd.read_parquet("climalab.parquet"); print("Parquet", time.perf_counter() - t)
-print(csv.dtypes["date"], "vs", pq.dtypes["date"])
+```text
+  un paso del PLAN ──► el agente escribe el .qmd ──► uv run quarto render
+          ▲                                                  │
+          │                                                  ▼
+       git commit  ◄──── tú lees el diff ◄──── revisas la gráfica
 ```
-:::
 
 ::: {.pista}
-Si no dices otra cosa, el agente guarda en CSV. **Elegir el formato es una decisión técnica** que nadie toma por ti.
+Escribir `AGENTS.md` y `PLAN.md` exige saber programar **y** conocer las herramientas actuales. El agente rinde **al nivel de quien lo guía**.
 :::
 
 ::: {.notes}
-El CSV se genera localmente a partir del Parquet: nadie descarga 85 MB por la red del evento.
+Es el ciclo que acabamos de recorrer en los pasos 1 a 3.
+Nunca "hazme todo el análisis": un paso del plan a la vez, diff corto.
+Si el agente propone pip install o un .ipynb, mejor: muestra por qué existe AGENTS.md.
 :::
 
-# Pausa · 5 min {.center background-color="#1f3a5f"}
+# ¿Preguntas? {.center background-color="#1f3a5f"}
+
+## Estrategia: paquetes que el agente usa con parámetros
+
+::: {.columns}
+::: {.column width="48%" .small}
+**Tú escribes y pruebas la física; el agente elige parámetros y combina.**
+
+- La función es el **contrato**: nombre, parámetros con unidades, docstring y prueba.
+- El agente no reinventa el cálculo: lo **llama** con otros valores.
+- En el diff queda una **llamada**, no física nueva: se audita en segundos.
+- Instalable y versionado (`uv add`, `uv.lock`): persona o agente obtienen lo mismo.
+:::
+::: {.column width="52%"}
+[Lo que tú escribes y pruebas]{.small}
+
+```python
+# src/climalab/modelo.py
+def temperatura_sol_aire(tdb, ghi, a=0.6,
+                         h=13.0, eps_dr=63.0):
+    """Temperatura sol-aire [°C].
+    a [-] · h [W/m²K] · eps_dr [W/m²]"""
+    return tdb + (a * ghi - eps_dr) / h
+```
+
+[Lo que le pides al agente]{.small}
+
+```markdown
+Con climalab.modelo.temperatura_sol_aire, barre la
+absortancia de 0.2 a 0.8 y h de 5 a 20 W/m²K para la
+última semana, y grafica las horas sobre 40 °C
+```
+:::
+:::
+
+::: {.notes}
+Es la misma función del bloque 6. La idea: el conocimiento de dominio se empaqueta y se prueba una vez;
+el agente explora el espacio de parámetros. Lo que hay que revisar es qué valores eligió, no si la física es correcta.
+Puente: ¿y si el agente pudiera descubrir esas funciones por sí solo, en cualquier harness? Eso es MCP.
+:::
+
+## Explorar MCP: el concepto
+
+::: {.columns}
+::: {.column width="50%" .small}
+- **Model Context Protocol**: estándar abierto para conectar una aplicación de IA con herramientas y datos. Lo creó Anthropic en 2024; desde 2025 lo gobierna la Agentic AI Foundation (Linux Foundation), junto con `AGENTS.md`.
+- **Participantes**: el *host* (Claude Code, OpenCode, marimo…) abre un *cliente* por cada *servidor*.
+- **Un servidor ofrece**: *tools* (funciones que el agente ejecuta), *resources* (datos de contexto) y *prompts* (plantillas).
+- **Descubrir y llamar**: el agente pregunta qué herramientas hay (`tools/list`) y las invoca (`tools/call`).
+:::
+::: {.column width="50%"}
+```text
+ host: Claude Code · OpenCode · marimo
+ ┌──────────────────────────────────┐
+ │  cliente MCP       cliente MCP   │
+ └──────┬──────────────────┬────────┘
+        │ stdio (local)    │ HTTP (remoto)
+        ▼                  ▼
+  servidor "climalab"   servidor GitHub
+  tools · resources · prompts
+```
+
+::: {.pregunta .small}
+Tu paquete, envuelto en un servidor MCP, se vuelve una herramienta que **cualquier** agente descubre y llama.
+:::
+:::
+:::
+
+::: {.notes}
+Fuentes: modelcontextprotocol.io (arquitectura) y el anuncio de la Agentic AI Foundation (9 dic 2025).
+Solo el concepto: en esta charla no se construye el servidor.
+:::
 
 <!-- ================================================================== -->
 <!-- Bloque 6 · src/, paquete y exploración paramétrica · 15 min         -->
 <!-- ================================================================== -->
+
+<!--
+BLOQUE 6 COMENTADO (21 oct 2026): de "De src/ al paquete instalable" hasta su "Práctica 🖐".
+Para restaurarlo, quitar esta línea de apertura y el cierre al final del bloque.
 
 # De `src/` al paquete instalable {.center background-color="#1f3a5f"}
 
@@ -1312,332 +1791,7 @@ Decidir **qué es una función**, qué parámetros barrer y **qué prueba la val
 ::: {.notes}
 TODO: confirmar URL del paquete del taller cuando el repo esté publicado.
 :::
-
-<!-- ================================================================== -->
-<!-- Bloque 7 · IA generativa · 18 min                                   -->
-<!-- ================================================================== -->
-
-# IA generativa: del chat al agente {.center background-color="#1f3a5f"}
-
-[👀 Demo · 18 min]{.modo}
-
-## El modelo, solo
-
-::: {.columns}
-::: {.column width="50%"}
-```text
-  tú ──── texto ────►  ┌────────┐
-                       │ modelo │
-  tú ◄─── texto ─────  └────────┘
-```
-:::
-::: {.column width="50%" .small}
-- Texto entra, texto sale.
-- **No ve** tus archivos, **no ejecuta** nada, **no sabe** si su código corre.
-- Tú copias, pegas, ejecutas y le cuentas el error.
-- Tú eres el bucle.
-:::
-:::
-
-::: {.notes}
-Así usa la IA la mayoría: chat en el navegador. Útil, pero el humano hace todo el trabajo de ida y vuelta.
-:::
-
-## + herramientas + bucle = agente
-
-::: {.columns}
-::: {.column width="50%"}
-```text
-           ┌───────────┐
-           │  PLAN.md  │
-           └─────┬─────┘
-                 ▼
-   ┌──► propone una acción
-   │             │
-   │             ▼
- corrige   ejecuta herramienta
-   ▲      (leer, escribir, correr,
-   │       pytest, uv run …)
-   │             │
-   └─── observa el resultado
-```
-:::
-::: {.column width="50%" .small}
-- **Herramientas**: leer y escribir archivos, ejecutar comandos, correr pruebas.
-- **Bucle**: propone → ejecuta → observa → corrige → repite, hasta cumplir la tarea.
-- A diferencia del chat, **actúa sobre tu repositorio** y ve sus propios errores.
-- Multiplica la velocidad… **y el daño** si no hay reglas.
-:::
-:::
-
-## El *harness*: lo que convierte un modelo en agente
-
-::: {.columns}
-::: {.column width="50%"}
-::: {.capas}
-::: {.capa .harness}
-[Harness]{.nombre}
-permisos · contexto · memoria
-
-::: {.capa .herramientas}
-[Herramientas]{.nombre}
-archivos · terminal · pruebas · MCP
-
-::: {.capa .modelo}
-Modelo
-:::
-:::
-:::
-:::
-:::
-::: {.column width="50%" .small}
-El *harness* (arnés) es el programa que envuelve al modelo. Decide:
-
-- **Qué herramientas** tiene y con qué **permisos**: ¿puede borrar? ¿pide confirmación?
-- **Qué contexto** carga: `AGENTS.md`, el plan, el repositorio.
-- Cómo maneja la **memoria** y las conversaciones largas.
-
-Ejemplos: **Claude Code**, **Codex CLI**, **OpenCode**; también el asistente de **marimo**.
-:::
-:::
-
-::: {.notes}
-Idea central del bloque: lo que llamamos "la IA" son dos cosas separables, el modelo y el harness.
-Dos agentes con el mismo modelo se comportan muy distinto según su harness y su contexto.
-:::
-
-## Modelo ≠ harness: nube y local
-
-::: {.columns .vs-grandes}
-::: {.column width="50%"}
-::: {.vs-bien}
-**Nube** (p. ej. Claude, GPT, Gemini)
-
-- Modelos de frontera, los más capaces
-- Sin hardware propio; costo por uso
-- Los datos **salen de tu máquina**
-:::
-:::
-::: {.column width="50%"}
-::: {.vs-mal}
-**Local** (p. ej. Qwen vía MLX u Ollama)
-
-- Los datos **no salen**; sin costo por token
-- Exige **hardware capaz** (memoria unificada o GPU)
-- Rinde menos que la frontera
-:::
-:::
-:::
-
-::: {.pregunta .small}
-El mismo harness puede usar uno u otro motor: la decisión es **por proyecto**, no ideológica.
-:::
-
-::: {.notes}
-Nube para trabajo pesado; local cuando los datos no deben salir o para tareas acotadas.
-:::
-
-## `AGENTS.md`: las reglas del espacio de trabajo
-
-::: {.columns}
-::: {.column width="55%"}
-```markdown
-# AGENTS.md
-
-## Entorno
-- Dependencias solo con `uv add`; nunca `pip install`.
-- Todo se ejecuta con `uv run`.
-
-## Datos
-- `data/001_raw/` es de solo lectura.
-- Derivados en Parquet, nunca CSV.
-
-## Código
-- Funciones en `src/climalab/`, con docstring,
-  unidades y prueba.
-- Notebooks en marimo (`.py`), no `.ipynb`.
-
-## Flujo
-- Una sección de PLAN.md a la vez.
-- Detente y muestra el diff antes del commit.
-```
-:::
-::: {.column width="45%" .small}
-- El harness lo carga **en cada sesión**.
-- Cada regla es una decisión de esta charla: uv, Parquet, `src/`, marimo, diff.
-- Sin este archivo, el agente usa **sus defaults**: los de sus datos de entrenamiento.
-:::
-:::
-
-::: {.notes}
-Notar que cada línea de AGENTS.md corresponde a un bloque de hoy. Escribirlo exige
-saber todo lo anterior: ese es el punto.
-:::
-
-## `PLAN.md`: el contrato
-
-::: {.columns}
-::: {.column width="55%"}
-```markdown
-# PLAN · Clima ClimaLab (2024-10 → 2026-10)
-
-## Objetivo
-Horas sobre 40 °C de temperatura sol-aire
-según absortancia del techo.
-
-## Datos
-climalab.parquet · ~1 M filas · 1 min
-tdb [°C] · ghi [W/m²] · …
-
-## Pasos
-1. Validar crudos con pruebas físicas
-2. temperatura_sol_aire() con prueba
-3. Barrido absortancia × h_ext → Parquet
-
-## Criterios de aceptación
-- `uv run pytest` pasa · GHI nocturna = 0
-
-## Bitácora y decisiones
-```
-:::
-::: {.column width="45%" .small}
-- Se escribe **antes** de pedir una línea de código.
-- Dice **qué** (preguntas, variables, **unidades**) y **con qué**.
-- `git commit` del plan = **firma del contrato**.
-- Cada sección = una unidad de trabajo para el agente.
-- Es también la **bitácora**: qué propuso la IA, qué decidió la persona autora.
-:::
-:::
-
-## Vibe coding vs. *spec-driven*
-
-::: {.columns .vs-grandes}
-::: {.column width="50%"}
-::: {.vs-mal}
-**Vibe coding**
-
-- El prompt es la especificación
-- El código **no se lee**
-- "Accept All"
-- Para proyectos **desechables**
-:::
-:::
-::: {.column width="50%"}
-::: {.vs-bien}
-**Spec-driven**
-
-- `PLAN.md` **firmado** es la especificación
-- El agente ejecuta; el humano escribe y **verifica**
-- Diff leído, pruebas pasando, commit
-- Para trabajo que **se publica**
-:::
-:::
-:::
-
-::: {.notes}
-Es la misma transición que está dando la industria del software con los agentes.
-:::
-
-## El bucle de trabajo
-
-```text
-  una sección del PLAN ──► el agente escribe código ──► uv run pytest
-          ▲                                                  │
-          │                                                  ▼
-       git commit  ◄──── tú lees el diff ◄──── render / marimo
-```
-
-::: {.demo}
-[Demo en vivo · 6 min]{.demo-title}
-El agente implementa el paso 2 del plan: `temperatura_sol_aire()` con su prueba. Leemos el diff juntos antes del commit.
-:::
-
-::: {.pista}
-Escribir `AGENTS.md` y `PLAN.md` exige saber programar **y** conocer las herramientas actuales. El agente rinde **al nivel de quien lo guía**.
-:::
-
-::: {.notes}
-Nunca "hazme todo el análisis": una sección a la vez, diff corto.
-Si el agente propone pip install o un .ipynb, mejor: muestra por qué existe AGENTS.md.
-:::
-
-<!-- ================================================================== -->
-<!-- Bloque 8 · MCP · 7 min                                              -->
-<!-- ================================================================== -->
-
-# MCP: tu código como herramienta del agente {.center background-color="#1f3a5f"}
-
-[👀 Demo · 7 min]{.modo}
-
-## ¿Qué es MCP?
-
-::: {.columns}
-::: {.column width="50%"}
-```text
- agente (Claude Code, OpenCode, marimo…)
-        │
-        │  MCP: "¿qué herramientas tienes?"
-        ▼
- servidor MCP "climalab"
-        │  tool: horas_sobre_umbral(a, h)
-        ▼
- paquete climalab  (probado, versionado)
-```
-:::
-::: {.column width="50%" .small}
-- **Model Context Protocol**: estándar abierto para conectar agentes con herramientas y datos.
-- Un servidor, **cualquier** harness compatible.
-- El agente deja de **reescribir** tus cálculos y pasa a **llamarlos**: menos código nuevo que auditar.
-:::
-:::
-
-## Del paquete al servidor MCP
-
-```python
-# servidor-mcp/server.py
-from mcp.server.fastmcp import FastMCP
-import polars as pl
-from climalab.modelo import temperatura_sol_aire
-
-mcp = FastMCP("climalab")
-
-@mcp.tool()
-def horas_sobre_umbral(a: float, h: float, umbral: float = 40.0) -> float:
-    """Horas al año con temperatura sol-aire sobre `umbral` [°C] en ClimaLab.
-    a: absortancia solar [-]; h: coeficiente convectivo [W/m²K]."""
-    df = pl.read_parquet("data/002_intermediate/climalab.parquet")
-    tsa = temperatura_sol_aire(df["tdb"], df["ghi"], a=a, h=h)
-    return float((tsa > umbral).sum() / 60 / 2)   # 2 años de datos minutales
-
-if __name__ == "__main__":
-    mcp.run()
-```
-
-::: {.small}
-La docstring y los tipos **son** la documentación que lee el agente. La función ya estaba probada en `src/`.
-:::
-
-## Demo 👀
-
-::: {.demo}
-[Demo en vivo · 3 min]{.demo-title}
-
-```bash
-uv add mcp                                                # el SDK oficial de MCP
-claude mcp add climalab -- uv run servidor-mcp/server.py
-```
-
-*"¿Qué absortancia de techo mantiene la temperatura sol-aire por debajo de 40 °C más de 95 % del tiempo?"*
-:::
-
-::: {.pista}
-El agente solo puede usar tu conocimiento **si lo empaquetaste**. Tu código bien hecho se vuelve su herramienta.
-:::
-
-::: {.notes}
-Fusible: si vamos tarde, contar la demo sin ejecutarla.
-Lo que hay que señalar en pantalla: el agente llama la herramienta en vez de escribir su propia fórmula.
-:::
+-->
 
 <!-- ================================================================== -->
 <!-- Bloque 9 · Cierre · 10 min                                          -->
