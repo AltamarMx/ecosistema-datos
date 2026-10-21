@@ -6,11 +6,11 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="index_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Guillermo Barrios del Valle · Instituto de Energías Renovables, UNAM">
   <title>Python para la ciencia de datos moderna</title>
@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -98,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-e1ee176bce60ab644533287e15ac168d.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-8a4416aa3490577b68eb75986a104d05.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -239,12 +242,12 @@ GUION DE 2 HORAS (ver TEMARIO.md)
   7–12    Bloque 1  El problema y la pregunta ....................... 👀
   12–27   Bloque 2  uv y ambientes virtuales ........................ 🖐
   27–42   Bloque 3  Versionado: git y el diff ....................... 🖐
-  42–57   Bloque 4  De Jupyter a marimo ............................. 🖐
-  57–65   Bloque 5  Parquet ......................................... 🖐
-  65–70   Pausa
-  70–85   Bloque 6  src/, paquete y exploración paramétrica ......... 🖐
-  85–103  Bloque 7  IA generativa: agente, harness, spec-driven ..... 👀
-  103–110 Bloque 8  MCP ............................................. 👀
+  42–57   Bloque 4  De Jupyter a marimo ............................. 👀
+  57–65   Bloque 5  Historia con datos, de la mano de un agente ..... 👀
+  65–70   ¿Preguntas?
+  70–85   Bloque 6  src/, paquete y exploración paramétrica (COMENTADO)
+  85–103  Bloque 7  (ELIMINADO: su contenido pasó al bloque 5)
+  103–110 Bloque 8  MCP (ELIMINADO; el concepto queda tras ¿Preguntas?)
   110–120 Bloque 9  Cierre: por qué seguir aprendiendo a programar
 
 Marcadores:
@@ -252,8 +255,8 @@ Marcadores:
   caja roja punteada  = DEMO EN VIVO (👀, solo observan)
   caja ámbar          = PISTA 🧭 hacia la tesis; el cierre las recoge todas
 
-Fusibles si se va el tiempo: lazy/pushdown (bloque 5),
-demo MCP (bloque 8, se cuenta sin demo).
+Fusible si se va el tiempo: paso 3 de la demo del bloque 5 (mostrar el respaldo
+de las notas).
 -->
 <div class="columns">
 <div class="column small" style="width:55%;">
@@ -262,10 +265,12 @@ demo MCP (bloque 8, se cuenta sin demo).
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Windows (PowerShell)</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>astral<span class="op">.</span><span class="fu">sh</span><span class="op">/</span>uv<span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>2. Instala git</strong> (<a href="https://git-scm.com/downloads">da clic aquí para descargarlo</a>) <strong>y dile quién eres</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name  <span class="st">"Tu Nombre"</span></span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"tu@correo.mx"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Instala git</strong></p>
+<p><a href="https://git-scm.com/downloads" target="_blank">Descárgalo de git-scm.com</a> y comprueba que está</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dile quién eres</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name  <span class="st">"Tu Nombre"</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"tu@correo.mx"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column small" style="width:45%;">
 <p><strong>Cómo leer las diapositivas</strong></p>
 <ul>
@@ -275,7 +280,7 @@ demo MCP (bloque 8, se cuenta sin demo).
 </ul>
 <p>No necesitas instalar Python: <strong>uv lo instala por ti</strong>.</p>
 <div class="pregunta">
-<p>💬 <strong>Preséntate en el chat</strong><br> nombre · institución · qué datos analizas<br> ¿usas ambientes virtuales? · tu paquete de Python favorito · ¿sabes LaTeX?</p>
+<p>💬 <strong>Preséntate en el chat</strong><br> nombre · institución · qué datos analizas</p>
 </div>
 </div></div>
 <aside class="notes">
@@ -298,41 +303,7 @@ demo MCP (bloque 8, se cuenta sin demo).
 <section>
 <section id="por-qué-hablar-de-reproducibilidad" class="title-slide slide level1 center" data-background-color="#1f3a5f">
 <h1>¿Por qué hablar de reproducibilidad?</h1>
-<p><span class="modo">La evidencia nos dice…</span></p>
-</section>
-<section id="qué-significa-reproducible" class="slide level2">
-<h2>¿Qué significa <em>reproducible</em>?</h2>
-<div class="columns vs-grandes">
-<div class="column" style="width:50%;">
-<div class="vs-bien">
-<p><strong>Reproducibilidad</strong></p>
-<p>Mismos <strong>datos</strong> + mismo <strong>código</strong> + mismas condiciones → <strong>mismo resultado</strong>.</p>
-<p><em>Es lo que hoy está en juego.</em></p>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="vs-mal">
-<p><strong>Replicabilidad</strong></p>
-<p>Misma <strong>pregunta</strong>, datos <strong>nuevos</strong> → resultados <strong>consistentes</strong>.</p>
-<p><em>Es otro problema (más difícil).</em></p>
-</div>
-</div></div>
-<div class="pregunta small">
-<p>La NASEM recomienda compartir datos, métodos <strong>y la descripción del entorno computacional</strong>.</p>
-</div>
-<p><span class="fuente">National Academies of Sciences, Engineering, and Medicine (2019). <em>Reproducibility and Replicability in Science</em>. doi:10.17226/25303</span></p>
-<aside class="notes">
-<p>Fijar términos antes de dar cifras: la literatura los usa de forma inconsistente. Hoy hablamos de reproducibilidad computacional: tus datos, tu código, ¿mi máquina obtiene lo mismo? “Describir el entorno computacional” = lo que uv.lock hará en el bloque 2.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<p><span class="modo">La evidencia indica…</span></p>
 </section>
 <section id="el-embudo-notebooks-de-artículos-biomédicos" class="slide level2">
 <h2>El embudo: notebooks de artículos biomédicos</h2>
@@ -362,6 +333,40 @@ demo MCP (bloque 8, se cuenta sin demo).
 <p><span class="fuente">Samuel, S. y Mietchen, D. (2024). <em>GigaScience</em>, 13, giad113. doi:10.1093/gigascience/giad113</span></p>
 <aside class="notes">
 <p>La imagen más fuerte del bloque. Leer de arriba abajo: primero ni siquiera se puede instalar, luego truena, y al final, aunque corra, el número no es el mismo. Cifras de la versión publicada (2024). El preprint de 2022 (9,625 → 245) da la misma forma. De los que sí instalan (10,388), solo ~12 % corre sin error.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qué-significa-reproducible" class="slide level2">
+<h2>¿Qué significa <em>reproducible</em>?</h2>
+<div class="columns vs-grandes">
+<div class="column" style="width:50%;">
+<div class="vs-bien">
+<p><strong>Reproducibilidad</strong></p>
+<p>Mismos <strong>datos</strong> + mismo <strong>código</strong> + mismas condiciones → <strong>mismo resultado</strong>.</p>
+<p><em>Es lo que hoy está en juego.</em></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="vs-mal">
+<p><strong>Replicabilidad</strong></p>
+<p>Misma <strong>pregunta</strong>, datos <strong>nuevos</strong> → resultados <strong>consistentes</strong>.</p>
+<p><em>Es otro problema (más difícil).</em></p>
+</div>
+</div></div>
+<div class="pregunta small">
+<p>La NASEM recomienda compartir datos, métodos <strong>y la descripción del entorno computacional</strong>.</p>
+</div>
+<p><span class="fuente">National Academies of Sciences, Engineering, and Medicine (2019). <em>Reproducibility and Replicability in Science</em>. doi:10.17226/25303</span></p>
+<aside class="notes">
+<p>Fijar términos antes de dar cifras: la literatura los usa de forma inconsistente. Hoy hablamos de reproducibilidad computacional: tus datos, tu código, ¿mi máquina obtiene lo mismo? “Describir el entorno computacional” = lo que uv.lock hará en el bloque 2.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -526,15 +531,22 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section></section>
-<section>
-<section id="si-la-ia-ya-escribe-código-para-qué-aprender-a-programar" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>Si la IA ya escribe código, ¿para qué aprender a programar?</h1>
-<div class="pregunta small">
-<p>Volveremos a esta pregunta al final.<br>A lo largo de la presentación, el 🧭 es una <strong>pista</strong> para contestarla.</p>
-</div>
+</section>
+<section id="y-llegó-la-ia-el-vibe-coding" class="slide level2">
+<h2>Y llegó la IA: el <em>vibe coding</em></h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p><a href="img/karpathy-tweet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="img/karpathy-tweet.png"></a></p>
+</div><div class="column small" style="width:42%;">
+<ul>
+<li>Andrej Karpathy, febrero de 2025: describir lo que quieres, <strong>aceptar sin leer</strong>, corregir por prueba y error.</li>
+<li><em>“Siempre pico ‘Accept All’, ya no leo los diffs.”</em></li>
+<li>Él mismo lo acota: sirve para <strong>proyectos desechables</strong>.</li>
+<li>La ciencia no es desechable: necesita <strong>verificación</strong>.</li>
+</ul>
+</div></div>
 <aside class="notes">
-<p>Dejar la pregunta en el aire. No responderla. Pedir que levante la mano quien cree que ya no hace falta. Cada bloque deja una pista ámbar; el cierre las recoge. Enseguida, la propuesta; luego la primera pista: el documental.</p>
+<p>Resumen de la charla anterior (Del vibe coding a la ciencia reproducible). No detenerse: el punto es que la IA acelera tanto lo bueno como el desorden.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -546,15 +558,15 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="la-propuesta" class="slide level2" data-background-color="#1f3a5f">
-<h2>La propuesta</h2>
-<p>Para generar un análisis <strong>estructurado</strong>, <strong>reproducible</strong>, <strong>entendible</strong> y <strong>auditable</strong>:</p>
-<div class="pregunta">
-<p>Markdown + Quarto + Python + git<br> una narrativa computacional, versionada,<br> en un ambiente virtual aislado</p>
+</section></section>
+<section>
+<section id="si-la-ia-ya-escribe-código-para-qué-aprender-a-programar" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Si la IA ya escribe código, ¿para qué aprender a programar?</h1>
+<div class="pregunta small">
+<p>Volveremos a esta pregunta al final.<br>A lo largo de la presentación, el 🧭 es una <strong>pista</strong> para contestarla.</p>
 </div>
 <aside class="notes">
-<p>Esta es la receta que vamos a usar toda la sesión. Cada pieza tiene su bloque: uv para el ambiente, git para versionar, Quarto/marimo para la narrativa.</p>
+<p>Dejar la pregunta en el aire. No responderla. Pedir que levante la mano quien cree que ya no hace falta. Cada bloque deja una pista ámbar; el cierre las recoge. La primera pista viene enseguida: el documental.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -584,6 +596,74 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
 </div>
 <aside class="notes">
 <p>Recomendación para después de la charla, no para verla aquí. Por qué es pista: las herramientas cambian (Python mismo empezó como proyecto de vacaciones); lo que permanece es la comunidad y el criterio de quienes programan.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-caso-de-hoy-dos-años-de-climalab" class="slide level2">
+<h2>El caso de hoy: dos años de ClimaLab</h2>
+<div class="columns">
+<div class="column small" style="width:45%;">
+<p><strong>Estación meteorológica <a href="https://climalab.ier.unam.mx" target="_blank">ClimaLab</a> (IER-UNAM)</strong></p>
+<ul>
+<li>Datos <strong>minutales</strong>, ~2 años, ~1 millón de filas</li>
+<li><code>tdb</code> [°C] · <code>rh</code> [%] · <code>ghi</code> <code>dni</code> <code>dhi</code> [W/m²]</li>
+<li><code>ws</code> [m/s] · <code>wd</code> [°] · <code>p_atm</code> · <code>rain_acc</code> · <code>uv</code></li>
+</ul>
+</div><div class="column" style="width:55%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Paso</th>
+<th style="text-align: center;">Bloque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exploración en <strong>marimo</strong></td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td>Una <strong>historia con datos</strong> con un agente</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td>Funciones en <strong><code>src/</code></strong> → <strong>paquete</strong></td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td><strong>Barrido paramétrico</strong></td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td>Un <strong>agente</strong> trabaja con el plan</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td>El paquete como herramienta <strong>MCP</strong></td>
+<td style="text-align: center;">8</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="practica small">
+<p><span class="practica-title">Práctica adelantada · 2 min · tus propios datos 🖐</span></p>
+<ol type="1">
+<li>Entra a <a href="https://climalab.ier.unam.mx" target="_blank">climalab.ier.unam.mx</a> → pestaña <strong>Download</strong>.</li>
+<li>Elige <strong>las fechas que quieras</strong> (una semana, un mes…) y pulsa <strong>Download parquet</strong>.</li>
+<li>Guarda el archivo: lo usarás en la práctica de git y marimo (3).</li>
+</ol>
+</div>
+<aside class="notes">
+<p>El hilo conductor. Los datos vienen de la charla anterior (4 meses), ahora extendidos a 2 años. Práctica adelantada: que cada quien descargue ahora su propio recorte en Parquet (fechas a su gusto) para no perder tiempo después; en la práctica del bloque 3 construyen la app con ese archivo. Si alguien no puede descargar, el repo del taller trae un recorte de ejemplo.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -692,34 +772,24 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
           display:block!important;
       }</style></aside>
 </section>
-<section id="cuatro-comandos" class="slide level2">
-<h2>Cuatro comandos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--no-package</span> climalab           <span class="co"># análisis, aún no paquete: pyproject.toml, .python-version, git</span></span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> climalab</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add matplotlib pyarrow marimo        <span class="co"># instala y FIJA versiones exactas en uv.lock</span></span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> notebooks data                    <span class="co"># copia tus datos a data/</span></span>
-<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit                      <span class="co"># abre marimo dentro del entorno</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="columns small">
-<div class="column" style="width:50%;">
-<p><code>pyproject.toml</code> (lo que <strong>pides</strong>)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"climalab"</span></span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.13"</span></span>
-<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marimo&gt;=0.25.2"</span><span class="op">,</span></span>
-<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"matplotlib&gt;=3.11.2"</span><span class="op">,</span></span>
-<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pyarrow&gt;=26.0.0"</span><span class="op">,</span></span>
-<span id="cb6-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column" style="width:50%;">
-<p><code>uv.lock</code> (lo que <strong>obtuviste</strong>)</p>
-<ul>
-<li>Versión <strong>exacta</strong> de cada paquete, incluidas las dependencias de tus dependencias.</li>
-<li>Se versiona con git.</li>
-<li><strong>La misma ciencia en otra máquina</strong>: la tuya, la del revisor, la del agente.</li>
-</ul>
-</div></div>
+<section id="práctica" class="slide level2">
+<h2>Práctica 🖐</h2>
+<div class="practica">
+<p><span class="practica-title">Práctica · 5 min · objetivos</span></p>
+<p>Al terminar tendrás:</p>
+<ol type="1">
+<li>Un proyecto <strong><code>climalab/</code></strong> creado con uv: <code>pyproject.toml</code>, <code>.python-version</code> y un repositorio git.</li>
+<li>Las carpetas <strong><code>data/</code></strong> y <strong><code>notebooks/</code></strong>: el inicio de la estructura propuesta.</li>
+<li><strong>marimo</strong> y <strong>matplotlib</strong> en el entorno del proyecto, con versiones fijadas en <code>uv.lock</code>.</li>
+<li><strong>marimo abierto</strong> en tu navegador, sin instalar Python ni activar nada.</li>
+</ol>
+<p><em>Las instrucciones, paso a paso, están en la siguiente diapositiva →</em></p>
+</div>
+<div class="pista">
+<p>Pídele a un agente “instala polars” sin más instrucciones: lo usual es <code>pip install</code> global o un <code>requirements.txt</code> sin versiones. Repite lo que más vio al entrenarse. <strong>Pedirle uv exige saber que existe.</strong></p>
+</div>
 <aside class="notes">
-<p>pyproject = intención (rangos); uv.lock = hecho (versiones exactas). Ambos van a git. No hay “activar el entorno”: uv run se encarga.</p>
+<p>Leer los objetivos y pasar a “Cuatro comandos”: se trabaja con esa diapositiva en pantalla. El repositorio git del objetivo 1 se retoma al cerrar el bloque.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -732,60 +802,39 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
           display:block!important;
       }</style></aside>
 </section>
-<section id="marimo-lo-que-soluciona-de-jupyter" class="slide level2">
-<h2>marimo: lo que soluciona de Jupyter</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Jupyter (<code>.ipynb</code>)</th>
-<th>marimo (<code>.py</code>)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Estado oculto</strong>: la memoria no coincide con lo que ves</td>
-<td><strong>Reactivo</strong>: cambias una celda y se re-ejecuta todo lo que depende de ella</td>
-</tr>
-<tr class="even">
-<td>Celdas ejecutables <strong>en cualquier orden</strong></td>
-<td>El orden lo dictan las <strong>dependencias</strong>, no la posición</td>
-</tr>
-<tr class="odd">
-<td>Borras una celda y sus variables <strong>siguen en memoria</strong></td>
-<td>Borras una celda y sus variables <strong>desaparecen</strong></td>
-</tr>
-<tr class="even">
-<td>La misma variable redefinida en varias celdas</td>
-<td>Cada variable se define en <strong>una sola celda</strong></td>
-</tr>
-<tr class="odd">
-<td>JSON con resultados incrustados → <strong>diff ilegible</strong></td>
-<td><strong>Python puro</strong> → diff limpio en git</td>
-</tr>
-<tr class="even">
-<td>Código <strong>atrapado</strong> en el notebook</td>
-<td>Funciones <strong>importables</strong>; corre como <strong>script</strong></td>
-</tr>
-<tr class="odd">
-<td>Widgets con <code>ipywidgets</code> y <em>callbacks</em></td>
-<td>Sliders y tablas <strong>nativos y reactivos</strong></td>
-</tr>
-<tr class="even">
-<td>Compartir exige otra herramienta</td>
-<td><code>marimo run</code> lo sirve como <strong>app</strong>; se exporta a <strong>HTML</strong></td>
-</tr>
-<tr class="odd">
-<td>Dependencias <strong>no declaradas</strong></td>
-<td>Corre en el entorno de <strong>uv</strong>; <code>--sandbox</code> las guarda en el archivo</td>
-</tr>
-</tbody>
-</table>
+<section id="cuatro-comandos" class="slide level2">
+<h2>Cuatro comandos</h2>
+<div class="small">
+<p><strong>1. Crea el proyecto y sus carpetas</strong> (análisis, aún no paquete: <code>pyproject.toml</code>, <code>.python-version</code>, git)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--no-package</span> climalab <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> climalab</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data notebooks</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Agrega dependencias</strong> (instala y <strong>fija</strong> versiones exactas en <code>uv.lock</code>)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add marimo matplotlib</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>3. Ejecuta dentro del entorno</strong> (lo crea si no existe; no hay “activar”)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>4. Abre la carpeta en el explorador</strong> (Windows; en macOS: <code>open .</code>)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ii</span> .</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="columns small">
+<div class="column" style="width:50%;">
+<p><code>pyproject.toml</code> (lo que <strong>pides</strong>)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"climalab"</span></span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.13"</span></span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marimo&gt;=0.16"</span><span class="op">,</span></span>
+<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"matplotlib&gt;=3.10"</span><span class="op">,</span></span>
+<span id="cb10-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p><code>uv.lock</code> (lo que <strong>obtuviste</strong>)</p>
+<ul>
+<li>Versión <strong>exacta</strong> de cada paquete, incluidas las dependencias de tus dependencias.</li>
+<li>Se versiona con git.</li>
+<li><strong>La misma ciencia en otra máquina</strong>: la tuya, la del revisor, la del agente.</li>
+</ul>
+</div></div>
 <aside class="notes">
-<p>Panorama completo antes de la práctica. Cada fila se ve a detalle en el bloque de narrativa computacional; aquí basta con que sepan por qué abrimos marimo y no Jupyter.</p>
+<p>pyproject = intención (rangos); uv.lock = hecho (versiones exactas). Ambos van a git. No hay “activar el entorno”: uv run se encarga.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -816,119 +865,7 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
 <p>Una <strong>narrativa, no una receta</strong>. Lo que no cambia: crudos intocables · entorno fijado · funciones con pruebas · análisis narrado.</p>
 </div>
 <aside class="notes">
-<p>Recorrer de arriba abajo. src/ se explica a fondo en el bloque 6; aquí solo ubicarlo: “aquí vive el código que define; en notebooks/ el que narra”.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="el-caso-de-hoy-dos-años-de-climalab" class="slide level2">
-<h2>El caso de hoy: dos años de ClimaLab</h2>
-<div class="columns">
-<div class="column small" style="width:45%;">
-<p><strong>Estación meteorológica <a href="https://climalab.ier.unam.mx" target="_blank">ClimaLab</a> (IER-UNAM)</strong></p>
-<ul>
-<li>Datos <strong>minutales</strong>, ~2 años, ~1 millón de filas</li>
-<li><code>tdb</code> [°C] · <code>rh</code> [%] · <code>ghi</code> <code>dni</code> <code>dhi</code> [W/m²]</li>
-<li><code>ws</code> [m/s] · <code>wd</code> [°] · <code>p_atm</code> · <code>rain_acc</code> · <code>uv</code></li>
-</ul>
-</div><div class="column" style="width:55%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Paso</th>
-<th style="text-align: center;">Bloque</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Exploración en <strong>marimo</strong></td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="even">
-<td>CSV → <strong>Parquet</strong></td>
-<td style="text-align: center;">5</td>
-</tr>
-<tr class="odd">
-<td>Funciones en <strong><code>src/</code></strong> → <strong>paquete</strong></td>
-<td style="text-align: center;">6</td>
-</tr>
-<tr class="even">
-<td><strong>Barrido paramétrico</strong></td>
-<td style="text-align: center;">6</td>
-</tr>
-<tr class="odd">
-<td>Un <strong>agente</strong> trabaja con el plan</td>
-<td style="text-align: center;">7</td>
-</tr>
-<tr class="even">
-<td>El paquete como herramienta <strong>MCP</strong></td>
-<td style="text-align: center;">8</td>
-</tr>
-</tbody>
-</table>
-</div></div>
-<div class="pregunta small">
-<p>Un mismo caso de principio a fin: cada herramienta resuelve un problema que dejó la anterior.</p>
-</div>
-<aside class="notes">
-<p>El hilo conductor. Los datos vienen de la charla anterior (4 meses), ahora extendidos a 2 años.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="práctica" class="slide level2">
-<h2>Práctica 🖐</h2>
-<div class="practica">
-<p><span class="practica-title">Práctica · 8 min</span></p>
-<div class="columns pasos">
-<div class="column" style="width:50%;">
-<ol type="1">
-<li><p>Abre <strong>PowerShell</strong> (macOS/Linux: la Terminal)</p></li>
-<li><p>Crea el proyecto</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>uv init <span class="op">--</span>no-package climalab</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Entra a la carpeta</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> climalab</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Instala los paquetes</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>uv add matplotlib pyarrow marimo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Mira lo que quedó registrado</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> pyproject<span class="op">.</span><span class="fu">toml</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol>
-</div><div class="column" style="width:50%;">
-<ol start="6" type="1">
-<li><p>¿Qué más creó <code>uv init</code>? (macOS/Linux: <code>ls -a</code>)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">-</span>Force</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Crea la carpeta de notebooks</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>mkdir notebooks</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Crea la carpeta de datos</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>mkdir <span class="kw">data</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Abre la carpeta y copia tus datos a <code>data/</code> (macOS: <code>open .</code>)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ii</span> <span class="op">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Abre marimo</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>uv run marimo edit</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol>
-</div></div>
-</div>
-<div class="pista">
-<p>Pídele a un agente “instala polars” sin más instrucciones: lo usual es <code>pip install</code> global o un <code>requirements.txt</code> sin versiones. Repite lo que más vio al entrenarse. <strong>Pedirle uv exige saber que existe.</strong></p>
-</div>
-<aside class="notes">
-<p>Pregunta para el puente: ls -Force (ls -a) muestra .git. uv init ya creó un repositorio git… ¿qué es eso?</p>
+<p>Recorrer de arriba abajo. src/ se explica a fondo en el bloque 6; aquí solo ubicarlo: “aquí vive el código que define; en notebooks/ el que narra”. Pregunta para el puente: uv init ya creó un repositorio git (ls -a muestra .git)… ¿qué es eso?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -953,7 +890,7 @@ prueba3_no_tocar.py               resultados_viejos_2/</code></pre>
 <h2>¿Qué es el versionado?</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><a href="img/meme-versiones-tesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="img/meme-versiones-tesis.png" height="460"></a></p>
+<p><a href="img/meme-versiones-tesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="img/meme-versiones-tesis.png" height="460"></a></p>
 </div><div class="column small" style="width:60%;">
 <ul>
 <li>Todos hemos versionado <strong>a mano</strong>: <code>tesis_final_por_fin_eso_espero.docx</code>.</li>
@@ -1008,9 +945,9 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 </section>
 <section id="tres-commits-una-historia" class="slide level2">
 <h2>Tres commits, una historia</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Proyecto inicial con uv"</span></span>
-<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"io.py: crudos de ClimaLab a Parquet"</span></span>
-<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"ghi_diaria() con prueba de respuesta conocida"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Proyecto inicial con uv"</span></span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"io.py: crudos de ClimaLab a Parquet"</span></span>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"ghi_diaria() con prueba de respuesta conocida"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="historia">
 <div class="commit">
 <p><span class="punto"></span> <span class="hash">0b7e2aa</span> <span class="msg">Proyecto inicial con uv</span> <span class="meta">lun 10:02 · + pyproject.toml, uv.lock</span></p>
@@ -1076,13 +1013,13 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 <div class="small">
 <p>El <strong>diff</strong> es la lista exacta de lo que cambió: líneas que salen (<code>-</code>) y líneas que entran (<code>+</code>). Con agentes es <strong>el</strong> instrumento de revisión: no relees todo, lees <strong>el cambio</strong>.</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff src/climalab/radiacion.py</span>
-<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a> def ghi_diaria(ghi_w_m2):</span>
-<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a>     """GHI diaria en kWh/m² por día."""</span>
-<span id="cb20-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    wh = ghi_w_m2 * (1 / 60)               # cada muestra [W/m²] dura 1 min</span></span>
-<span id="cb20-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    return wh.resample("1D").sum() / 1000</span></span>
-<span id="cb20-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    return ghi_w_m2.resample("1D").mean() / 1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff src/climalab/radiacion.py</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a> def ghi_diaria(ghi_w_m2):</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>     """GHI diaria en kWh/m² por día."""</span>
+<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    wh = ghi_w_m2 * (1 / 60)               # cada muestra [W/m²] dura 1 min</span></span>
+<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    return wh.resample("1D").sum() / 1000</span></span>
+<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    return ghi_w_m2.resample("1D").mean() / 1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="small">
 <ul>
 <li>El agente “simplificó”… y cambió <code>sum()</code> por <code>mean()</code>: ya no es <strong>energía diaria</strong> [kWh/m²·día], es <strong>potencia promedio</strong> [kW/m²].</li>
@@ -1105,20 +1042,20 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 </section>
 <section id="el-diff-solo-sirve-si-el-archivo-es-texto-legible" class="slide level2">
 <h2>El diff solo sirve si el archivo es texto legible</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff analisis.ipynb</span>
-<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a>   {</span>
-<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a>    "cell_type": "code",</span>
-<span id="cb21-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-   "execution_count": 7,</span></span>
-<span id="cb21-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+   "execution_count": 12,</span></span>
-<span id="cb21-6"><a href="" aria-hidden="true" tabindex="-1"></a>    "outputs": [</span>
-<span id="cb21-7"><a href="" aria-hidden="true" tabindex="-1"></a>     {</span>
-<span id="cb21-8"><a href="" aria-hidden="true" tabindex="-1"></a>      "data": {</span>
-<span id="cb21-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-      "image/png": "iVBORw0KGgoAAAANSUhEUgAAA…  (40 000 caracteres)",</span></span>
-<span id="cb21-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAB…  (41 000 caracteres)",</span></span>
-<span id="cb21-11"><a href="" aria-hidden="true" tabindex="-1"></a> …</span>
-<span id="cb21-12"><a href="" aria-hidden="true" tabindex="-1"></a>    "source": [</span>
-<span id="cb21-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    "diaria = ghi.resample(\"1D\").sum() / 60 / 1000"</span></span>
-<span id="cb21-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    "diaria = ghi.resample(\"1D\").mean() / 1000"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode diff code-with-copy"><code class="sourceCode diff"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>$ git diff analisis.ipynb</span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>   {</span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>    "cell_type": "code",</span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-   "execution_count": 7,</span></span>
+<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+   "execution_count": 12,</span></span>
+<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>    "outputs": [</span>
+<span id="cb16-7"><a href="" aria-hidden="true" tabindex="-1"></a>     {</span>
+<span id="cb16-8"><a href="" aria-hidden="true" tabindex="-1"></a>      "data": {</span>
+<span id="cb16-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-      "image/png": "iVBORw0KGgoAAAANSUhEUgAAA…  (40 000 caracteres)",</span></span>
+<span id="cb16-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAB…  (41 000 caracteres)",</span></span>
+<span id="cb16-11"><a href="" aria-hidden="true" tabindex="-1"></a> …</span>
+<span id="cb16-12"><a href="" aria-hidden="true" tabindex="-1"></a>    "source": [</span>
+<span id="cb16-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">-    "diaria = ghi.resample(\"1D\").sum() / 60 / 1000"</span></span>
+<span id="cb16-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">+    "diaria = ghi.resample(\"1D\").mean() / 1000"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="pregunta small">
 <p><code>.ipynb</code> es JSON con resultados incrustados: el cambio importante queda <strong>enterrado en ruido</strong>.</p>
 </div>
@@ -1139,117 +1076,74 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 <section id="práctica-1" class="slide level2">
 <h2>Práctica 🖐</h2>
 <div class="practica">
-<p><span class="practica-title">Práctica · 10 min · dentro de <code>climalab/</code></span></p>
-<div class="columns pasos">
-<div class="column" style="width:50%;">
+<p><span class="practica-title">Práctica · 6 min · dentro de <code>climalab/</code> · objetivo</span></p>
+<p><strong>Una gráfica interactiva con control de fechas, hecha en marimo y versionada con git.</strong></p>
 <ol type="1">
-<li><p>Prepara todo para el primer commit</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a>git add <span class="op">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Guarda el proyecto inicial</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Proyecto inicial con uv"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Agrega pandas (índice de fechas)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>uv add pandas</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>Un DataFrame <strong><code>esolmet</code></strong> leído de <code>data/001_raw/ClimaLab.parquet</code>, con índice datetime.</li>
+<li>Un control para <strong>elegir el rango de fechas</strong>.</li>
+<li>Dos subplots: <strong><code>tdb</code></strong> arriba; <strong><code>ghi</code></strong>, <strong><code>dni</code></strong> y <strong><code>dhi</code></strong> abajo.</li>
+<li>Cada paso que funcione: <strong><code>git diff</code></strong> para leerlo, <strong><code>git commit</code></strong> para guardarlo.</li>
 </ol>
-</div><div class="column" style="width:50%;">
-<ol start="4" type="1">
-<li><p>¿Qué cambió?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span> pyproject<span class="op">.</span><span class="fu">toml</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>En marimo, crea <code>notebooks/esolmet.py</code> con las celdas de la siguiente diapositiva</p></li>
-</ol>
-</div></div>
-</div>
-<aside class="notes">
-<p>Si alguien se atora con git config (nombre/correo), es el momento de resolverlo. El diff de pyproject.toml muestra una sola línea nueva: así se ve agregar una dependencia.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="práctica-tdb-interactiva-en-marimo" class="slide level2">
-<h2>Práctica 🖐: <code>tdb</code> interactiva en marimo</h2>
-<div class="columns">
-<div class="column small" style="width:50%;">
-<p>Celda 1</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span>
-<span id="cb26-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Celda 2</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a>esolmet <span class="op">=</span> pd.read_parquet(<span class="st">"data/esolmet.parquet"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Celda 3</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a>rango <span class="op">=</span> mo.ui.date_range(</span>
-<span id="cb28-2"><a href="" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>esolmet.index.<span class="bu">min</span>().date(),</span>
-<span id="cb28-3"><a href="" aria-hidden="true" tabindex="-1"></a>    stop<span class="op">=</span>esolmet.index.<span class="bu">max</span>().date(),</span>
-<span id="cb28-4"><a href="" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Periodo"</span>,</span>
-<span id="cb28-5"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-6"><a href="" aria-hidden="true" tabindex="-1"></a>rango</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column small" style="width:50%;">
-<p>Celda 4</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a>inicio, fin <span class="op">=</span> rango.value</span>
-<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> pd.to_datetime(inicio)</span>
-<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># + 1 día: incluye completo el último día</span></span>
-<span id="cb29-4"><a href="" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> pd.to_datetime(fin) <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb29-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="" aria-hidden="true" tabindex="-1"></a>_fig, _ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">3</span>))</span>
-<span id="cb29-7"><a href="" aria-hidden="true" tabindex="-1"></a>_ax.plot(esolmet.index, esolmet[<span class="st">"tdb"</span>])</span>
-<span id="cb29-8"><a href="" aria-hidden="true" tabindex="-1"></a>_ax.set_xlim(f1, f2)</span>
-<span id="cb29-9"><a href="" aria-hidden="true" tabindex="-1"></a>_ax.set_ylabel(<span class="st">"tdb [°C]"</span>)</span>
-<span id="cb29-10"><a href="" aria-hidden="true" tabindex="-1"></a>_ax</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Cambias el periodo → la celda 4 se <strong>re-ejecuta sola</strong>.</li>
-<li><code>set_xlim</code> con <code>datetime</code>: acerca la vista <strong>sin recortar los datos</strong>.</li>
-<li><code>_ax</code>: el guion bajo la hace <strong>local a la celda</strong>.</li>
-<li>Ruta <strong>relativa al proyecto</strong>: abre marimo desde <code>climalab/</code>.</li>
-</ul>
-</div></div>
-<aside class="notes">
-<p>Sin callbacks ni botones de “actualizar”: rango.value es una dependencia más del grafo. Por defecto el selector abarca todo el periodo de los datos.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="práctica-versiona-el-notebook" class="slide level2">
-<h2>Práctica 🖐: versiona el notebook</h2>
-<div class="practica">
-<p><span class="practica-title">Práctica · dentro de <code>climalab/</code></span></p>
-<div class="columns pasos">
-<div class="column" style="width:50%;">
-<ol start="6" type="1">
-<li><p>Prepara el notebook y el entorno</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb30-1"><a href="" aria-hidden="true" tabindex="-1"></a>git add <span class="op">.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Guarda la gráfica</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a>git commit <span class="op">-</span>m <span class="st">"Gráfica interactiva de tdb"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>La historia</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a>git log <span class="op">--</span>oneline</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol>
-</div><div class="column" style="width:50%;">
-<ol start="9" type="1">
-<li><p>Cambia la etiqueta del eje en marimo, guarda y mira el diff</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a>git <span class="fu">diff</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Deshaz ese cambio (vuelve al último commit)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb34-1"><a href="" aria-hidden="true" tabindex="-1"></a>git restore notebooks<span class="op">/</span>esolmet<span class="op">.</span><span class="fu">py</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol>
-</div></div>
+<p><em>Las instrucciones, paso a paso, están en la siguiente diapositiva →</em></p>
 </div>
 <div class="pista">
 <p>El diff solo sirve si <strong>sabes leer código</strong>. La IA escribe; tú revisas. Sin esa habilidad, “Accept All” es la única opción.</p>
 </div>
 <aside class="notes">
-<p>El diff del paso 9 es una línea legible porque el notebook es un .py; contrastar con el diff del .ipynb.</p>
+<p>Si alguien se atora con git config (nombre/correo), es el momento de resolverlo. El Parquet es el que descargaron en “El caso de hoy”: se mueve a data/001_raw/ con ese nombre.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="la-app-commit-a-commit" class="slide level2">
+<h2>La app, commit a commit</h2>
+<div class="columns">
+<div class="column celdas" style="width:58%;">
+<p><span class="small"><strong>Celda 1</strong> · bibliotecas</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small"><strong>Celda 2</strong> · los datos</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a>esolmet <span class="op">=</span> pd.read_parquet(<span class="st">"data/001_raw/ClimaLab.parquet"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small"><strong>Celda 3</strong> · el control</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a>rango <span class="op">=</span> mo.ui.date_range(</span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>esolmet.index.<span class="bu">min</span>().date(),</span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>    stop<span class="op">=</span>esolmet.index.<span class="bu">max</span>().date(),</span>
+<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Fechas"</span>,</span>
+<span id="cb19-5"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-6"><a href="" aria-hidden="true" tabindex="-1"></a>rango</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small"><strong>Celda 4</strong> · la gráfica: se re-ejecuta al mover el rango</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>inicio, fin <span class="op">=</span> rango.value</span>
+<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> esolmet.loc[<span class="bu">str</span>(inicio):<span class="bu">str</span>(fin)]</span>
+<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a>datos[<span class="st">"tdb"</span>].plot(ax<span class="op">=</span>ax1, ylabel<span class="op">=</span><span class="st">"tdb [°C]"</span>)</span>
+<span id="cb20-5"><a href="" aria-hidden="true" tabindex="-1"></a>datos[[<span class="st">"ghi"</span>, <span class="st">"dni"</span>, <span class="st">"dhi"</span>]].plot(ax<span class="op">=</span>ax2, ylabel<span class="op">=</span><span class="st">"[W/m²]"</span>)</span>
+<span id="cb20-6"><a href="" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column small" style="width:42%;">
+<p><strong>1.</strong> Guarda lo que hay y prepara los datos</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add . <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Proyecto inicial"</span></span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data/001_raw</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mueve tu Parquet de ClimaLab a <code>data/001_raw/ClimaLab.parquet</code>.</p>
+<p><strong>2.</strong> Agrega pandas y lee el diff</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas pyarrow</span>
+<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff pyproject.toml</span>
+<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"pandas y pyarrow"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>3.</strong> Escribe la app y guárdala</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit notebooks/graficas.py</span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add notebooks</span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"App: rango de fechas"</span></span>
+<span id="cb23-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<aside class="notes">
+<p>Cada celda se escribe en el editor de marimo; el archivo .py lo genera marimo al guardar. marimo se lanza desde climalab/, así que la ruta data/… es relativa a esa carpeta. El Parquet no se agrega a git (git add notebooks, no git add .): los datos no viajan en el historial. Anticipa el bloque 4: mover el rango re-ejecuta solo la celda 4.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1262,13 +1156,13 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
           display:block!important;
       }</style></aside>
 <!-- ================================================================== -->
-<!-- Bloque 4 · Narrativa computacional: de Jupyter a marimo · 15 min   -->
+<!-- Bloque 4 · De Jupyter a marimo · 15 min                            -->
 <!-- ================================================================== -->
 </section></section>
 <section>
-<section id="narrativa-computacional-de-jupyter-a-marimo" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>Narrativa computacional: de Jupyter a marimo</h1>
-<p><span class="modo">🖐 Práctica · 15 min</span></p>
+<section id="de-jupyter-a-marimo" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>De Jupyter a marimo</h1>
+<p><span class="modo">👀 Exposición · 15 min</span></p>
 </section>
 <section id="lo-que-jupyter-resolvió-y-lo-que-dejó-pendiente" class="slide level2">
 <h2>Lo que Jupyter resolvió… y lo que dejó pendiente</h2>
@@ -1313,10 +1207,10 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 </section>
 <section id="el-estado-oculto-en-cuatro-celdas" class="slide level2">
 <h2>El estado oculto, en cuatro celdas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  umbral <span class="op">=</span> <span class="dv">40</span>                         <span class="co"># °C</span></span>
-<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>]  calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral)</span>
-<span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>]  umbral <span class="op">=</span> <span class="dv">35</span>                         <span class="co"># "probemos con 35"…</span></span>
-<span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a>[ ]  fig <span class="op">=</span> graficar(calientes)           <span class="co"># ¿con 35 o con 40?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  umbral <span class="op">=</span> <span class="dv">40</span>                         <span class="co"># °C</span></span>
+<span id="cb24-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>]  calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral)</span>
+<span id="cb24-3"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>]  umbral <span class="op">=</span> <span class="dv">35</span>                         <span class="co"># "probemos con 35"…</span></span>
+<span id="cb24-4"><a href="" aria-hidden="true" tabindex="-1"></a>[ ]  fig <span class="op">=</span> graficar(calientes)           <span class="co"># ¿con 35 o con 40?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="small">
 <ul>
 <li>La celda <code>[2]</code> <strong>no se volvió a ejecutar</strong>: <code>calientes</code> sigue calculado con 40.</li>
@@ -1351,27 +1245,27 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
 <h2>marimo: el notebook como grafo reactivo</h2>
 <div class="columns">
 <div class="column" style="width:55%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo</span>
-<span id="cb36-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> marimo.App()</span>
-<span id="cb36-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
-<span id="cb36-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
-<span id="cb36-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> marimo <span class="im">as</span> mo</span>
-<span id="cb36-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb36-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mo, pl</span>
-<span id="cb36-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
-<span id="cb36-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(mo):</span>
-<span id="cb36-13"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral <span class="op">=</span> mo.ui.slider(<span class="dv">30</span>, <span class="dv">50</span>, value<span class="op">=</span><span class="dv">40</span>,</span>
-<span id="cb36-14"><a href="" aria-hidden="true" tabindex="-1"></a>                          label<span class="op">=</span><span class="st">"Umbral [°C]"</span>)</span>
-<span id="cb36-15"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral</span>
-<span id="cb36-16"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (umbral,)</span>
-<span id="cb36-17"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
-<span id="cb36-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(df, pl, umbral):</span>
-<span id="cb36-20"><a href="" aria-hidden="true" tabindex="-1"></a>    calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral.value)</span>
-<span id="cb36-21"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (calientes,)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo</span>
+<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> marimo.App()</span>
+<span id="cb25-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb25-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _():</span>
+<span id="cb25-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> marimo <span class="im">as</span> mo</span>
+<span id="cb25-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb25-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mo, pl</span>
+<span id="cb25-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb25-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(mo):</span>
+<span id="cb25-13"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral <span class="op">=</span> mo.ui.slider(<span class="dv">30</span>, <span class="dv">50</span>, value<span class="op">=</span><span class="dv">40</span>,</span>
+<span id="cb25-14"><a href="" aria-hidden="true" tabindex="-1"></a>                          label<span class="op">=</span><span class="st">"Umbral [°C]"</span>)</span>
+<span id="cb25-15"><a href="" aria-hidden="true" tabindex="-1"></a>    umbral</span>
+<span id="cb25-16"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (umbral,)</span>
+<span id="cb25-17"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@app.cell</span></span>
+<span id="cb25-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _(df, pl, umbral):</span>
+<span id="cb25-20"><a href="" aria-hidden="true" tabindex="-1"></a>    calientes <span class="op">=</span> df.<span class="bu">filter</span>(pl.col(<span class="st">"tsa"</span>) <span class="op">&gt;</span> umbral.value)</span>
+<span id="cb25-21"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (calientes,)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column small" style="width:45%;">
 <ul>
 <li>Cada celda declara lo que <strong>usa</strong> y lo que <strong>define</strong>.</li>
@@ -1447,74 +1341,12 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="marimo-y-la-ia-integrada-en-el-notebook" class="slide level2">
-<h2>marimo y la IA: integrada en el notebook</h2>
-<div class="columns">
-<div class="column small" style="width:50%;">
-<p><strong>Dentro del editor</strong></p>
-<ul>
-<li><strong>Genera</strong> una celda desde una instrucción o <strong>edita</strong> una existente.</li>
-<li><strong>Chat con contexto</strong>: conoce tus variables y el <strong>esquema</strong> de tus DataFrames (columnas y tipos).</li>
-<li>Del modo <em>ask</em> (solo sugiere) al modo <strong>agente</strong> (crea y ejecuta celdas).</li>
-<li><strong>Autocompletado</strong> en línea: GitHub Copilot, Codeium o un modelo propio.</li>
-<li><strong>Reglas</strong> propias en la configuración: un <code>AGENTS.md</code> del notebook.</li>
-</ul>
-</div><div class="column small" style="width:50%;">
-<p><strong>Proveedores y agentes externos</strong></p>
-<ul>
-<li><strong>Nube</strong>: OpenAI, Anthropic, Google, GitHub, Bedrock, Azure, OpenRouter.</li>
-<li><strong>Local</strong>: Ollama; tus datos <strong>no salen</strong> de tu máquina.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># un notebook nuevo desde una instrucción</span></span>
-<span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo new <span class="st">"grafica tdb con un selector de fechas"</span></span>
-<span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># un agente (Claude Code…) en tu notebook abierto</span></span>
-<span id="cb37-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo pair notebook list</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
-<div class="pregunta small">
-<p>Lo que escribe la IA queda en un <code>.py</code>: <strong>se revisa en el diff</strong> como cualquier otro código.</p>
-</div>
+</section></section>
+<section>
+<section id="cómo-integramos-ia-en-un-flujo-de-trabajo-reproducible-colaborativo-y-auditable" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>¿Cómo integramos IA en un flujo de trabajo reproducible, colaborativo y auditable?</h1>
 <aside class="notes">
-<p>Configuración: engrane → AI (proveedor, modelo, llave). Con Ollama no hace falta llave ni internet. El contexto incluye el esquema de los DataFrames, por eso sugiere nombres de columna correctos. marimo pair: el agente ejecuta código en el mismo kernel que tú.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="un-agente-que-conversa-con-el-kernel" class="slide level2">
-<h2>Un agente que conversa con el kernel</h2>
-<div class="columns">
-<div class="column small" style="width:50%;">
-<p><strong>Claude Code, Codex u OpenCode, conectados a tu notebook abierto</strong></p>
-<ul>
-<li><strong>Lee</strong> el valor real de tus variables: no adivina tus datos, los <strong>consulta</strong>.</li>
-<li><strong>Prueba</strong> código en un borrador antes de tocar el notebook.</li>
-<li><strong>Ejecuta</strong>, agrega y quita celdas; mueve sliders y selectores.</li>
-<li>Todo lo que cambia queda en el <code>.py</code>: <strong>lo revisas en el diff</strong>.</li>
-</ul>
-</div><div class="column small" style="width:50%;">
-<p><strong>Cómo conectarlo</strong></p>
-<ol type="1">
-<li>Abre el notebook: <code>uv run marimo edit</code></li>
-<li>Menú de acciones → <strong>Connect your agent</strong> → <strong>Claude</strong></li>
-<li>Pega en la terminal el comando que copia marimo</li>
-</ol>
-<p>También hay un <strong>panel de agentes</strong> dentro del editor (experimental): Claude Code, Codex, Gemini, OpenCode.</p>
-<p><a href="https://docs.marimo.io/guides/editor_features/agents/?h=claude#claude-code-agent" target="_blank">📖 Documentación: agentes en marimo</a></p>
-</div></div>
-<div class="pregunta small">
-<p>El agente trabaja sobre el <strong>estado vivo</strong>, no sobre una copia del código.</p>
-</div>
-<aside class="notes">
-<p>Dos vías: marimo pair (el agente en tu terminal, recomendado por marimo) y el panel de agentes dentro del editor, vía ACP (pide Node.js 22+ y activar el flag en Settings → Lab). Con watcher_on_save = “autorun” en [tool.marimo.runtime] las celdas que edita el agente se ejecutan solas. Enlazar con el bloque de agentes: aquí el “entorno” del agente es el kernel.</p>
+<p>Dejar la pregunta abierta. La responde el bloque 5: AGENTS.md, PLAN.md, leer el diff y firmar con un commit.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1559,375 +1391,96 @@ c2e8f50 Datos 2024-10 → 2026-10 a Parquet
           display:block!important;
       }</style></aside>
 </section>
-<section id="práctica-2" class="slide level2">
-<h2>Práctica 🖐</h2>
-<div class="practica">
-<p><span class="practica-title">Práctica · 6 min</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> marimo tutorial intro         <span class="co"># recorrido oficial, interactivo</span></span>
-<span id="cb38-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit exploracion.py <span class="co"># tu primer notebook, dentro de climalab/</span></span>
-<span id="cb38-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff                          <span class="co"># tras mover un slider y guardar: ¿qué cambió?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="demo">
-<p><span class="demo-title">Demo en vivo · 2 min</span> El mismo cambio (<code>sum</code> → <code>mean</code>) hecho en un <code>.ipynb</code> y en un notebook marimo: comparamos los dos <code>git diff</code>.</p>
-</div>
-<div class="pista">
-<p>Una herramienta nueva <strong>elimina clases enteras de errores</strong> (estado oculto, orden de ejecución). Estar al día no es moda: es dejar de cometer errores que ya tienen solución.</p>
-</div>
+<section id="marimo-el-llm-trabaja-dentro-del-kernel" class="slide level2">
+<h2>marimo: el LLM trabaja dentro del kernel</h2>
+<div class="columns">
+<div class="column small" style="width:52%;">
+<p><strong>El modelo ve la sesión viva, no solo el archivo</strong></p>
+<ul>
+<li>Conoce los <strong>valores en memoria</strong>: con <code>@esolmet</code> le pasas las columnas y tipos del DataFrame.</li>
+<li>Tres modos de chat: <strong>Ask</strong> (solo lee) · <strong>Agent</strong> (agrega, edita y ejecuta celdas) · <strong>Code mode</strong> (acceso directo al kernel).</li>
+<li><strong>marimo pair</strong>: Claude Code, Codex y otros agentes entran al notebook en ejecución y trabajan sobre su estado.</li>
+<li>Cualquier proveedor: OpenAI, Anthropic, Google, Bedrock, GitHub Copilot u <strong>Ollama</strong> local.</li>
+</ul>
+</div><div class="column small" style="width:48%;">
+<p>En el chat de marimo</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a>@esolmet ¿qué día tuvo la mayor ghi? grafícalo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y como celda: el chat es un elemento de UI más</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> mo.ui.chat(</span>
+<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a>    mo.ai.llm.openai(</span>
+<span id="cb27-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"qwen3"</span>,</span>
+<span id="cb27-4"><a href="" aria-hidden="true" tabindex="-1"></a>        base_url<span class="op">=</span><span class="st">"http://localhost:11434/v1"</span>,</span>
+<span id="cb27-5"><a href="" aria-hidden="true" tabindex="-1"></a>        api_key<span class="op">=</span><span class="st">"ollama"</span>,  <span class="co"># local: no pide clave</span></span>
+<span id="cb27-6"><a href="" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb27-7"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-8"><a href="" aria-hidden="true" tabindex="-1"></a>chat</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<aside class="notes">
+<p>Fuente: docs.marimo.io (AI completion, mo.ui.chat) y github.com/marimo-team/marimo-pair. La diferencia con un chat externo: aquí el modelo no adivina las columnas, las lee de la memoria. Lo que la IA escribe sigue siendo un .py reactivo: se revisa en el diff. Adelanto del bloque 5.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qué-es-quarto" class="slide level2">
+<h2>¿Qué es Quarto?</h2>
+<div class="columns">
+<div class="column small" style="width:50%;">
+<p><strong>Sistema de publicación científica y técnica, de código abierto</strong> (Posit, sucesor de R Markdown)</p>
+<ul>
+<li><strong>Un archivo de texto</strong> <code>.qmd</code>: Markdown + código. Se versiona con git y se lee en el diff.</li>
+<li><strong>Varios lenguajes</strong>: Python, R, Julia y Observable JS; también renderiza notebooks <code>.ipynb</code>.</li>
+<li><strong>Muchos formatos, una fuente</strong>: HTML, PDF, Word, ePub, presentaciones, sitios web, libros, blogs y dashboards.</li>
+<li><strong>Lo que pide un artículo</strong>: ecuaciones LaTeX, citas, referencias cruzadas, paneles de figuras y callouts.</li>
+<li><strong>Publicar con un comando</strong>: GitHub Pages, Quarto Pub, Netlify, Posit Connect…</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Clima en ClimaLab"</span></span>
+<span id="cb28-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html    # o pdf, docx, revealjs…</span></span>
+<span id="cb28-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> refs.bib</span></span>
+<span id="cb28-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb28-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tdb</span></span>
+<span id="cb28-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Temperatura de bulbo seco"</span></span>
+<span id="cb28-10"><a href="" aria-hidden="true" tabindex="-1"></a>esolmet[<span class="st">"tdb"</span>].plot()</span>
+<span id="cb28-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-12"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="" aria-hidden="true" tabindex="-1"></a>Como muestra @fig-tdb, … <span class="co">[</span><span class="ot">@nasem2019</span><span class="co">]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small">Vista previa · otro formato · publicar</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview informe.qmd</span>
+<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render informe.qmd <span class="at">--to</span> pdf</span>
+<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<aside class="notes">
+<p>Fuente: quarto.org y quarto publish –help (Quarto 1.9). Estas diapositivas son un .qmd publicado con quarto publish gh-pages. El mismo informe.qmd sale como HTML, PDF o Word: el formato es una opción, no otro archivo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- ================================================================== -->
-<!-- Bloque 5 · Parquet · 8 min                                          -->
+<!-- Bloque 5 · Una historia con datos, de la mano de un agente · 8 min -->
 <!-- ================================================================== -->
 </section></section>
 <section>
-<section id="parquet-datos-que-se-leen-como-datos" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>Parquet: datos que se leen como datos</h1>
-<p><span class="modo">🖐 Práctica · 8 min</span></p>
-</section>
-<section id="csv-vs.-parquet" class="slide level2">
-<h2>CSV vs.&nbsp;Parquet</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="vs-mal">
-<p><strong>CSV</strong></p>
-<ul>
-<li>Texto: <strong>sin tipos</strong> (la fecha llega como texto)</li>
-<li>Se guarda <strong>por filas</strong>: para una columna, lees todas</li>
-<li>Sin compresión: <strong>pesado</strong></li>
-<li>Ambiguo: separadores, decimales, codificación</li>
-</ul>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="vs-bien">
-<p><strong>Parquet</strong></p>
-<ul>
-<li>Binario <strong>tipado</strong>: <code>datetime</code> sigue siendo <code>datetime</code></li>
-<li>Se guarda <strong>por columnas</strong>: lees solo las que pides</li>
-<li><strong>Comprimido</strong> por columna</li>
-<li>Metadatos: esquema y estadísticas por bloque</li>
-</ul>
-</div>
-</div></div>
-<div class="small">
-<p>Regla del proyecto: <strong>crudos inmutables</strong> tal como llegan; todo lo derivado, en Parquet. Parquet es binario: no se versiona con git, <strong>se regenera</strong> con el código.</p>
-</div>
-</section>
-<section id="dos-años-de-climalab" class="slide level2">
-<h2>Dos años de ClimaLab</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>~1 millón de filas · 11 variables</th>
-<th style="text-align: right;">CSV</th>
-<th style="text-align: right;">Parquet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Tamaño</td>
-<td style="text-align: right;">~85 MB</td>
-<td style="text-align: right;">~21 MB</td>
-</tr>
-<tr class="even">
-<td>Lectura con pandas</td>
-<td style="text-align: right;">~1.4 s</td>
-<td style="text-align: right;">~0.07 s</td>
-</tr>
-<tr class="odd">
-<td>Lectura con Polars</td>
-<td style="text-align: right;">~0.25 s</td>
-<td style="text-align: right;">~0.05 s</td>
-</tr>
-<tr class="even">
-<td>Tipo de <code>date</code> al leer</td>
-<td style="text-align: right;"><code>str</code> (hay que convertir)</td>
-<td style="text-align: right;"><code>datetime</code></td>
-</tr>
-<tr class="odd">
-<td>Media de <code>tdb</code> (lazy, una columna)</td>
-<td style="text-align: right;">lee todo el archivo</td>
-<td style="text-align: right;">~0.01 s</td>
-</tr>
-</tbody>
-</table>
-<p><span class="fuente">Estimado a partir de 4 meses medidos (172 433 filas: CSV 14.1 MB, Parquet 3.4 MB).</span></p>
-<aside class="notes">
-<p>TODO al tener los 2 años: reemplazar por la medición real (correr el script de la práctica). El dato que más sorprende no es la velocidad: es que el CSV pierde el tipo de la fecha.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="lazy-leer-solo-lo-que-necesitas" class="slide level2">
-<h2>Lazy: leer solo lo que necesitas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb39-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> (</span>
-<span id="cb39-4"><a href="" aria-hidden="true" tabindex="-1"></a>    pl.scan_parquet(<span class="st">"data/002_intermediate/climalab.parquet"</span>)  <span class="co"># no lee nada todavía</span></span>
-<span id="cb39-5"><a href="" aria-hidden="true" tabindex="-1"></a>      .<span class="bu">filter</span>(pl.col(<span class="st">"date"</span>).dt.year() <span class="op">==</span> <span class="dv">2025</span>)                <span class="co"># filtra al leer</span></span>
-<span id="cb39-6"><a href="" aria-hidden="true" tabindex="-1"></a>      .select(<span class="st">"date"</span>, <span class="st">"tdb"</span>)                                   <span class="co"># solo 2 de 11 columnas</span></span>
-<span id="cb39-7"><a href="" aria-hidden="true" tabindex="-1"></a>      .group_by_dynamic(<span class="st">"date"</span>, every<span class="op">=</span><span class="st">"1mo"</span>)</span>
-<span id="cb39-8"><a href="" aria-hidden="true" tabindex="-1"></a>      .agg(pl.col(<span class="st">"tdb"</span>).mean())</span>
-<span id="cb39-9"><a href="" aria-hidden="true" tabindex="-1"></a>      .collect()                                               <span class="co"># ahora sí ejecuta</span></span>
-<span id="cb39-10"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="small">
-<ul>
-<li>Polars arma un <strong>plan</strong> y lo optimiza: solo lee las columnas y los bloques que necesita.</li>
-<li>DuckDB hace lo mismo con SQL: <code>SELECT avg(tdb) FROM 'climalab.parquet'</code>.</li>
-</ul>
-</div>
-<aside class="notes">
-<p>Fusible: si vamos tarde, saltar esta diapositiva.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="práctica-3" class="slide level2">
-<h2>Práctica 🖐</h2>
-<div class="practica">
-<p><span class="practica-title">Práctica · 4 min · <code>uv run csv_vs_parquet.py</code></span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># /// script</span></span>
-<span id="cb40-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># dependencies = ["polars", "pandas", "pyarrow"]</span></span>
-<span id="cb40-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ///</span></span>
-<span id="cb40-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, time</span>
-<span id="cb40-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd, polars <span class="im">as</span> pl</span>
-<span id="cb40-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="" aria-hidden="true" tabindex="-1"></a>pl.read_parquet(<span class="st">"climalab.parquet"</span>).write_csv(<span class="st">"climalab.csv"</span>)</span>
-<span id="cb40-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> [<span class="st">"climalab.csv"</span>, <span class="st">"climalab.parquet"</span>]:</span>
-<span id="cb40-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f, os.path.getsize(f) <span class="op">//</span> <span class="dv">1_000_000</span>, <span class="st">"MB"</span>)</span>
-<span id="cb40-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> time.perf_counter()<span class="op">;</span> csv <span class="op">=</span> pd.read_csv(<span class="st">"climalab.csv"</span>)<span class="op">;</span>      <span class="bu">print</span>(<span class="st">"CSV"</span>, time.perf_counter() <span class="op">-</span> t)</span>
-<span id="cb40-12"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> time.perf_counter()<span class="op">;</span> pq <span class="op">=</span> pd.read_parquet(<span class="st">"climalab.parquet"</span>)<span class="op">;</span> <span class="bu">print</span>(<span class="st">"Parquet"</span>, time.perf_counter() <span class="op">-</span> t)</span>
-<span id="cb40-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(csv.dtypes[<span class="st">"date"</span>], <span class="st">"vs"</span>, pq.dtypes[<span class="st">"date"</span>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="pista">
-<p>Si no dices otra cosa, el agente guarda en CSV. <strong>Elegir el formato es una decisión técnica</strong> que nadie toma por ti.</p>
-</div>
-<aside class="notes">
-<p>El CSV se genera localmente a partir del Parquet: nadie descarga 85 MB por la red del evento.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section></section>
-<section id="pausa-5-min" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>Pausa · 5 min</h1>
-<!-- ================================================================== -->
-<!-- Bloque 6 · src/, paquete y exploración paramétrica · 15 min         -->
-<!-- ================================================================== -->
-</section>
-
-<section>
-<section id="de-src-al-paquete-instalable" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>De <code>src/</code> al paquete instalable</h1>
-<p><span class="modo">🖐 Práctica · 15 min</span></p>
-</section>
-<section id="el-notebook-narra-src-define" class="slide level2">
-<h2>El notebook narra; <code>src/</code> define</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<pre class="text"><code>src/climalab/
-├── __init__.py
-├── io.py         # crudos → Parquet limpio y tipado
-├── radiacion.py  # ghi_diaria(), …
-└── modelo.py     # la función del barrido
-tests/
-└── test_radiacion.py
-notebooks/
-└── exploracion.py   # importa de climalab</code></pre>
-</div><div class="column small" style="width:50%;">
-<ul>
-<li>En <code>src/</code> vive el código que <strong>define</strong>: funciones con docstring, <strong>unidades</strong> y prueba.</li>
-<li>El notebook <strong>narra</strong>: carga, llama, grafica, interpreta.</li>
-<li>La misma función se importa desde marimo, pytest, un script… <strong>o el agente</strong>.</li>
-<li>Layout <code>src/</code>: obliga a <strong>instalar</strong> el paquete, así que lo que pruebas es lo que se instala.</li>
-</ul>
-</div></div>
-<div class="pregunta small">
-<p>¿Cuándo sacar código del notebook? Cuando lo <strong>copiaste dos veces</strong> o cuando <strong>necesita una prueba</strong>.</p>
-</div>
-</section>
-<section id="una-función-una-prueba-con-respuesta-conocida" class="slide level2">
-<h2>Una función, una prueba con respuesta conocida</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># src/climalab/radiacion.py</span></span>
-<span id="cb42-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ghi_diaria(ghi_w_m2):</span>
-<span id="cb42-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Energía solar diaria sobre</span></span>
-<span id="cb42-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    superficie horizontal.</span></span>
-<span id="cb42-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    ghi_w_m2: serie minutal [W/m²]</span></span>
-<span id="cb42-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    regresa:  [kWh/m²·día]</span></span>
-<span id="cb42-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb42-9"><a href="" aria-hidden="true" tabindex="-1"></a>    wh <span class="op">=</span> ghi_w_m2 <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> <span class="dv">60</span>)  <span class="co"># 1 min</span></span>
-<span id="cb42-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wh.resample(<span class="st">"1D"</span>).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># tests/test_radiacion.py</span></span>
-<span id="cb43-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb43-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pytest <span class="im">import</span> approx</span>
-<span id="cb43-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.radiacion <span class="im">import</span> ghi_diaria</span>
-<span id="cb43-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_ghi_constante_un_dia():</span>
-<span id="cb43-7"><a href="" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> pd.date_range(<span class="st">"2026-01-01"</span>,</span>
-<span id="cb43-8"><a href="" aria-hidden="true" tabindex="-1"></a>                        periods<span class="op">=</span><span class="dv">1440</span>, freq<span class="op">=</span><span class="st">"1min"</span>)</span>
-<span id="cb43-9"><a href="" aria-hidden="true" tabindex="-1"></a>    ghi <span class="op">=</span> pd.Series(<span class="fl">1000.0</span>, index<span class="op">=</span>idx)</span>
-<span id="cb43-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1000 W/m² durante 24 h = 24 kWh/m²</span></span>
-<span id="cb43-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> ghi_diaria(ghi).iloc[<span class="dv">0</span>] <span class="op">==</span> approx(<span class="fl">24.0</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
-<div class="small">
-<p>Con el cambio <code>sum()</code> → <code>mean()</code> del bloque 3, esta prueba da <strong>1.0</strong> en vez de 24.0 y <strong>falla</strong>. Diff y prueba: redundancia deliberada.</p>
-</div>
-<aside class="notes">
-<p>La respuesta la escribe la persona, no el agente: si el agente escribe código y prueba, la prueba puede ser tautológica.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="del-src-al-paquete-instalable" class="slide level2">
-<h2>Del <code>src/</code> al paquete instalable</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> build                                              <span class="co"># genera dist/*.whl</span></span>
-<span id="cb44-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add git+https://github.com/usuario/climalab        <span class="co"># instalar desde GitHub</span></span>
-<span id="cb44-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add enerhabitat                                    <span class="co"># o desde PyPI</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="columns small">
-<div class="column" style="width:50%;">
-<ul>
-<li>Documentado, <strong>versionado</strong>, <strong>citable</strong> (Zenodo da DOI a cada versión).</li>
-<li>Quien lo usa lo fija en <strong>su</strong> <code>uv.lock</code>: tu ciencia se vuelve <strong>dependencia reproducible</strong> de la de otros.</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="pregunta">
-<p>Caso en casa: <a href="https://pypi.org/project/enerhabitat/"><strong>EnerHabitat</strong> en PyPI</a></p>
-<p><code>uv add enerhabitat</code></p>
-</div>
-</div></div>
-<aside class="notes">
-<p>EnerHabitat: transferencia de calor en envolventes, IER-UNAM. El mensaje no es “publiquen paquetes”: la estructura src/ + tests/ deja el paquete casi listo.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="exploración-paramétrica" class="slide level2">
-<h2>Exploración paramétrica</h2>
-<div class="columns">
-<div class="column" style="width:44%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># src/climalab/modelo.py</span></span>
-<span id="cb45-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> temperatura_sol_aire(tdb, ghi, a<span class="op">=</span><span class="fl">0.6</span>,</span>
-<span id="cb45-3"><a href="" aria-hidden="true" tabindex="-1"></a>                         h<span class="op">=</span><span class="fl">13.0</span>, eps_dr<span class="op">=</span><span class="fl">63.0</span>):</span>
-<span id="cb45-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Temperatura sol-aire, superficie</span></span>
-<span id="cb45-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    horizontal [°C].</span></span>
-<span id="cb45-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    tdb    temperatura del aire [°C]</span></span>
-<span id="cb45-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    ghi    irradiancia global [W/m²]</span></span>
-<span id="cb45-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    a      absortancia solar [-]</span></span>
-<span id="cb45-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    h      coef. convectivo [W/m²K]</span></span>
-<span id="cb45-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    eps_dr ε·ΔR, intercambio de onda</span></span>
-<span id="cb45-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">           larga con el cielo [W/m²]</span></span>
-<span id="cb45-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb45-14"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tdb <span class="op">+</span> (a <span class="op">*</span> ghi <span class="op">-</span> eps_dr) <span class="op">/</span> h</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column" style="width:56%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># barrido.py</span></span>
-<span id="cb46-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
-<span id="cb46-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb46-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.modelo <span class="im">import</span> temperatura_sol_aire</span>
-<span id="cb46-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.read_parquet(</span>
-<span id="cb46-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/002_intermediate/climalab.parquet"</span>)</span>
-<span id="cb46-8"><a href="" aria-hidden="true" tabindex="-1"></a>filas <span class="op">=</span> []</span>
-<span id="cb46-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, h <span class="kw">in</span> itertools.product([<span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
-<span id="cb46-10"><a href="" aria-hidden="true" tabindex="-1"></a>                              [<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>]):</span>
-<span id="cb46-11"><a href="" aria-hidden="true" tabindex="-1"></a>    tsa <span class="op">=</span> temperatura_sol_aire(df[<span class="st">"tdb"</span>], df[<span class="st">"ghi"</span>],</span>
-<span id="cb46-12"><a href="" aria-hidden="true" tabindex="-1"></a>                               a<span class="op">=</span>a, h<span class="op">=</span>h)</span>
-<span id="cb46-13"><a href="" aria-hidden="true" tabindex="-1"></a>    filas.append({<span class="st">"absortancia"</span>: a, <span class="st">"h"</span>: h,</span>
-<span id="cb46-14"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"tsa_max"</span>: tsa.<span class="bu">max</span>(),</span>
-<span id="cb46-15"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"horas_sobre_40"</span>: (tsa <span class="op">&gt;</span> <span class="dv">40</span>).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">60</span>})</span>
-<span id="cb46-16"><a href="" aria-hidden="true" tabindex="-1"></a>pl.DataFrame(filas).write_parquet(</span>
-<span id="cb46-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/003_results/barrido.parquet"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div></div>
-<div class="small">
-<p>Una función bien definida + una malla de parámetros = <strong>barrido</strong>. Resultado → Parquet → <strong>slider en marimo</strong>.</p>
-</div>
-<aside class="notes">
-<p>16 combinaciones × 1 millón de minutos. La función es pura: sin archivos, sin estado; por eso se puede barrer, probar y, en el bloque 8, exponer como herramienta para un agente.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="práctica-4" class="slide level2">
-<h2>Práctica 🖐</h2>
-<div class="practica">
-<p><span class="practica-title">Práctica · 5 min</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add <span class="st">"git+https://github.com/AltamarMx/ecosistema-datos#subdirectory=climalab"</span></span>
-<span id="cb47-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python barrido.py</span>
-<span id="cb47-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run marimo edit notebooks/barrido.py   <span class="co"># slider de absortancia → horas sobre 40 °C</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="pista">
-<p>Decidir <strong>qué es una función</strong>, qué parámetros barrer y <strong>qué prueba la valida</strong> es diseño, no tecleo. Ahí está el valor de saber programar.</p>
-</div>
-<aside class="notes">
-<p>TODO: confirmar URL del paquete del taller cuando el repo esté publicado.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<!-- ================================================================== -->
-<!-- Bloque 7 · IA generativa · 18 min                                   -->
-<!-- ================================================================== -->
-</section></section>
-<section>
-<section id="ia-generativa-del-chat-al-agente" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>IA generativa: del chat al agente</h1>
-<p><span class="modo">👀 Demo · 18 min</span></p>
+<section id="vamos-a-contar-una-historia-con-datos-de-la-mano-de-un-llm-como-agente" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>Vamos a contar una historia con datos de la mano de un LLM como agente</h1>
+<p><span class="modo">👀 Demo · 8 min</span></p>
 </section>
 <section id="el-modelo-solo" class="slide level2">
 <h2>El modelo, solo</h2>
@@ -1958,30 +1511,45 @@ notebooks/
           display:block!important;
       }</style></aside>
 </section>
-<section id="herramientas-bucle-agente" class="slide level2">
-<h2>+ herramientas + bucle = agente</h2>
+<section id="qué-es-un-agente" class="slide level2">
+<h2>¿Qué es un agente?</h2>
+<div class="pregunta">
+<p>Un <strong>agente</strong> es un LLM que trabaja <strong>en un bucle</strong>, con <strong>herramientas</strong>, hasta cumplir un <strong>objetivo</strong>.</p>
+</div>
 <div class="columns">
-<div class="column" style="width:50%;">
-<pre class="text"><code>           ┌───────────┐
-           │  PLAN.md  │
-           └─────┬─────┘
-                 ▼
+<div class="column" style="width:45%;">
+<pre class="text"><code>   tu prompt · PLAN.md
+            │
+            ▼
    ┌──► propone una acción
-   │             │
-   │             ▼
- corrige   ejecuta herramienta
-   ▲      (leer, escribir, correr,
-   │       pytest, uv run …)
-   │             │
+   │            │
+   │            ▼
+ corrige   usa una herramienta
+   ▲     (leer, escribir, uv run,
+   │      quarto render …)
+   │            │
    └─── observa el resultado</code></pre>
-</div><div class="column small" style="width:50%;">
+</div><div class="column small" style="width:55%;">
 <ul>
-<li><strong>Herramientas</strong>: leer y escribir archivos, ejecutar comandos, correr pruebas.</li>
-<li><strong>Bucle</strong>: propone → ejecuta → observa → corrige → repite, hasta cumplir la tarea.</li>
-<li>A diferencia del chat, <strong>actúa sobre tu repositorio</strong> y ve sus propios errores.</li>
-<li>Multiplica la velocidad… <strong>y el daño</strong> si no hay reglas.</li>
+<li><strong>El LLM</strong> decide el siguiente paso; <strong>las herramientas</strong> le dejan actuar sobre archivos y terminal.</li>
+<li><strong>El bucle</strong>: propone → ejecuta → observa → corrige, hasta terminar.</li>
+<li>Un chat te devuelve texto; un agente <strong>cambia tu proyecto</strong> y ve sus propios errores.</li>
+<li>Multiplica la velocidad… <strong>y el daño</strong> si no hay reglas. Por eso todo pasa por <strong>git</strong>.</li>
 </ul>
 </div></div>
+<aside class="notes">
+<p>Definición mínima para la demo. La siguiente diapositiva separa las dos piezas: el modelo y el harness.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="el-harness-lo-que-convierte-un-modelo-en-agente" class="slide level2">
 <h2>El <em>harness</em>: lo que convierte un modelo en agente</h2>
@@ -2009,6 +1577,37 @@ notebooks/
 </div></div>
 <aside class="notes">
 <p>Idea central del bloque: lo que llamamos “la IA” son dos cosas separables, el modelo y el harness. Dos agentes con el mismo modelo se comportan muy distinto según su harness y su contexto.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="paso-1-abre-la-terminal" class="slide level2">
+<h2>Paso 1: abre la terminal</h2>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 2 min · dentro de <code>climalab/</code></span></p>
+<p>En la terminal</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span>        <span class="co"># Claude Code; también codex u opencode</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El prompt</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a>Crea un documento de Quarto en analysis/ y comienza con un hola mundo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="small">
+<p><strong>Qué observar</strong></p>
+<ul>
+<li><strong>Pide permiso</strong> antes de crear archivos o ejecutar comandos.</li>
+<li>Crea un <code>.qmd</code> en <code>analysis/</code> y lo renderiza con <code>quarto</code>.</li>
+<li>Al terminar: <code>git status</code> y <code>git diff</code> muestran <strong>exactamente</strong> lo que escribió.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Lanzar el agente desde la raíz de climalab/ para que vea data/, notebooks/ y pyproject.toml. Si pregunta qué formato usar, html basta.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2060,37 +1659,25 @@ notebooks/
           display:block!important;
       }</style></aside>
 </section>
-<section id="agents.md-las-reglas-del-espacio-de-trabajo" class="slide level2">
-<h2><code>AGENTS.md</code>: las reglas del espacio de trabajo</h2>
+<section id="alternativa-local-ollama-opencode" class="slide level2">
+<h2>Alternativa local: Ollama + OpenCode</h2>
 <div class="columns">
-<div class="column" style="width:55%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
-<span id="cb50-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Entorno</span></span>
-<span id="cb50-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dependencias solo con <span class="in">`uv add`</span>; nunca <span class="in">`pip install`</span>.</span>
-<span id="cb50-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Todo se ejecuta con <span class="in">`uv run`</span>.</span>
-<span id="cb50-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
-<span id="cb50-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/001_raw/`</span> es de solo lectura.</span>
-<span id="cb50-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Derivados en Parquet, nunca CSV.</span>
-<span id="cb50-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código</span></span>
-<span id="cb50-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Funciones en <span class="in">`src/climalab/`</span>, con docstring,</span>
-<span id="cb50-13"><a href="" aria-hidden="true" tabindex="-1"></a>  unidades y prueba.</span>
-<span id="cb50-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notebooks en marimo (<span class="in">`.py`</span>), no <span class="in">`.ipynb`</span>.</span>
-<span id="cb50-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flujo</span></span>
-<span id="cb50-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Una sección de PLAN.md a la vez.</span>
-<span id="cb50-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Detente y muestra el diff antes del commit.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column small" style="width:45%;">
+<div class="column small" style="width:50%;">
 <ul>
-<li>El harness lo carga <strong>en cada sesión</strong>.</li>
-<li>Cada regla es una decisión de esta charla: uv, Parquet, <code>src/</code>, marimo, diff.</li>
-<li>Sin este archivo, el agente usa <strong>sus defaults</strong>: los de sus datos de entrenamiento.</li>
+<li><strong>Ollama</strong> corre el modelo en tu máquina; <strong>OpenCode</strong> es el <em>harness</em>, de código abierto.</li>
+<li>OpenCode necesita un <strong>contexto de 64k o más</strong>: elige un modelo que quepa en tu memoria.</li>
+<li>Mismo prompt, mismas reglas: OpenCode también lee <code>AGENTS.md</code>.</li>
+<li><code>ollama launch</code> abre también Claude Code o Codex con un modelo local: <strong>cambia el motor, no el harness</strong>.</li>
 </ul>
+</div><div class="column" style="width:50%;">
+<p><span class="small">Una vez: descarga el modelo y arranca Ollama con 64k de contexto</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull qwen3.5</span>
+<span id="cb34-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">OLLAMA_CONTEXT_LENGTH</span><span class="op">=</span>64000 <span class="ex">ollama</span> serve</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small">En otra terminal, dentro de <code>climalab/</code></span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> launch opencode</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <aside class="notes">
-<p>Notar que cada línea de AGENTS.md corresponde a un bloque de hoy. Escribirlo exige saber todo lo anterior: ese es el punto.</p>
+<p>Fuente: docs.ollama.com (integración con OpenCode y context length). Probado: ollama 0.34 trae “ollama launch opencode”. Elegir un tamaño de modelo que quepa en memoria; con “ollama ps” la columna PROCESSOR debe decir GPU, no CPU. En la app de Ollama, el contexto se ajusta con el control deslizante en lugar de la variable de entorno. La diapositiva anterior (“Modelo ≠ harness”) ya planteó la decisión nube contra local.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2103,38 +1690,114 @@ notebooks/
           display:block!important;
       }</style></aside>
 </section>
-<section id="plan.md-el-contrato" class="slide level2">
-<h2><code>PLAN.md</code>: el contrato</h2>
+<section id="paso-2-las-reglas-y-el-plan" class="slide level2">
+<h2>Paso 2: las reglas y el plan</h2>
 <div class="columns">
-<div class="column" style="width:55%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># PLAN · Clima ClimaLab (2024-10 → 2026-10)</span></span>
-<span id="cb51-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo</span></span>
-<span id="cb51-4"><a href="" aria-hidden="true" tabindex="-1"></a>Horas sobre 40 °C de temperatura sol-aire</span>
-<span id="cb51-5"><a href="" aria-hidden="true" tabindex="-1"></a>según absortancia del techo.</span>
-<span id="cb51-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
-<span id="cb51-8"><a href="" aria-hidden="true" tabindex="-1"></a>climalab.parquet · ~1 M filas · 1 min</span>
-<span id="cb51-9"><a href="" aria-hidden="true" tabindex="-1"></a>tdb <span class="co">[</span><span class="ot">°C</span><span class="co">]</span> · ghi <span class="co">[</span><span class="ot">W/m²</span><span class="co">]</span> · …</span>
-<span id="cb51-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pasos</span></span>
-<span id="cb51-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Validar crudos con pruebas físicas</span>
-<span id="cb51-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>temperatura_sol_aire() con prueba</span>
-<span id="cb51-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Barrido absortancia × h_ext → Parquet</span>
-<span id="cb51-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Criterios de aceptación</span></span>
-<span id="cb51-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv run pytest`</span> pasa · GHI nocturna = 0</span>
-<span id="cb51-18"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bitácora y decisiones</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div><div class="column small" style="width:45%;">
-<ul>
-<li>Se escribe <strong>antes</strong> de pedir una línea de código.</li>
-<li>Dice <strong>qué</strong> (preguntas, variables, <strong>unidades</strong>) y <strong>con qué</strong>.</li>
-<li><code>git commit</code> del plan = <strong>firma del contrato</strong>.</li>
-<li>Cada sección = una unidad de trabajo para el agente.</li>
-<li>Es también la <strong>bitácora</strong>: qué propuso la IA, qué decidió la persona autora.</li>
-</ul>
+<div class="column" style="width:50%;">
+<p><span class="small"><code>AGENTS.md</code> · las reglas</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb36-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Espacio de trabajo</span></span>
+<span id="cb36-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trabaja solo dentro de este repositorio;</span>
+<span id="cb36-5"><a href="" aria-hidden="true" tabindex="-1"></a>  no leas ni escribas fuera de él.</span>
+<span id="cb36-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
+<span id="cb36-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/001_raw/`</span> es de solo lectura.</span>
+<span id="cb36-9"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Entorno</span></span>
+<span id="cb36-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv add`</span> y <span class="in">`uv run`</span>; nunca <span class="in">`pip install`</span>.</span>
+<span id="cb36-12"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Documentos</span></span>
+<span id="cb36-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quarto en <span class="in">`analysis/`</span>; el código embebido</span>
+<span id="cb36-15"><a href="" aria-hidden="true" tabindex="-1"></a>  en celdas <span class="in">`{python}`</span>, sin scripts sueltos.</span>
+<span id="cb36-16"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Flujo</span></span>
+<span id="cb36-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Muestra el diff antes de cada commit.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p><span class="small"><code>PLAN.md</code> · el contrato</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu"># PLAN · Una semana en ClimaLab</span></span>
+<span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivo</span></span>
+<span id="cb37-4"><a href="" aria-hidden="true" tabindex="-1"></a>Contar qué pasó en la última semana:</span>
+<span id="cb37-5"><a href="" aria-hidden="true" tabindex="-1"></a>temperatura y radiación.</span>
+<span id="cb37-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos</span></span>
+<span id="cb37-8"><a href="" aria-hidden="true" tabindex="-1"></a>data/001_raw/ClimaLab.parquet (índice datetime)</span>
+<span id="cb37-9"><a href="" aria-hidden="true" tabindex="-1"></a>tdb <span class="co">[</span><span class="ot">°C</span><span class="co">]</span> · ghi, dni, dhi <span class="co">[</span><span class="ot">W/m²</span><span class="co">]</span></span>
+<span id="cb37-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pasos</span></span>
+<span id="cb37-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="co">[</span><span class="ot">x</span><span class="co">]</span> analysis/ con un hola mundo</span>
+<span id="cb37-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="co">[ ]</span> plotly, 2 subpaneles: tdb | ghi, dni, dhi</span>
+<span id="cb37-14"><a href="" aria-hidden="true" tabindex="-1"></a>       última semana = 7 días hasta el último dato</span>
+<span id="cb37-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">## Criterios de aceptación</span></span>
+<span id="cb37-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>uv run quarto render analysis/ sin errores</span>
+<span id="cb37-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>git diff no toca data/001_raw/</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 2 min · se firman con un commit</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add AGENTS.md PLAN.md <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reglas y plan para el agente"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<aside class="notes">
+<p>Los dos archivos se llevan escritos; aquí se leen regla por regla y se firman con el commit. Cada regla corresponde a algo de hoy: uv (bloque 2), datos crudos intocables, Quarto (bloque 4). El plan fija lo que el prompt deja ambiguo: qué es “la última semana”. Claude Code: la versión instalada (2.1.306) debería leer AGENTS.md si no hay CLAUDE.md. Confirmarlo con /memory al iniciar; si no aparece, crear CLAUDE.md con la línea <span class="citation" data-cites="AGENTS.md">@AGENTS.md</span>. AGENTS.md: el harness lo carga en cada sesión; sin él, el agente usa sus defaults (los de sus datos de entrenamiento). PLAN.md: se escribe antes de pedir una línea de código; su commit es la firma del contrato; es también la bitácora: qué propuso la IA y qué decidió la persona autora.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="paso-3-que-los-datos-cuenten-algo" class="slide level2">
+<h2>Paso 3: que los datos cuenten algo</h2>
+<div class="demo">
+<p><span class="demo-title">Demo en vivo · 4 min</span></p>
+<p>El prompt</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a>Carga el Parquet y haz una gráfica con 2 subpaneles usando plotly, para la</span>
+<span id="cb39-2"><a href="" aria-hidden="true" tabindex="-1"></a>última semana de los datos: la tdb en un panel y las componentes de la</span>
+<span id="cb39-3"><a href="" aria-hidden="true" tabindex="-1"></a>radiación (dni, ghi, dhi) en otro</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="small">
+<p><strong>En el diff: ¿cumplió las reglas y el plan?</strong></p>
+<ul>
+<li><strong>Entorno</strong>: instaló <code>plotly</code> y <code>jupyter</code> con <code>uv add</code>, no con <code>pip install</code>.</li>
+<li><strong>Documento</strong>: el código quedó embebido en el <code>.qmd</code>, sin scripts sueltos.</li>
+<li><strong>Datos</strong>: no tocó <code>data/001_raw/</code>; la ruta al Parquet es relativa a <code>analysis/</code>.</li>
+<li><strong>Plan</strong>: “la última semana” son los 7 días hasta el último dato, como dice <code>PLAN.md</code>.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Respaldo probado (si el agente se atora): uv add plotly jupyter, y en analysis/index.qmd</p>
+<pre><code>import pandas as pd
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+esolmet = pd.read_parquet("../data/001_raw/ClimaLab.parquet")
+semana = esolmet.loc[esolmet.index.max() - pd.Timedelta(days=7):]
+
+fig = make_subplots(rows=2, cols=1, shared_xaxes=True)
+fig.add_trace(go.Scatter(x=semana.index, y=semana["tdb"], name="tdb"), row=1, col=1)
+for col in ["ghi", "dni", "dhi"]:
+    fig.add_trace(go.Scatter(x=semana.index, y=semana[col], name=col), row=2, col=1)
+fig.update_yaxes(title_text="tdb [°C]", row=1, col=1)
+fig.update_yaxes(title_text="[W/m²]", row=2, col=1)
+fig.show()</code></pre>
+<p>Render: uv run quarto render analysis/index.qmd</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="vibe-coding-vs.-spec-driven" class="slide level2">
 <h2>Vibe coding vs.&nbsp;<em>spec-driven</em></h2>
@@ -2176,18 +1839,15 @@ notebooks/
 </section>
 <section id="el-bucle-de-trabajo" class="slide level2">
 <h2>El bucle de trabajo</h2>
-<pre class="text"><code>  una sección del PLAN ──► el agente escribe código ──► uv run pytest
+<pre class="text"><code>  un paso del PLAN ──► el agente escribe el .qmd ──► uv run quarto render
           ▲                                                  │
           │                                                  ▼
-       git commit  ◄──── tú lees el diff ◄──── render / marimo</code></pre>
-<div class="demo">
-<p><span class="demo-title">Demo en vivo · 6 min</span> El agente implementa el paso 2 del plan: <code>temperatura_sol_aire()</code> con su prueba. Leemos el diff juntos antes del commit.</p>
-</div>
+       git commit  ◄──── tú lees el diff ◄──── revisas la gráfica</code></pre>
 <div class="pista">
 <p>Escribir <code>AGENTS.md</code> y <code>PLAN.md</code> exige saber programar <strong>y</strong> conocer las herramientas actuales. El agente rinde <strong>al nivel de quien lo guía</strong>.</p>
 </div>
 <aside class="notes">
-<p>Nunca “hazme todo el análisis”: una sección a la vez, diff corto. Si el agente propone pip install o un .ipynb, mejor: muestra por qué existe AGENTS.md.</p>
+<p>Es el ciclo que acabamos de recorrer en los pasos 1 a 3. Nunca “hazme todo el análisis”: un paso del plan a la vez, diff corto. Si el agente propone pip install o un .ipynb, mejor: muestra por qué existe AGENTS.md.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2199,71 +1859,38 @@ notebooks/
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<!-- ================================================================== -->
-<!-- Bloque 8 · MCP · 7 min                                              -->
-<!-- ================================================================== -->
 </section></section>
 <section>
-<section id="mcp-tu-código-como-herramienta-del-agente" class="title-slide slide level1 center" data-background-color="#1f3a5f">
-<h1>MCP: tu código como herramienta del agente</h1>
-<p><span class="modo">👀 Demo · 7 min</span></p>
+<section id="preguntas" class="title-slide slide level1 center" data-background-color="#1f3a5f">
+<h1>¿Preguntas?</h1>
+
 </section>
-<section id="qué-es-mcp" class="slide level2">
-<h2>¿Qué es MCP?</h2>
+<section id="estrategia-paquetes-que-el-agente-usa-con-parámetros" class="slide level2">
+<h2>Estrategia: paquetes que el agente usa con parámetros</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<pre class="text"><code> agente (Claude Code, OpenCode, marimo…)
-        │
-        │  MCP: "¿qué herramientas tienes?"
-        ▼
- servidor MCP "climalab"
-        │  tool: horas_sobre_umbral(a, h)
-        ▼
- paquete climalab  (probado, versionado)</code></pre>
-</div><div class="column small" style="width:50%;">
+<div class="column small" style="width:48%;">
+<p><strong>Tú escribes y pruebas la física; el agente elige parámetros y combina.</strong></p>
 <ul>
-<li><strong>Model Context Protocol</strong>: estándar abierto para conectar agentes con herramientas y datos.</li>
-<li>Un servidor, <strong>cualquier</strong> harness compatible.</li>
-<li>El agente deja de <strong>reescribir</strong> tus cálculos y pasa a <strong>llamarlos</strong>: menos código nuevo que auditar.</li>
+<li>La función es el <strong>contrato</strong>: nombre, parámetros con unidades, docstring y prueba.</li>
+<li>El agente no reinventa el cálculo: lo <strong>llama</strong> con otros valores.</li>
+<li>En el diff queda una <strong>llamada</strong>, no física nueva: se audita en segundos.</li>
+<li>Instalable y versionado (<code>uv add</code>, <code>uv.lock</code>): persona o agente obtienen lo mismo.</li>
 </ul>
+</div><div class="column" style="width:52%;">
+<p><span class="small">Lo que tú escribes y pruebas</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># src/climalab/modelo.py</span></span>
+<span id="cb42-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> temperatura_sol_aire(tdb, ghi, a<span class="op">=</span><span class="fl">0.6</span>,</span>
+<span id="cb42-3"><a href="" aria-hidden="true" tabindex="-1"></a>                         h<span class="op">=</span><span class="fl">13.0</span>, eps_dr<span class="op">=</span><span class="fl">63.0</span>):</span>
+<span id="cb42-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Temperatura sol-aire [°C].</span></span>
+<span id="cb42-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    a [-] · h [W/m²K] · eps_dr [W/m²]"""</span></span>
+<span id="cb42-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tdb <span class="op">+</span> (a <span class="op">*</span> ghi <span class="op">-</span> eps_dr) <span class="op">/</span> h</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="small">Lo que le pides al agente</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a>Con climalab.modelo.temperatura_sol_aire, barre la</span>
+<span id="cb43-2"><a href="" aria-hidden="true" tabindex="-1"></a>absortancia de 0.2 a 0.8 y h de 5 a 20 W/m²K para la</span>
+<span id="cb43-3"><a href="" aria-hidden="true" tabindex="-1"></a>última semana, y grafica las horas sobre 40 °C</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-</section>
-<section id="del-paquete-al-servidor-mcp" class="slide level2">
-<h2>Del paquete al servidor MCP</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># servidor-mcp/server.py</span></span>
-<span id="cb54-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mcp.server.fastmcp <span class="im">import</span> FastMCP</span>
-<span id="cb54-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb54-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> climalab.modelo <span class="im">import</span> temperatura_sol_aire</span>
-<span id="cb54-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="" aria-hidden="true" tabindex="-1"></a>mcp <span class="op">=</span> FastMCP(<span class="st">"climalab"</span>)</span>
-<span id="cb54-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="at">@mcp.tool</span>()</span>
-<span id="cb54-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> horas_sobre_umbral(a: <span class="bu">float</span>, h: <span class="bu">float</span>, umbral: <span class="bu">float</span> <span class="op">=</span> <span class="fl">40.0</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb54-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Horas al año con temperatura sol-aire sobre `umbral` [°C] en ClimaLab.</span></span>
-<span id="cb54-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    a: absortancia solar [-]; h: coeficiente convectivo [W/m²K]."""</span></span>
-<span id="cb54-12"><a href="" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pl.read_parquet(<span class="st">"data/002_intermediate/climalab.parquet"</span>)</span>
-<span id="cb54-13"><a href="" aria-hidden="true" tabindex="-1"></a>    tsa <span class="op">=</span> temperatura_sol_aire(df[<span class="st">"tdb"</span>], df[<span class="st">"ghi"</span>], a<span class="op">=</span>a, h<span class="op">=</span>h)</span>
-<span id="cb54-14"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>((tsa <span class="op">&gt;</span> umbral).<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">60</span> <span class="op">/</span> <span class="dv">2</span>)   <span class="co"># 2 años de datos minutales</span></span>
-<span id="cb54-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb54-17"><a href="" aria-hidden="true" tabindex="-1"></a>    mcp.run()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="small">
-<p>La docstring y los tipos <strong>son</strong> la documentación que lee el agente. La función ya estaba probada en <code>src/</code>.</p>
-</div>
-</section>
-<section id="demo" class="slide level2">
-<h2>Demo 👀</h2>
-<div class="demo">
-<p><span class="demo-title">Demo en vivo · 3 min</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add mcp                                                <span class="co"># el SDK oficial de MCP</span></span>
-<span id="cb55-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> mcp add climalab <span class="at">--</span> uv run servidor-mcp/server.py</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><em>“¿Qué absortancia de techo mantiene la temperatura sol-aire por debajo de 40 °C más de 95 % del tiempo?”</em></p>
-</div>
-<div class="pista">
-<p>El agente solo puede usar tu conocimiento <strong>si lo empaquetaste</strong>. Tu código bien hecho se vuelve su herramienta.</p>
-</div>
 <aside class="notes">
-<p>Fusible: si vamos tarde, contar la demo sin ejecutarla. Lo que hay que señalar en pantalla: el agente llama la herramienta en vez de escribir su propia fórmula.</p>
+<p>Es la misma función del bloque 6. La idea: el conocimiento de dominio se empaqueta y se prueba una vez; el agente explora el espacio de parámetros. Lo que hay que revisar es qué valores eligió, no si la física es correcta. Puente: ¿y si el agente pudiera descubrir esas funciones por sí solo, en cualquier harness? Eso es MCP.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2275,6 +1902,225 @@ notebooks/
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="explorar-mcp-el-concepto" class="slide level2">
+<h2>Explorar MCP: el concepto</h2>
+<div class="columns">
+<div class="column small" style="width:50%;">
+<ul>
+<li><strong>Model Context Protocol</strong>: estándar abierto para conectar una aplicación de IA con herramientas y datos. Lo creó Anthropic en 2024; desde 2025 lo gobierna la Agentic AI Foundation (Linux Foundation), junto con <code>AGENTS.md</code>.</li>
+<li><strong>Participantes</strong>: el <em>host</em> (Claude Code, OpenCode, marimo…) abre un <em>cliente</em> por cada <em>servidor</em>.</li>
+<li><strong>Un servidor ofrece</strong>: <em>tools</em> (funciones que el agente ejecuta), <em>resources</em> (datos de contexto) y <em>prompts</em> (plantillas).</li>
+<li><strong>Descubrir y llamar</strong>: el agente pregunta qué herramientas hay (<code>tools/list</code>) y las invoca (<code>tools/call</code>).</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<pre class="text"><code> host: Claude Code · OpenCode · marimo
+ ┌──────────────────────────────────┐
+ │  cliente MCP       cliente MCP   │
+ └──────┬──────────────────┬────────┘
+        │ stdio (local)    │ HTTP (remoto)
+        ▼                  ▼
+  servidor "climalab"   servidor GitHub
+  tools · resources · prompts</code></pre>
+<div class="pregunta small">
+<p>Tu paquete, envuelto en un servidor MCP, se vuelve una herramienta que <strong>cualquier</strong> agente descubre y llama.</p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Fuentes: modelcontextprotocol.io (arquitectura) y el anuncio de la Agentic AI Foundation (9 dic 2025). Solo el concepto: en esta charla no se construye el servidor.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ================================================================== -->
+<!-- Bloque 6 · src/, paquete y exploración paramétrica · 15 min         -->
+<!-- ================================================================== -->
+<!--
+BLOQUE 6 COMENTADO (21 oct 2026): de "De src/ al paquete instalable" hasta su "Práctica 🖐".
+Para restaurarlo, quitar esta línea de apertura y el cierre al final del bloque.
+
+# De `src/` al paquete instalable {.center background-color="#1f3a5f"}
+
+[🖐 Práctica · 15 min]{.modo}
+
+## El notebook narra; `src/` define
+
+::: {.columns}
+::: {.column width="50%"}
+```text
+src/climalab/
+├── __init__.py
+├── io.py         # crudos → Parquet limpio y tipado
+├── radiacion.py  # ghi_diaria(), …
+└── modelo.py     # la función del barrido
+tests/
+└── test_radiacion.py
+notebooks/
+└── exploracion.py   # importa de climalab
+```
+:::
+::: {.column width="50%" .small}
+- En `src/` vive el código que **define**: funciones con docstring, **unidades** y prueba.
+- El notebook **narra**: carga, llama, grafica, interpreta.
+- La misma función se importa desde marimo, pytest, un script… **o el agente**.
+- Layout `src/`: obliga a **instalar** el paquete, así que lo que pruebas es lo que se instala.
+:::
+:::
+
+::: {.pregunta .small}
+¿Cuándo sacar código del notebook? Cuando lo **copiaste dos veces** o cuando **necesita una prueba**.
+:::
+
+## Una función, una prueba con respuesta conocida
+
+::: {.columns}
+::: {.column width="50%"}
+```python
+# src/climalab/radiacion.py
+def ghi_diaria(ghi_w_m2):
+    """Energía solar diaria sobre
+    superficie horizontal.
+
+    ghi_w_m2: serie minutal [W/m²]
+    regresa:  [kWh/m²·día]
+    """
+    wh = ghi_w_m2 * (1 / 60)  # 1 min
+    return wh.resample("1D").sum() / 1000
+```
+:::
+::: {.column width="50%"}
+```python
+# tests/test_radiacion.py
+import pandas as pd
+from pytest import approx
+from climalab.radiacion import ghi_diaria
+
+def test_ghi_constante_un_dia():
+    idx = pd.date_range("2026-01-01",
+                        periods=1440, freq="1min")
+    ghi = pd.Series(1000.0, index=idx)
+    # 1000 W/m² durante 24 h = 24 kWh/m²
+    assert ghi_diaria(ghi).iloc[0] == approx(24.0)
+```
+:::
+:::
+
+::: {.small}
+Con el cambio `sum()` → `mean()` del bloque 3, esta prueba da **1.0** en vez de 24.0 y **falla**. Diff y prueba: redundancia deliberada.
+:::
+
+::: {.notes}
+La respuesta la escribe la persona, no el agente: si el agente escribe código y prueba,
+la prueba puede ser tautológica.
+:::
+
+## Del `src/` al paquete instalable
+
+```bash
+uv build                                              # genera dist/*.whl
+uv add git+https://github.com/usuario/climalab        # instalar desde GitHub
+uv add enerhabitat                                    # o desde PyPI
+```
+
+::: {.columns .small}
+::: {.column width="50%"}
+- Documentado, **versionado**, **citable** (Zenodo da DOI a cada versión).
+- Quien lo usa lo fija en **su** `uv.lock`: tu ciencia se vuelve **dependencia reproducible** de la de otros.
+:::
+::: {.column width="50%"}
+::: {.pregunta}
+Caso en casa: [**EnerHabitat** en PyPI](https://pypi.org/project/enerhabitat/)
+
+`uv add enerhabitat`
+:::
+:::
+:::
+
+::: {.notes}
+EnerHabitat: transferencia de calor en envolventes, IER-UNAM.
+El mensaje no es "publiquen paquetes": la estructura src/ + tests/ deja el paquete casi listo.
+:::
+
+## Exploración paramétrica
+
+::: {.columns}
+::: {.column width="44%"}
+```python
+# src/climalab/modelo.py
+def temperatura_sol_aire(tdb, ghi, a=0.6,
+                         h=13.0, eps_dr=63.0):
+    """Temperatura sol-aire, superficie
+    horizontal [°C].
+
+    tdb    temperatura del aire [°C]
+    ghi    irradiancia global [W/m²]
+    a      absortancia solar [-]
+    h      coef. convectivo [W/m²K]
+    eps_dr ε·ΔR, intercambio de onda
+           larga con el cielo [W/m²]
+    """
+    return tdb + (a * ghi - eps_dr) / h
+```
+:::
+::: {.column width="56%"}
+```python
+# barrido.py
+import itertools
+import polars as pl
+from climalab.modelo import temperatura_sol_aire
+
+df = pl.read_parquet(
+    "data/002_intermediate/climalab.parquet")
+filas = []
+for a, h in itertools.product([0.2, 0.4, 0.6, 0.8],
+                              [5, 10, 15, 20]):
+    tsa = temperatura_sol_aire(df["tdb"], df["ghi"],
+                               a=a, h=h)
+    filas.append({"absortancia": a, "h": h,
+                  "tsa_max": tsa.max(),
+                  "horas_sobre_40": (tsa > 40).sum() / 60})
+pl.DataFrame(filas).write_parquet(
+    "data/003_results/barrido.parquet")
+```
+:::
+:::
+
+::: {.small}
+Una función bien definida + una malla de parámetros = **barrido**. Resultado → Parquet → **slider en marimo**.
+:::
+
+::: {.notes}
+16 combinaciones × 1 millón de minutos. La función es pura: sin archivos, sin estado; por eso
+se puede barrer, probar y, en el bloque 8, exponer como herramienta para un agente.
+:::
+
+## Práctica 🖐
+
+::: {.practica}
+[Práctica · 5 min]{.practica-title}
+
+```bash
+uv add "git+https://github.com/AltamarMx/ecosistema-datos#subdirectory=climalab"
+uv run python barrido.py
+uv run marimo edit notebooks/barrido.py   # slider de absortancia → horas sobre 40 °C
+```
+:::
+
+::: {.pista}
+Decidir **qué es una función**, qué parámetros barrer y **qué prueba la valida** es diseño, no tecleo. Ahí está el valor de saber programar.
+:::
+
+::: {.notes}
+TODO: confirmar URL del paquete del taller cuando el repo esté publicado.
+:::
+-->
 <!-- ================================================================== -->
 <!-- Bloque 9 · Cierre · 10 min                                          -->
 <!-- ================================================================== -->
